@@ -1,0 +1,249 @@
+.clear {
+  clear: both; }
+
+.coLeft {
+  width: 16.85%;
+  float: left; }
+
+.coRight {
+  width: 83.15%;
+  float: left; }
+
+.minimizedLeft {
+  float: left;
+  width: 3.69%; }
+
+.minimizedRight {
+  float: left;
+  width: 96.31%; }
+
+body {
+  height: 100%;
+  margin: 0;
+  background: #222d32; }
+  body #nav {
+    background: #222d32;
+    padding: 0;
+    position: relative;
+    transition: transform .3s ease-in-out, width .3s ease-in-out; }
+    body #nav #logo {
+      outline: 0;
+      text-transform: uppercase;
+      background: #367FA9;
+      text-align: center; }
+      body #nav #logo:hover {
+        background: #367FA9;
+        cursor: pointer; }
+      body #nav #logo #logoName {
+        text-decoration: none;
+        outline: 0;
+        color: white;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 50px; }
+        body #nav #logo #logoName:hover {
+          text-decoration: none;
+          outline: 0; }
+        body #nav #logo #logoName #crud {
+          margin-left: -5px; }
+    body #nav #navName {
+        text-transform: uppercase;
+        background: #1a2226;
+        font-size: 12px;
+        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        padding: 10px 0px 10px 15px; }
+        body #nav #navName #name {
+            color: #4b646f;
+            margin: 0;
+        }
+    body #nav #navigations {
+      margin-top: -1px; }
+      body #nav #navigations li:first-child i {
+        margin-right: 6px; }
+      body #nav #navigations li i {
+        margin-right: 10px; }
+        body #nav #navigations li i:last-child {
+          position: absolute;
+          right: 10px;
+          margin-top: 3px; }
+      body #nav #navigations li > a {
+        border-left: 3px solid transparent;
+        color: #b8c7ce;
+        padding: 12px 5px 12px 15px;
+        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.42857143;
+        display: block; }
+        body #nav #navigations li > a:hover {
+          border-left: 3px solid #367FA9;
+          text-decoration: none;
+          color: white;
+          background: #1E282C; }
+        body #nav #navigations li > a:visited {
+          text-decoration: none; }
+      body #nav #navigations li > ul {
+        display: none;
+        transition: transform .3s ease-in-out, width .3s ease-in-out; }
+        body #nav #navigations li > ul li a {
+          color: #8aa4af;
+          padding: 5px 5px 5px 15px;
+          font-size: 14px;
+          margin-left: 3px;
+          border-left: 3px solid transparent; }
+          body #nav #navigations li > ul li a:hover {
+            border-left: 3px solid transparent;
+            background: transparent; }
+  body #minimizedNavigations {
+    z-index: 4;
+    position: absolute;
+    top: 50px;
+    left: 3.69%; }
+    body #minimizedNavigations > li {
+      border-bottom-right-radius: 4px;
+      border-top-right-radius: 4px; }
+    body #minimizedNavigations li {
+      z-index: 3;
+      position: relative; }
+      body #minimizedNavigations li:first-child i {
+        margin-right: 6px; }
+      body #minimizedNavigations li i {
+        margin-right: 10px; }
+        body #minimizedNavigations li i:last-child {
+          position: absolute;
+          right: 10px;
+          margin-top: 3px; }
+      body #minimizedNavigations li > a {
+        width: 200px;
+        color: white;
+        background: #1E282C;
+        padding: 12px 5px 12px 15px;
+        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.42857143;
+        display: block; }
+        body #minimizedNavigations li > a:hover {
+          text-decoration: none;
+          background: #1E282C; }
+        body #minimizedNavigations li > a:visited {
+          text-decoration: none; }
+      body #minimizedNavigations li > ul li a {
+        color: #8aa4af;
+        padding: 5px 5px 5px 15px;
+        font-size: 14px; }
+        body #minimizedNavigations li > ul li a:hover {
+          color: white; }
+    body #minimizedNavigations #minimizedDashboard {
+      display: none; }
+    body #minimizedNavigations #minimizedTaskManager {
+      display: none;
+      top: 43px; }
+    body #minimizedNavigations #minimizedUserManager {
+      display: none;
+      top: 88px; }
+    body #minimizedNavigations #minimizedSettings {
+      display: none;
+      top: 132px; }
+  body #content {
+    position: relative;
+    padding: 0;
+    background: #ECF0F5;
+    min-height: 100vh;
+    transition: transform .3s ease-in-out, width .3s ease-in-out; }
+    body #content #topPanel {
+      z-index: 5;
+      background: #3C8DBC;
+      height: 52px; }
+      body #content #topPanel #bars a {
+        text-decoration: none;
+        color: white;
+        padding: 16px 15px 14px 15px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        position: absolute;
+        left: 0px;
+        margin-top: 0px; }
+        body #content #topPanel #bars a:hover {
+          text-decoration: none;
+          background: #367FA9; }
+      body #content #topPanel #account {
+        float: right;
+        padding-right: 0; }
+        body #content #topPanel #account ul {
+          margin:0;
+          text-align: right; }
+          body #content #topPanel #account ul li {
+            display: inline-block;
+            padding-top: 12px;
+             }
+            body #content #topPanel #account ul li a {
+              color: white;
+              line-height: 20px;
+              padding: 17px 13px 15px 16px;
+              text-decoration: none;
+              font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+              font-weight: 400;
+              font-size: 14px; }
+              body #content #topPanel #account ul li a:hover {
+                text-decoration: none;
+                background: #367FA9; }
+          body #content #topPanel #account ul #sign a {
+            padding: 17px 16px 17px 14px; }
+    body #content .contentHeadline .left {
+      float: left;
+      width: 50%; }
+      body #content .contentHeadline .left h3 {
+        font-size: 24px;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 500;
+        line-height: 1.1;
+        padding-left: 15px;
+        padding-top: 15px; }
+    body #content .contentHeadline .right {
+      width: 50%;
+      float: left;
+      text-align: right;
+      padding-top: 9px; }
+      body #content .contentHeadline .right ul {
+        padding-right: 12px;
+        padding-top: 7px; }
+        body #content .contentHeadline .right ul li {
+          display: inline-block;
+          font-size: 12px;
+          font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          font-weight: 400;
+          line-height: 1.42857143;
+          padding-right: 3px; }
+          body #content .contentHeadline .right ul li a {
+            color: #444;
+            text-decoration: none; }
+            body #content .contentHeadline .right ul li a:hover {
+              text-decoration: none; }
+            body #content .contentHeadline .right ul li a i {
+              padding-right: 5px; }
+        body #content .contentHeadline .right ul .after span {
+          color: #777; }
+          body #content .contentHeadline .right ul .after span:first-child {
+            padding-right: 5px;
+            color: #ccc; }
+    body #content .contentArea {
+      margin-bottom: 81px; }
+    body #content #footer {
+      text-align: right;
+      color: #444;
+      background: white;
+      padding: 15px;
+      border-top: 1px solid #d2d6de;
+      font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.42857143;
+      width: 100%;
+      position: absolute;
+      bottom: 0; }
+      body #content #footer b {
+        font-weight: bold; }
+
+/*# sourceMappingURL=main.css.map */
