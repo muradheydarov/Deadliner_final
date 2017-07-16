@@ -177,14 +177,7 @@
                 </a>
             </div>
             <div id="account" class="col-6">
-                <ul>
-                    <li id="welcome">
-                        <a href="#">Welcome Admin</a>
-                    </li>
-                    <li id="sign">
-                        <a href="#">Sign out</a>
-                    </li>
-                </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
         <!-- C O N T E N T   H E A D L I N E  -->
@@ -218,7 +211,7 @@
         </div>
     </div>
     <div class="clear"></div>
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery")    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
