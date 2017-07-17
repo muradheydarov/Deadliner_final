@@ -74,19 +74,24 @@
         <section id="loginForm">
             <form action="/" method="post" role="form">
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <input class="marginbottom" placeholder="User Name" data-val="true" data-val-required="The User Name field is required." id="UserName" name="UserName" type="text" value="">
                 <input type="password" name="Password" placeholder="Password" required="" id="password" class="marginbottom">
                 <div class="agile_remember">
                     <div class="agile_remember_left">
                         <div class="check">
-                            <label>
+                            @*<label>
                                 @Html.CheckBoxFor(m => m.RememberMe)
                                 @Html.LabelFor(m => m.RememberMe)
+                            </label>*@
+                            <label class="checkbox">
+                                <input data-val="true" data-val-required="The Remember me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true"><i> </i>remember me
+                                <input name="RememberMe" type="hidden" value="false">
                             </label>
                         </div>
                     </div>
                     <div class="agile_remember_right">
-                        <a href="#">Forgot Password?</a>
+                        <a href="@Url.Action("ForgotPassword","Account")">Forgot Password?</a>
                     </div>
                     <div class="clear"> </div>
                 </div>

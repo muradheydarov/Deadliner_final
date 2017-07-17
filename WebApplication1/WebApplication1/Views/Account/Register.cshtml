@@ -62,10 +62,25 @@
             <input placeholder="Confirm Password" data-val="true" data-val-equalto="The password and confirmation password do not match." data-val-equalto-other="*.Password" id="ConfirmPassword" name="ConfirmPassword" type="password">
             <input class="marginbottom" placeholder="Email" data-val="true" data-val-email="The Email field is not a valid e-mail address." data-val-required="The Email field is required." id="Email" name="Email" type="email" value="">
             <div class="check">
-                <label class="checkbox"><input type="checkbox" name="checkbox" checked><i> </i>i agree to the <span>terms of services</span></label>
+                <label class="checkbox"><input type="checkbox" id="checkbox" name="checkbox" checked><i> </i>i agree to the <span>terms of services</span></label>
             </div>
             <input type="submit" value="Sign Up">
         </form>
         <h5>Already a member? <a href="@Url.Action("Login","Account")">Sign In</a></h5>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('input[type=checkbox]').click(function () {
+                if ($('#checkbox').is(':checked')) {
+                    $(':input[type="submit"]').prop('disabled', false);
+                }
+                else {
+                    $(':input[type="submit"]').prop('disabled', true);
+                }
+            });             
+        })     
+    </script>   
+    }
