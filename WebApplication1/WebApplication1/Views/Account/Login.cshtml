@@ -1,6 +1,6 @@
 ﻿@using WebApplication1.Models
 @model LoginViewModel
-@{
+@*@{
     ViewBag.Title = "Log in";
     Layout = null;
         }
@@ -45,10 +45,10 @@
                         <p>
                             @Html.ActionLink("Register as a new user", "Register")
                         </p>
-                        @* Enable this once you have account confirmation enabled for password reset functionality
+                        @*Enable this once you have account confirmation enabled for password reset functionality
                             <p>
                                 @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                            </p>*@
+                            </p>
                     }
                 </section>
             </div>
@@ -61,10 +61,10 @@
 
     @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
-        }
+        }*@
 
 
-@*@{
+@{
     ViewBag.Title = "Log in";
     Layout = "~/Views/Shared/_RegisterView.cshtml";
 }
@@ -84,7 +84,7 @@
                             @*<label>
                                 @Html.CheckBoxFor(m => m.RememberMe)
                                 @Html.LabelFor(m => m.RememberMe)
-                            </label>
+                            </label>*@
                             <label class="checkbox">
                                 <input data-val="true" data-val-required="The Remember me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true"><i> </i>remember me
                                 <input name="RememberMe" type="hidden" value="false">
@@ -94,7 +94,7 @@
                     <div class="agile_remember_right">
                         <a href="@Url.Action("ForgotPassword","Account")">Forgot Password?</a>
                     </div>
-                    <div class="clear"> </div>
+                    <div class="clear"></div>
                 </div>
 
                 <input type="submit" value="Sign In">
@@ -107,7 +107,10 @@
                 <a href="" class="icon tw"><img src="~/images/t.png" alt="" /></a>
                 <a href="" class="icon gp"><img src="~/images/g.png" alt="" /></a>
             </section>
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
         </div>
         <h5>Don't have an account? <a href="@Url.Action("Register","Account")">Sign Up</a></h5>
     </div>
-</div>*@
+</div>

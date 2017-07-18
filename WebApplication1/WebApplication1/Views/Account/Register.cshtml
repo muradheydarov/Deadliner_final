@@ -57,6 +57,7 @@
     <div class="agile-info_w3ls_grid">
         <form action="/Account/Register" method="post" novalidate="novalidate">
             @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <input class="marginbottom" placeholder="Name" data-val="true" data-val-required="The User Name field is required." id="UserName" name="UserName" type="text" value="">
             <input class="marginbottom" placeholder="Password" data-val="true" data-val-length="The Password must be at least 6 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="The Password field is required." id="Password" name="Password" type="password">
             <input placeholder="Confirm Password" data-val="true" data-val-equalto="The password and confirmation password do not match." data-val-equalto-other="*.Password" id="ConfirmPassword" name="ConfirmPassword" type="password">
@@ -76,11 +77,15 @@
             $('input[type=checkbox]').click(function () {
                 if ($('#checkbox').is(':checked')) {
                     $(':input[type="submit"]').prop('disabled', false);
+                    
                 }
                 else {
                     $(':input[type="submit"]').prop('disabled', true);
                 }
-            });             
+            });     
+            $("input[type='submit']").on("click", function (e) {                
+                bootbox.alert("Activation link sent your email address, please confirm your account");                
+            });                
         })     
     </script>   
     }

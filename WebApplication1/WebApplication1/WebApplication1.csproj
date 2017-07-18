@@ -236,6 +236,8 @@
     <Content Include="images\f.png" />
     <Content Include="images\g.png" />
     <Content Include="images\t.png" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -284,7 +286,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_RegisterView.cshtml" />
     <Content Include="Views\Account\EmailNotConfirmed.cshtml" />
-    <Content Include="Views\Account\ActivationCodeSend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,6 +23,7 @@ namespace WebApplication1
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/tether/tether.js",
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootbox.js",
                       "~/Scripts/respond.js"));
 
 
