@@ -172,7 +172,7 @@ namespace WebApplication1.Controllers
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     //return RedirectToAction("ActivationCodeSend", "Account");
-                    //return View("Login");
+                    //return View("ActivationSendEmail");
                 }
                 AddErrors(result);
             }

@@ -19,10 +19,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>EmailNotConfirmed</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
+    <div class="alert alert-success" role="alert">
         Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
     </div>
+    <script src="~/Scripts/bootstrap.js"></script>
 </body>
 </html>
