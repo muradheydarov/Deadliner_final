@@ -248,8 +248,6 @@ input[type="submit"],.agileits_copyright p a,input[type="reset"],.agile-info_w3l
   -moz-osx-font-smoothing: grayscale;
 }
 .hvr-buzz:hover, .hvr-buzz:focus, .hvr-buzz:active {
-  -webkit-animation-name: hvr-buzz;
-  animation-name: hvr-buzz;
   -webkit-animation-duration: 0.15s;
   animation-duration: 0.15s;
   -webkit-animation-timing-function: linear;
