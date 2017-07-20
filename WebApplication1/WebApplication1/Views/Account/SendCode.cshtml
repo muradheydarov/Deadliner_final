@@ -4,8 +4,6 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-<h3>Murad</h3>
-
 
 @using (Html.BeginForm("SendCode", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
     @Html.AntiForgeryToken()
@@ -18,11 +16,9 @@
             @Html.DropDownListFor(model => model.SelectedProvider, Model.Providers)
             <input type="submit" value="Submit" class="btn btn-default" />
         </div>
-    </div>
-    <div>SecondChange</div>
-    
+    </div>        
 }
-<div>Ragim</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
