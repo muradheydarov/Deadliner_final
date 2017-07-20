@@ -204,15 +204,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationUsersController.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-WebApplication1-20170712015257.mdf" />
-    <Content Include="App_Data\aspnet-WebApplication1-20170712015257_log.ldf">
-      <DependentUpon>aspnet-WebApplication1-20170712015257.mdf</DependentUpon>
+    <Content Include="App_Data\aspnet-DeadLiner-20170712015257.mdf" />
+    <Content Include="App_Data\aspnet-DeadLiner-20170712015257_log.ldf">
+      <DependentUpon>aspnet-DeadLiner-20170712015257.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\main.css" />
@@ -296,6 +297,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_RegisterView.cshtml" />
     <Content Include="Views\Account\EmailNotConfirmed.cshtml" />
+    <Content Include="Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Views\ApplicationUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

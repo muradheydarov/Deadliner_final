@@ -32,5 +32,7 @@ namespace DeadLiner.Models
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<DeadLiner.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
