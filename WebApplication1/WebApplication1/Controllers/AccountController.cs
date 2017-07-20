@@ -160,7 +160,8 @@ namespace DeadLiner.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                ApplicationDbContext tor = new ApplicationDbContext();
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Name=model.Name, Surname = model.Surname };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

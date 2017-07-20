@@ -70,6 +70,12 @@ namespace DeadLiner.Models
     public class RegisterViewModel
     {
         [Required]        
+        public string Name { get; set; }
+
+        [Required]
+        public string Surname { get; set; }
+
+        [Required]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
 
