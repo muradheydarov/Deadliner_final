@@ -1,4 +1,4 @@
-namespace WebApplication1.Migrations
+namespace DeadLiner.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

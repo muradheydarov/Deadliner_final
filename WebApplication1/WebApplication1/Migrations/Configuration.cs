@@ -1,11 +1,13 @@
-namespace WebApplication1.Migrations
+using DeadLiner.Models;
+
+namespace DeadLiner.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<WebApplication1.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
@@ -13,7 +15,7 @@ namespace WebApplication1.Migrations
             ContextKey = "WebApplication1.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(WebApplication1.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

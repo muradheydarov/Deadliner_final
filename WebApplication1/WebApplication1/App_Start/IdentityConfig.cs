@@ -10,12 +10,12 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using WebApplication1.Models;
 using System.Net.Mail;
 using System.Configuration;
 using System.Net.Mime;
+using DeadLiner.Models;
 
-namespace WebApplication1
+namespace DeadLiner
 {
     public class EmailService : IIdentityMessageService
     {

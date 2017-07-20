@@ -5,13 +5,13 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using DeadLiner.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using WebApplication1.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace WebApplication1.Controllers
+namespace DeadLiner.Controllers
 {
     [Authorize]
     public class AccountController : Controller
