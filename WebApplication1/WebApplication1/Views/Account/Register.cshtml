@@ -1,5 +1,5 @@
 ﻿@model DeadLiner.Models.RegisterViewModel
-@{
+@*@{
         ViewBag.Title = "Register";
         Layout = null;
     }
@@ -56,11 +56,11 @@
         </div>
     }
 
-    @*@section Scripts {
+    @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }*@
 
-@*@{
+@{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_RegisterView.cshtml";
 }
@@ -102,4 +102,4 @@
             });                
         })     
     </script>   
-    }*@
+    }
