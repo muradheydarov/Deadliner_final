@@ -4,6 +4,8 @@
 }
 
 <h2>@ViewBag.Title.</h2>
+<h3>Murad</h3>
+
 
 @using (Html.BeginForm("SendCode", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
     @Html.AntiForgeryToken()
