@@ -17,7 +17,14 @@ namespace WebApplication1.Models
         // GET: ApplicationUsers
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            if (User.IsInRole("Admin"))
+            {
+                return View("AdminIndex", db.Users.ToList());
+            }
+            else
+            {
+                return View("UsersIndex", db.Users.ToList());
+            }
         }
 
         // GET: ApplicationUsers/Details/5

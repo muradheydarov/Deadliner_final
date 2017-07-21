@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201707201304002_NameSurnameProperty.Designer.cs">
       <DependentUpon>201707201304002_NameSurnameProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707212050129_ForAdminUser.cs" />
+    <Compile Include="Migrations\201707212050129_ForAdminUser.Designer.cs">
+      <DependentUpon>201707212050129_ForAdminUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
@@ -302,7 +306,8 @@
     <Content Include="Views\ApplicationUsers\Delete.cshtml" />
     <Content Include="Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Views\ApplicationUsers\Edit.cshtml" />
-    <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\ApplicationUsers\AdminIndex.cshtml" />
+    <Content Include="Views\ApplicationUsers\UsersIndex.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -326,6 +331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707201304002_NameSurnameProperty.resx">
       <DependentUpon>201707201304002_NameSurnameProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707212050129_ForAdminUser.resx">
+      <DependentUpon>201707212050129_ForAdminUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
