@@ -29,7 +29,7 @@ namespace DeadLiner
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
+                      "~/Content/edit.css",
                       "~/Content/main.css",
                       "~/Content/tether/tether.css"));
         }

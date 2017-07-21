@@ -216,6 +216,7 @@
       <DependentUpon>aspnet-DeadLiner-20170712015257.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\edit.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\tether\tether-theme-arrows-dark.css" />
