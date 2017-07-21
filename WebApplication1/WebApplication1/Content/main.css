@@ -245,5 +245,8 @@ body {
       bottom: 0; }
       body #content #footer b {
         font-weight: bold; }
+.cursor_pointer {
+    cursor: pointer;
+}    
 
 /*# sourceMappingURL=main.css.map */

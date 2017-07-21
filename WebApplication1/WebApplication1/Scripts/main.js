@@ -130,7 +130,7 @@ function hideMinimizedSettings() {
 
 var isOpen = false;
 var tm = false;
-var us = false;
+var um = false;
 var st = false;
 var isMinimized = false;
 var taskManager = $('#taskManager');
