@@ -5,15 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">*@
 
 <div class="container">
     <div class="row">
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-            <A href="edit.html">Edit Profile</A>
-            <A href="edit.html">Logout</A>
-            <br>
-            <p class=" text-info">May 05,2014,03:00 pm </p>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 
@@ -28,7 +23,7 @@
                             <table class="table table-user-information">
                                 <tbody>
                                     <tr>
-                                        <td>@Html.DisplayNameFor(model => model.Name)</td>
+                                        <td>@Html.DisplayNameFor(model => model.Name):</td>
                                         <td>@Html.DisplayFor(model => model.Name)</td>
                                     </tr>
                                     <tr>
@@ -36,15 +31,15 @@
                                         <td> @Html.DisplayFor(model => model.Surname)</td>
                                     </tr>
                                     <tr>
-                                        <td>@Html.DisplayNameFor(model => model.Email)</td>
+                                        <td>@Html.DisplayNameFor(model => model.Email):</td>
                                         <td>@Html.DisplayFor(model => model.Email)</td>
                                     </tr>
                                     <tr>
-                                        <td> @Html.DisplayNameFor(model => model.PhoneNumber)</td>
+                                        <td> @Html.DisplayNameFor(model => model.PhoneNumber):</td>
                                         <td>@Html.DisplayFor(model => model.PhoneNumber)</td>
                                     </tr>
                                     <tr>
-                                        <td>@Html.DisplayNameFor(model => model.UserName)</td>
+                                        <td>@Html.DisplayNameFor(model => model.UserName):</td>
                                         <td>@Html.DisplayFor(model => model.UserName)</td>
                                     </tr>
                                     <tr>
@@ -53,17 +48,14 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <a href="#" class="btn btn-primary">My Sales Performance</a>
-                            <a href="#" class="btn btn-primary">Team Sales Performance</a>
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                    <a href="@Url.Action("Index")" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                     <span class="pull-right">
-                        <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                        <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        <a href="@Url.Action("Edit", new { id = Model.Id })" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="@Url.Action("Delete", new { id = Model.Id })" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                     </span>
                 </div>
 
@@ -71,7 +63,4 @@
         </div>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
