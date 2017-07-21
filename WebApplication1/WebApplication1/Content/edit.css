@@ -111,3 +111,16 @@
     line-height: 1.42857143;
 
 }
+
+
+/*edit view*/
+.contentArea{
+    overflow-x:hidden;
+}
+
+.aFont {
+    font-size: 16px;
+}
+.IconHref {
+    margin: 4px;
+}
