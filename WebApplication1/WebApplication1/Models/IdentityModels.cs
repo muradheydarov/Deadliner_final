@@ -19,6 +19,7 @@ namespace DeadLiner.Models
 
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string UserStatus { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -34,5 +35,6 @@ namespace DeadLiner.Models
         }
 
         //public System.Data.Entity.DbSet<DeadLiner.Models.ApplicationUser> ApplicationUsers { get; set; }
+        
     }
 }

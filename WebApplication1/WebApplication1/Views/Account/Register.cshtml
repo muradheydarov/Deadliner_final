@@ -61,45 +61,47 @@
     }*@
 
 @{
-    ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_RegisterView.cshtml";
-}
-
-
-<div class="agile-info_w3ls">
-    <h3>Register</h3>
-    <div class="agile-info_w3ls_grid">
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })            
-            <input class="marginbottom" placeholder="Name" data-val="true" data-val-required="The User Name field is required." id="UserName" name="UserName" type="text" value="">
-            <input class="marginbottom" placeholder="Password" data-val="true" data-val-length="The Password must be at least 6 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="The Password field is required." id="Password" name="Password" type="password">
-            <input placeholder="Confirm Password" data-val="true" data-val-equalto="The password and confirmation password do not match." data-val-equalto-other="*.Password" id="ConfirmPassword" name="ConfirmPassword" type="password">
-            <input class="marginbottom" placeholder="Email" data-val="true" data-val-email="The Email field is not a valid e-mail address." data-val-required="The Email field is required." id="Email" name="Email" type="email" value="">            
-            <div class="check">
-                <label class="checkbox"><input type="checkbox" id="checkbox" name="checkbox" checked><i> </i>i agree to the <span>terms of services</span></label>
-            </div>
-            <input type="submit" value="Sign Up">            
-        }
-        <h5>Already a member? <a href="@Url.Action("Login","Account")">Sign In</a></h5>
-    </div>
-</div>
-
-@section scripts{
-    <script>
-        $(document).ready(function () {
-            $('input[type=checkbox]').click(function () {
-                if ($('#checkbox').is(':checked')) {
-                    $(':input[type="submit"]').prop('disabled', false);                    
-                }
-                else {
-                    $(':input[type="submit"]').prop('disabled', true);
-                }
-            });     
-            $("input[type='submit']").on("click", function () {                
-                bootbox.alert("Activation link sent your email address, please confirm your account");                
-            });                
-        })     
-    </script>   
+        ViewBag.Title = "Register";
+        Layout = "~/Views/Shared/_RegisterView.cshtml";
     }
+
+
+    <div class="agile-info_w3ls">
+        <h3>Register</h3>
+        <div class="agile-info_w3ls_grid">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <input class="marginbottom" data-val="true" data-val-required="The Name field is required." id="Name" name="Name" type="text" value="" placeholder="Name">
+                <input class="marginbottom" data-val="true" data-val-required="The Surname field is required." id="Surname" name="Surname" type="text" value="" placeholder="Surname">
+                <input class="marginbottom" placeholder="User Name" data-val="true" data-val-required="The User Name field is required." id="UserName" name="UserName" type="text" value="">
+                <input class="marginbottom" placeholder="Password" data-val="true" data-val-length="The Password must be at least 6 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="The Password field is required." id="Password" name="Password" type="password">
+                <input placeholder="Confirm Password" data-val="true" data-val-equalto="The password and confirmation password do not match." data-val-equalto-other="*.Password" id="ConfirmPassword" name="ConfirmPassword" type="password">
+                <input class="marginbottom" placeholder="Email" data-val="true" data-val-email="The Email field is not a valid e-mail address." data-val-required="The Email field is required." id="Email" name="Email" type="email" value="">
+                <div class="check">
+                    <label class="checkbox"><input type="checkbox" id="checkbox" name="checkbox" checked><i> </i>i agree to the <span>terms of services</span></label>
+                </div>
+                <input type="submit" value="Sign Up">
+            }
+            <h5>Already a member? <a href="@Url.Action("Login","Account")">Sign In</a></h5>
+        </div>
+    </div>
+
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+                $('input[type=checkbox]').click(function () {
+                    if ($('#checkbox').is(':checked')) {
+                        $(':input[type="submit"]').prop('disabled', false);
+                    }
+                    else {
+                        $(':input[type="submit"]').prop('disabled', true);
+                    }
+                });
+                $("input[type='submit']").on("click", function () {
+                    bootbox.alert("Activation link sent your email address, please confirm your account");
+                });
+            })
+        </script>
+        }

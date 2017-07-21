@@ -59,25 +59,12 @@
                             </div>
                             <div class="col-md-6 form">
                                 <p>User Type</p>
-                                <select name="" id="">
-                                    <option>Select User Type</option>
-                                    <option value="">Admin</option>
-                                    <option value="">Manager</option>
-                                    <option value="">Accountant</option>
-                                </select>
+                                @Html.DropDownListFor(x => x.UserStatus, new SelectList(new[] {"Teacher","Student"}), "Select User Status")
                             </div>
                             <div class="col-md-6 form">
                                 <p>User Name</p>
                                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-6 form">
-                                <p>Password</p>
-                                <input type="password" placeholder="Enter Password ">
-                            </div>
-                            <div class="col-md-6 form">
-                                <p>Repeat Password</p>
-                                <input type="password" placeholder="Enter Repeat Password ">
                             </div>
                         </div>
                     </div>
