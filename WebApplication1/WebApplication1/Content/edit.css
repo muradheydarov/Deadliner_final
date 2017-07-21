@@ -83,6 +83,10 @@
     padding: 6px 12px;
 }
 
+.four .content{
+    height:95px;
+}
+
 .four .empty{
     height: 40px;
     border-bottom: 2px solid #f4f4f4;
