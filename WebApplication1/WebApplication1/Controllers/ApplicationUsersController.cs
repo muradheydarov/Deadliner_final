@@ -26,7 +26,7 @@ namespace WebApplication1.Models
                 return View("UsersIndex", db.Users.ToList());
             }
         }
-
+        
         // GET: ApplicationUsers/Details/5
         public ActionResult Details(string id)
         {
