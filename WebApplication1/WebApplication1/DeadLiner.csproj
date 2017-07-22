@@ -368,10 +368,11 @@
     <Content Include="Views\Account\EmailNotConfirmed.cshtml" />
     <Content Include="Views\ApplicationUsers\Create.cshtml" />
     <Content Include="Views\ApplicationUsers\Delete.cshtml" />
-    <Content Include="Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Views\ApplicationUsers\DetailsAdmin.cshtml" />
     <Content Include="Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Views\ApplicationUsers\AdminIndex.cshtml" />
     <Content Include="Views\ApplicationUsers\UsersIndex.cshtml" />
+    <Content Include="Views\ApplicationUsers\DetailsUser.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

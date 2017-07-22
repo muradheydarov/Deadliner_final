@@ -21,10 +21,7 @@ namespace WebApplication1.Models
             {
                 return View("AdminIndex", db.Users.ToList());
             }
-            else
-            {
-                return View("UsersIndex", db.Users.ToList());
-            }
+            return View("UsersIndex", db.Users.ToList());
         }
         
         // GET: ApplicationUsers/Details/5
@@ -39,7 +36,11 @@ namespace WebApplication1.Models
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            if (User.IsInRole("Admin"))
+            {
+                return View("DetailsAdmin", applicationUser);
+            }
+            return View("DetailsUser", applicationUser);
         }
 
         // GET: ApplicationUsers/Create

@@ -18,10 +18,13 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                Phone Number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                User Name
+            </th>
+            <th>
+                User Status
             </th>
             <th>
                 Action
@@ -47,6 +50,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserStatus)
                 </td>
                 <td class="aFont">
                     <a href="@Url.Action("Edit", new {id = item.Id})">
