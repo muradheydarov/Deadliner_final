@@ -545,7 +545,9 @@
     <Content Include="Views\ApplicationUsers\AdminIndex.cshtml" />
     <Content Include="Views\ApplicationUsers\UsersIndex.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\images\profile\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
