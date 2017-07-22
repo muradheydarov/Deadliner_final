@@ -113,15 +113,24 @@
 }
 
 
-/*edit view*/
-.contentArea{
-    overflow-x:hidden;
+/*Details view*/
+.container {
+    padding-left: 0px;
+}
+
+.contentArea {
+    overflow-x: hidden;
+}
+
+.table {
+    font-size: 15px;
 }
 
 /*Index view*/
 .aFont {
     font-size: 16px;
 }
+
 .IconHref {
     margin: 4px;
 }
