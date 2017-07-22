@@ -24,6 +24,9 @@
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.UserStatus)
+            </th>
+            <th>
                 Action
             </th>
         </tr>
@@ -47,6 +50,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.UserStatus)
                 </td>
                 <td class="aFont">
                     <a href="@Url.Action("Edit", new {id = item.Id})">
