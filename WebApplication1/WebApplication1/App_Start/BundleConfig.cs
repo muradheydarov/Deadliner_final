@@ -8,9 +8,17 @@ namespace DeadLiner
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            bundles.Add(new ScriptBundle("~/bundles/lib").Include(
+                      "~/Scripts/DataTables/jquery.dataTables.js",
+                      "~/Scripts/DataTables/dataTables.bootstrap.js",
+                      "~/Scripts/DataTables/dataTables.semanticui.min.js",
                       "~/Scripts/jquery-{version}.js",
-                      "~/Scripts/main.js"));
+                      "~/Scripts/main.js",
+                      "~/Scripts/tether/tether.js",
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootbox.js",
+                      "~/Scripts/respond.js"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -20,15 +28,10 @@ namespace DeadLiner
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/tether/tether.js",
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/bootbox.js",
-                      "~/Scripts/respond.js"));
-
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap.css",
+                      "~/Content/DataTables/css/dataTables.semanticui.min.css",                      
                       "~/Content/edit.css",
                       "~/Content/main.css",
                       "~/Content/tether/tether.css"));
