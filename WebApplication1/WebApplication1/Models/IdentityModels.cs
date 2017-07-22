@@ -20,6 +20,8 @@ namespace DeadLiner.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string UserStatus { get; set; }
+        public string Gender { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

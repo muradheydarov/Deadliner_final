@@ -23,7 +23,7 @@
                             @{
                                 var imgUrl = Url.Content("~/Content/images/profile/" + User.Identity.GetUserName() + ".png") + "?time=" + DateTime.Now.ToString();
                             }
-                            <img src="@imgUrl" height="300" width="300" onerror="this.onerror=null;this.src='/Content/images/profile/avatar.png'" class="img-circle img-responsive"/>                           
+                            <img src="@imgUrl" height="300" width="300" onerror="this.onerror=null;this.src='/Content/images/profile/avatar.png'" class="img-circle img-responsive" />
                         </div>
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
@@ -37,6 +37,10 @@
                                         <td> @Html.DisplayFor(model => model.Surname)</td>
                                     </tr>
                                     <tr>
+                                        <td>@Html.DisplayNameFor(model => model.Gender):</td>
+                                        <td> @Html.DisplayFor(model => model.Gender)</td>
+                                    </tr>
+                                    <tr>
                                         <td>@Html.DisplayNameFor(model => model.Email):</td>
                                         <td>@Html.DisplayFor(model => model.Email)</td>
                                     </tr>
@@ -47,10 +51,6 @@
                                     <tr>
                                         <td>User Name:</td>
                                         <td>@Html.DisplayFor(model => model.UserName)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gender</td>
-                                        <td>Female</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201707212050129_ForAdminUser.Designer.cs">
       <DependentUpon>201707212050129_ForAdminUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707222115434_forGender.cs" />
+    <Compile Include="Migrations\201707222115434_forGender.Designer.cs">
+      <DependentUpon>201707222115434_forGender.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
@@ -399,6 +403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707212050129_ForAdminUser.resx">
       <DependentUpon>201707212050129_ForAdminUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707222115434_forGender.resx">
+      <DependentUpon>201707222115434_forGender.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
