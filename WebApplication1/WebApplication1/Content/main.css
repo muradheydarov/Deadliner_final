@@ -246,6 +246,9 @@ body {
         font-weight: bold; }
 .cursor_pointer {
     cursor: pointer;
-}    
-
+}
+.nav_profile {
+    display: flex;
+    align-items: center;
+}
 /*# sourceMappingURL=main.css.map */

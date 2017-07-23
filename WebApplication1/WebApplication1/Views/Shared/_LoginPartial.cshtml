@@ -5,7 +5,7 @@
     {
     @Html.AntiForgeryToken()
 
-        <ul>
+        <ul class="nav_profile">
             <li>
                 @{
                     var imgUrl = Url.Content("~/Content/images/profile/" + User.Identity.GetUserName() + ".png") + "?time=" + DateTime.Now.ToString();
