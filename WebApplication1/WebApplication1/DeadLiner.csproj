@@ -191,6 +191,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TaskAssignedsController.cs" />
+    <Compile Include="Controllers\TasksModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,12 +212,21 @@
     <Compile Include="Migrations\201707222115434_forGender.Designer.cs">
       <DependentUpon>201707222115434_forGender.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707231442507_TaskAssign.cs" />
+    <Compile Include="Migrations\201707231442507_TaskAssign.Designer.cs">
+      <DependentUpon>201707231442507_TaskAssign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707232130470_addAnotherIdForAspNetUsers.cs" />
+    <Compile Include="Migrations\201707232130470_addAnotherIdForAspNetUsers.Designer.cs">
+      <DependentUpon>201707232130470_addAnotherIdForAspNetUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Tasks.cs" />
+    <Compile Include="Models\TaskAssigned.cs" />
+    <Compile Include="Models\TasksModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -563,6 +574,16 @@
     <Content Include="Views\ApplicationUsers\AdminIndex.cshtml" />
     <Content Include="Views\ApplicationUsers\UsersIndex.cshtml" />
     <Content Include="Views\ApplicationUsers\DetailsUser.cshtml" />
+    <Content Include="Views\TasksModels\Create.cshtml" />
+    <Content Include="Views\TasksModels\Delete.cshtml" />
+    <Content Include="Views\TasksModels\Details.cshtml" />
+    <Content Include="Views\TasksModels\Edit.cshtml" />
+    <Content Include="Views\TasksModels\Index.cshtml" />
+    <Content Include="Views\TaskAssigneds\Create.cshtml" />
+    <Content Include="Views\TaskAssigneds\Delete.cshtml" />
+    <Content Include="Views\TaskAssigneds\Details.cshtml" />
+    <Content Include="Views\TaskAssigneds\Edit.cshtml" />
+    <Content Include="Views\TaskAssigneds\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -592,6 +613,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707222115434_forGender.resx">
       <DependentUpon>201707222115434_forGender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707231442507_TaskAssign.resx">
+      <DependentUpon>201707231442507_TaskAssign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707232130470_addAnotherIdForAspNetUsers.resx">
+      <DependentUpon>201707232130470_addAnotherIdForAspNetUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

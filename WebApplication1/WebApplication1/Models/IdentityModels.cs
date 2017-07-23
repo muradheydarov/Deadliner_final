@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,12 +18,13 @@ namespace DeadLiner.Models
             // Add custom user claims here
             return userIdentity;
         }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ApplicationUserId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string UserStatus { get; set; }
         public string Gender { get; set; }
-        public ICollection<Task> Tasks { get; set; }
+        public List<TaskAssigned> TaskAssigneds { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -31,13 +33,12 @@ namespace DeadLiner.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<TasksModel> TasksModels { get; set; }
+        public DbSet<TaskAssigned> TaskAssigneds { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
-
-        public DbSet<Task> Tasks { get; set; }
-
     }
 }

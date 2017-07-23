@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DeadLiner.Models;
 
-namespace DeadLiner.Models
+namespace WebApplication1.Models
 {
     public class ApplicationUsersController : Controller
     {

@@ -86,16 +86,7 @@
 .four .content{
     height:95px;
 }
-.four {
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    border-top: 3px solid #3c8dbc;
-    background: #ffffff;
-    margin-bottom: 20px;
-    border-radius: 3px;
-    font-weight: 700;
-}
+
 .four .empty{
     height: 40px;
     border-bottom: 2px solid #f4f4f4;
