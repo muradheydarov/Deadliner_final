@@ -47,9 +47,9 @@ label{
 	margin:0;
 }
 /*-- main --*/
-.main{
+/*.main{
 	padding:70px 0;
-}
+}*/
 .main h1{
 	font-size:35px;
 	text-align:center;
@@ -59,9 +59,9 @@ label{
 	margin-bottom: 65px;
 	letter-spacing:1px;
 }
-.content{
-	width:36%;
-	margin:0 auto;
+.contents {
+    width: 65%;
+    margin: 0 auto;
 }
 p.footer {
 	color: #fff;
@@ -80,7 +80,11 @@ p.footer a:hover{
 	float:left;
 	width:25%;
 }
-
+.port-left img {
+     padding-bottom: 5px;
+     height: 197px;
+     width: 100%;
+}
 /******** SAP ************/
 .sap_tabs{
 	clear:both;
@@ -147,11 +151,11 @@ h2.resp-accordion {
    display: block;
 }
 .port-right {
-	background: #fff;
-	padding: 22px 30px;
-	min-height: 393px;
-	float: left;
-	width: 64.4%;
+    background: #fff;
+    padding: 42px 40px;
+    min-height: 393px;
+    float: left;
+    width: 75%;
 }
 .portfolio-grid{
 	border-bottom:2px solid #c4d9d9;
@@ -162,24 +166,28 @@ h2.resp-accordion {
 	margin-bottom: 6px;
 	font-weight: 500;
 }
-.form-control {
-	width: 76.9%;
-	padding: 9px 12px;
-	font-size: 14px;
-	color: #9a9a9a;
-	background: #efefef;
-border:none;
-	margin-left: -3px;
-	font-family: 'Lato', sans-serif;
+.form-controls {
+    border: none;
+    outline: none;
+    padding: 9px 9px;
+    font-size: 14px;
+    color: #9a9a9a;
+    font-family: 'Lato', sans-serif;
+    width: 89%;
+    background: #efefef;
 }
+
 select.btn.btn-default.button-one {
-	background: #dbdbdb;
-	color: #909090;
-	font-size: 16px;
-	padding: 7px 0px;
-	width: 16%;
-	font-weight: 500;
-border:none;
+    background: #dbdbdb;
+    color: #909090;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    width: 55px;
+    height: 39px;
+    padding: 0px;
+    margin-right: 5px;
+    outline:none;
 }
 .radio ,.radio2{
 	position: relative;
@@ -470,9 +478,9 @@ padding: 9px 12px;
 	.port-right {
 		min-height: 394px;
 	}
-	.port-right {
-		padding: 21px 30px;
-	}	
+    .port-right {
+        padding: 42px 39px;
+    }	
 }
 @media (max-width: 1280px){
 	.content {
