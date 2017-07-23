@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -21,7 +22,7 @@ namespace DeadLiner.Models
         public string Surname { get; set; }
         public string UserStatus { get; set; }
         public string Gender { get; set; }
-
+        public ICollection<Task> Tasks { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -36,7 +37,7 @@ namespace DeadLiner.Models
             return new ApplicationDbContext();
         }
 
-        //public System.Data.Entity.DbSet<DeadLiner.Models.ApplicationUser> ApplicationUsers { get; set; }
-        
+        public DbSet<Task> Tasks { get; set; }
+
     }
 }
