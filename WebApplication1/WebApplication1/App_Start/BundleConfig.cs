@@ -9,6 +9,8 @@ namespace DeadLiner
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
+                      "~/Scripts/jquery.min.js",
+                      "~/Scripts/easyResponsiveTabs.js",
                       "~/Scripts/DataTables/jquery.dataTables.js",
                       "~/Scripts/DataTables/dataTables.bootstrap.js",
                       "~/Scripts/DataTables/dataTables.semanticui.min.js",
@@ -17,7 +19,7 @@ namespace DeadLiner
                       "~/Scripts/tether/tether.js",
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/bootbox.js",
-                      "~/Scripts/respond.js"
+                      "~/Scripts/respond.js"                      
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
