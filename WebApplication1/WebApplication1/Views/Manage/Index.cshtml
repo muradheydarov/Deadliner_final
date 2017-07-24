@@ -180,7 +180,8 @@
                                         </div>
                                         <div class="clear"></div>
                                     </div>
-
+                                    
+                                    @*Bosluq*@
 
                                 </div>
                                 <div class="update">
@@ -189,44 +190,6 @@
                                 <div class="clear"></div>
                             </div>
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-                                <div class="interests">
-                                    <h3>Interested in</h3>
-                                    <div class="single-bottom">
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" id="brand" value="">
-                                                <label for="brand"><span></span>Arts & Entertainment</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="brand1" value="">
-                                                <label for="brand1"><span></span> Beauty & Fitness</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="brand2" value="">
-                                                <label for="brand2"><span></span> Finance</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="brand3" value="">
-                                                <label for="brand3"><span></span> Computer & Electronics</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="brand4" value="">
-                                                <label for="brand4"><span></span>Food And Drinks</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="brand5" value="">
-                                                <label for="brand5"><span></span>Business & Industrial</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="brand6" value="">
-                                                <label for="brand6"><span></span>Home & Garden</label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="update">
-                                    <a href="#">Update</a>
-                                </div>
                                 <div class="clear"></div>
                             </div>
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
@@ -279,7 +242,8 @@
                                 <div class="clear"></div>
                             </div>
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-4">
-                                <div class="work-play">
+                                @Html.Partial("~/Views/Manage/_partialPassword.cshtml", new DeadLiner.Models.ChangePasswordViewModel())
+                                @*<div class="work-play">
                                     <h3>Settings</h3>
                                     <h4>Profile Name</h4>
                                     <form>
@@ -300,7 +264,7 @@
                                 </div>
                                 <div class="update">
                                     <a href="#">Update</a>
-                                </div>
+                                </div>*@
                                 <div class="clear"></div>
                             </div>
                         </div>
