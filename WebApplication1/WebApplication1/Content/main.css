@@ -170,6 +170,8 @@ body {
           background: #367FA9; }
       body #content #topPanel #account {
         float: right;
+        display: flex;
+        justify-content: flex-end;
         padding-right: 0; }
         body #content #topPanel #account ul {
           margin:0;
