@@ -3,15 +3,19 @@
 
 .coLeft {
   width: 16.85%;
-  float: left; }
+  float: left; 
+    height:100%;
+}
 
 .coRight {
   width: 83.15%;
-  float: left; }
+  float:left; }
 
 .minimizedLeft {
   float: left;
-  width: 3.69%; }
+  width: 3.69%; 
+  height:100%;
+}
 
 .minimizedRight {
   float: left;
