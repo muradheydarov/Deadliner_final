@@ -174,7 +174,7 @@ h2.resp-accordion {
     font-size: 14px;
     color: #9a9a9a;
     font-family: 'Lato', sans-serif;
-    width: 89%;
+    width: 77%;
     background: #efefef;
 }
 
@@ -187,7 +187,7 @@ select.btn.btn-default.button-one {
     width: 55px;
     height: 39px;
     padding: 0px;
-    margin-right: 5px;
+    margin-right: 3px;
 }
 .radio ,.radio2{
 	position: relative;
@@ -310,7 +310,7 @@ border:none;
 .email-form input[type="text"],.cell-form input[type="text"]  {
 	border: none;
 	outline: none;
-padding: 9px 12px;
+padding: 7px 12px;
 	font-size: 14px;
 	color: #9a9a9a;
 	font-family: 'Lato', sans-serif;
@@ -450,15 +450,27 @@ padding: 9px 12px;
 	background: #f5c63b;
 	border-bottom:3px solid #E0AD16;	
 }
+
+.btndesign {
+    background: #1bcba5;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 0px;
+    border-bottom: 3px solid #20987E;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+}
 /*-- responsive media queries --*/
-@media (max-width: 1680px){
-	.resp-tab-item {
+@media (max-width: 1680px) {
+    .resp-tab-item {
 		padding: 17.3px 0;
 	}	
 }
 @media (max-width: 1600px){
 	.resp-tab-item {
-		padding: 18px 0;
+		padding: 26px 0;
 	}		
 }
 @media (max-width: 1440px){
@@ -479,7 +491,7 @@ padding: 9px 12px;
 		min-height: 394px;
 	}
     .port-right {
-        padding: 42px 39px;
+        padding: 53px 39px;
     }	
 }
 @media (max-width: 1280px){

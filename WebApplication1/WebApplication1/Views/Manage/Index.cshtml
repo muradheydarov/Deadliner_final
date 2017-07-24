@@ -127,7 +127,7 @@
                             <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Basic Details</span></li>
                             <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Interests</span></li>
                             <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Profile Picture</span></li>
-                            <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>Work & Play</span></li>
+                            @*<li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>Work & Play</span></li>*@
                             <li class="resp-tab-item" aria-controls="tab_item-4" role="tab"><span>Settings</span></li>
                             <div class="clear"></div>
                         </ul>
@@ -216,7 +216,8 @@
                                 </div>
                             </div>
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
-                                <div class="work-play">
+                                @Html.Partial("~/Views/Manage/_partialPassword.cshtml", new DeadLiner.Models.ChangePasswordViewModel())
+                                @*<div class="work-play">
                                     <h3>Work and Organization</h3>
                                     <h4>Profile Name</h4>
                                     <form>
@@ -238,7 +239,7 @@
                                 </div>
                                 <div class="update">
                                     <a href="#">Update</a>
-                                </div>
+                                </div>*@
                                 <div class="clear"></div>
                             </div>
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-4">
