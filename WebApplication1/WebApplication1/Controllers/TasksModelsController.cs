@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DeadLiner.Models;
 
-namespace WebApplication1.Controllers
+namespace DeadLiner.Controllers
 {
     public class TasksModelsController : Controller
     {

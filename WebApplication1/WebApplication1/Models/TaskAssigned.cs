@@ -10,7 +10,7 @@ namespace DeadLiner.Models
         public int Id { get; set; }
         public int TaskModelId { get; set; }
         public int UserId { get; set; }
-        public TasksModel TasksModel { get; set; }
-        public ApplicationUser User { get; set; }
+        public virtual TasksModel TasksModel { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

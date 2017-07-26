@@ -24,7 +24,7 @@ namespace DeadLiner.Models
         public string Surname { get; set; }
         public string UserStatus { get; set; }
         public string Gender { get; set; }
-        public List<TaskAssigned> TaskAssigneds { get; set; }
+        public ICollection<TaskAssigned> TaskAssigneds { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

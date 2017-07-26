@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DeadLiner.Models.TaskAssigned>
+﻿@model IEnumerable<DeadLiner.Models.TasksAssignedViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TaskModelId)
+            @Html.DisplayNameFor(model => model.TaskModelName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th></th>
     </tr>
@@ -24,15 +24,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TaskModelId)
+            @Html.DisplayFor(modelItem => item.TaskModelName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserId)
+            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
         </td>
     </tr>
 }

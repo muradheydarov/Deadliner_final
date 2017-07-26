@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using DeadLiner.Models;
 using Microsoft.AspNet.Identity;
 
-namespace WebApplication1.Controllers
+namespace DeadLiner.Controllers
 {
     public class TaskAssignedsController : Controller
     {
@@ -18,7 +18,14 @@ namespace WebApplication1.Controllers
         // GET: TaskAssigneds
         public ActionResult Index()
         {
-            var list = db.TaskAssigneds.Include(o => o.TasksModel).Include(o => o.User);
+            var list = db.TaskAssigneds.Include(t => t.TasksModel).Include(u => u.User).Select(l => new TasksAssignedViewModel
+            {
+                TaskModelId = l.TasksModel.Id,
+                UserId = l.User.ApplicationUserId,
+                TaskModelName = l.TasksModel.Heading,
+                UserName = l.User.UserName
+            });
+
             return View(list.ToList());
         }
 
