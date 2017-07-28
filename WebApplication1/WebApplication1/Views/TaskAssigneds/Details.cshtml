@@ -1,4 +1,4 @@
-﻿@model DeadLiner.Models.TaskAssigned
+﻿@model IEnumerable<DeadLiner.Models.TaskViewModel>
 
 @{
     ViewBag.Title = "Details";
@@ -6,30 +6,33 @@
 }
 
 <h2>Details</h2>
+@foreach (var item in Model)
+{
+    <div>
+        <h4>TaskAssigned</h4>
+        <hr/>
+        <dl class="dl-horizontal">
 
-<div>
-    <h4>TaskAssigned</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TaskModelId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TaskType)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TaskModelId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => item.TaskType)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => item.UserName)
+            </dd>            
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new {id = item.TaskAssaignedId}) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

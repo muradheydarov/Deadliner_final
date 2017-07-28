@@ -18,12 +18,14 @@ namespace DeadLiner.Controllers
         // GET: TaskAssigneds
         public ActionResult Index()
         {
-            var list = db.TaskAssigneds.Include(t => t.TasksModel).Include(u => u.User).Select(l => new TasksAssignedViewModel
+            var list = db.TaskAssigneds.Select(l => new TaskViewModel
             {
-                TaskModelId = l.TasksModel.Id,
-                UserId = l.User.ApplicationUserId,
-                TaskModelName = l.TasksModel.Heading,
-                UserName = l.User.UserName
+                TaskAssaignedId = l.Id,
+                UserName = l.User.UserName,
+                UserId = l.User.Id,
+                TaskId = l.TasksModel.Id,
+                TaskType = l.TasksModel.Heading,
+                UserIdInt = l.User.ApplicationUserId
             });
 
             return View(list.ToList());
@@ -36,19 +38,34 @@ namespace DeadLiner.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaskAssigned taskAssigned = db.TaskAssigneds.Find(id);
-            if (taskAssigned == null)
+            //TaskAssigned taskAssigned = db.TaskAssigneds.Find(id);
+
+            var list = db.TaskAssigneds.Select(l => new TaskViewModel
             {
-                return HttpNotFound();
+                TaskAssaignedId = l.Id,
+                UserName = l.User.UserName,
+                UserId = l.User.Id,
+                TaskId = l.TasksModel.Id,
+                TaskType = l.TasksModel.Heading,
+                UserIdInt = l.User.ApplicationUserId
+            }).Where(x => x.TaskAssaignedId == id).ToList();
+
+            foreach (var item in list)
+            {
+                if (item == null)
+                {
+                    return HttpNotFound();
+                }
             }
-            return View(taskAssigned);
+
+            return View(list);
         }
 
         // GET: TaskAssigneds/Create
         public ActionResult Create()
-        {            
-            ViewBag.TaskModelId = new SelectList(db.TasksModels,"Id", "Heading");
-            ViewBag.UserId = new SelectList(db.Users, "ApplicationUserId", "UserName");
+        {
+            ViewBag.TaskModel_Id = new SelectList(db.TasksModels, "Id", "Heading");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
@@ -57,7 +74,7 @@ namespace DeadLiner.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TaskModelId,UserId")] TaskAssigned taskAssigned)
+        public ActionResult Create([Bind(Include = "Id,TaskModel_Id,UserId")] TaskAssigned taskAssigned)
         {
             if (ModelState.IsValid)
             {
@@ -65,9 +82,6 @@ namespace DeadLiner.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.TaskModelId = new SelectList(db.TasksModels, "Id", "Heading", taskAssigned.TaskModelId);
-            ViewBag.UserId = new SelectList(db.Users, "ApplicationUserId", "UserName", taskAssigned.UserId);
 
             return View(taskAssigned);
         }
@@ -80,6 +94,9 @@ namespace DeadLiner.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TaskAssigned taskAssigned = db.TaskAssigneds.Find(id);
+
+            ViewBag.TaskModel_Id = new SelectList(db.TasksModels, "Id", "Heading");
+
             if (taskAssigned == null)
             {
                 return HttpNotFound();
@@ -92,7 +109,7 @@ namespace DeadLiner.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TaskModelId,UserId")] TaskAssigned taskAssigned)
+        public ActionResult Edit([Bind(Include = "Id,TaskModel_Id,UserId")] TaskAssigned taskAssigned)
         {
             if (ModelState.IsValid)
             {
@@ -100,6 +117,9 @@ namespace DeadLiner.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.TaskModel_Id = new SelectList(db.TasksModels, "Id", "Heading", taskAssigned.TaskModel_Id);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", taskAssigned.UserId);
+
             return View(taskAssigned);
         }
 
@@ -110,12 +130,27 @@ namespace DeadLiner.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaskAssigned taskAssigned = db.TaskAssigneds.Find(id);
-            if (taskAssigned == null)
+            //TaskAssigned taskAssigned = db.TaskAssigneds.Find(id);
+
+            var list = db.TaskAssigneds.Select(l => new TaskViewModel
             {
-                return HttpNotFound();
+                TaskAssaignedId = l.Id,
+                UserName = l.User.UserName,
+                UserId = l.User.Id,
+                TaskId = l.TasksModel.Id,
+                TaskType = l.TasksModel.Heading,
+                UserIdInt = l.User.ApplicationUserId
+            }).Where(x => x.TaskAssaignedId==id).ToList();
+
+            foreach (var item in list)
+            {
+                if (item == null)
+                {
+                    return HttpNotFound();
+                }
             }
-            return View(taskAssigned);
+            
+            return View(list);
         }
 
         // POST: TaskAssigneds/Delete/5

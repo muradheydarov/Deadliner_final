@@ -35,5 +35,7 @@ namespace DeadLiner.Models
         public DateTime CreatedOn { get; set; }
 
         public string Status { get; set; }
+
+        public ICollection<TaskAssigned> TaskAssigneds { get; set; }
     }
 }
