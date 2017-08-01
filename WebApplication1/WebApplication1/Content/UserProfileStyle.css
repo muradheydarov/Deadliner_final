@@ -47,9 +47,9 @@ label{
 	margin:0;
 }
 /*-- main --*/
-.main{
+/*.main{
 	padding:70px 0;
-}
+}*/
 .main h1{
 	font-size:35px;
 	text-align:center;
@@ -464,7 +464,7 @@ padding: 9px 12px;
 }
 @media (max-width: 1366px){
 	.content {
-		width: 42%;
+		width: 70%;
 		margin: 0 auto;
 	}
 	.port-right {
