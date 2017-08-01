@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DeadLiner.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication1.Controllers
 {
@@ -45,7 +46,7 @@ namespace WebApplication1.Controllers
 
             var MyViewModel = new TaskViewModel();
             MyViewModel.TaskId = id.Value;
-            MyViewModel.Header = tasksModel.Heading;
+            MyViewModel.Heading = tasksModel.Heading;
             MyViewModel.Content = tasksModel.Content;
 
             var MyCheckBoxList = new List<CheckBoxViewModel>();
@@ -92,10 +93,10 @@ namespace WebApplication1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TaskViewModel tasksModel)
-        {
+        {            
             if (ModelState.IsValid)
             {
-                var newTask = new TasksModel() { Id = tasksModel.TaskId, Heading = tasksModel.Header, Content = tasksModel.Content };
+                var newTask = new TasksModel() { Id = tasksModel.TaskId, Heading = tasksModel.Heading, Content = tasksModel.Content, StartDate = tasksModel.StartDate,  CreatedBy = User.Identity.GetUserName(), CreatedOn = DateTime.Now, EndDate = tasksModel.EndDate};
 
                 db.TaskModels.Add(newTask);
 
@@ -140,7 +141,7 @@ namespace WebApplication1.Controllers
 
             var MyViewModel = new TaskViewModel();
             MyViewModel.TaskId = id.Value;
-            MyViewModel.Header = tasksModel.Heading;
+            MyViewModel.Heading = tasksModel.Heading;
             MyViewModel.Content = tasksModel.Content;
 
             var MyCheckBoxList = new List<CheckBoxViewModel>();
@@ -165,7 +166,7 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 var MyTask = db.TaskModels.Find(tasksModel.TaskId);
-                MyTask.Heading = tasksModel.Header;
+                MyTask.Heading = tasksModel.Heading;
                 MyTask.Content = tasksModel.Content;
 
                 foreach (var item in db.TaskToUsers)

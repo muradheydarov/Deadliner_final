@@ -10,6 +10,7 @@ namespace DeadLiner
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                       "~/Scripts/jquery.min.js",
+                      "~/Scripts/moment.js",
                       "~/Scripts/easyResponsiveTabs.js",
                       "~/Scripts/DataTables/jquery.dataTables.js",
                       "~/Scripts/DataTables/dataTables.bootstrap.js",
@@ -18,6 +19,7 @@ namespace DeadLiner
                       "~/Scripts/main.js",
                       "~/Scripts/tether/tether.js",
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-datetimepicker.js",
                       "~/Scripts/bootbox.js",
                       "~/Scripts/respond.js"                      
                       ));
@@ -31,7 +33,9 @@ namespace DeadLiner
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-datetimepicker.css",
+                      "~/Content/bootstrap-theme.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/DataTables/css/dataTables.semanticui.min.css",                      
                       "~/Content/edit.css",

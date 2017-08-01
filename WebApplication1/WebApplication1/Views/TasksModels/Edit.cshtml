@@ -18,10 +18,10 @@
         @Html.HiddenFor(model => model.TaskId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Header, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Heading, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Header, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Header, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Heading, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
             </div>
         </div>
 
