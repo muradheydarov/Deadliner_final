@@ -18,7 +18,7 @@ namespace DeadLiner
                       "~/Scripts/main.js",
                       "~/Scripts/tether/tether.js",
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/bootbox.min.js",
+                      "~/Scripts/bootbox.js",
                       "~/Scripts/respond.js"                      
                       ));
 

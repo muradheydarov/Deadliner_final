@@ -114,7 +114,7 @@
 }
 
 <div class="main">
-    <div class="contents">
+    <div class="content">
         <div class="sap_tabs">
             <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                 <div class="portfolio-grid">
@@ -127,7 +127,7 @@
                             <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Basic Details</span></li>
                             <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Interests</span></li>
                             <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Profile Picture</span></li>
-                            @*<li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>Work & Play</span></li>*@
+                            <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>Work & Play</span></li>
                             <li class="resp-tab-item" aria-controls="tab_item-4" role="tab"><span>Settings</span></li>
                             <div class="clear"></div>
                         </ul>
@@ -146,7 +146,7 @@
                                                 <option>Mrs.</option>
                                             </select>
                                         </span>
-                                        <input type="text" class="form-controls" value="Rachel McAdams" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Rachel McAdams';}">
+                                        <input type="text" class="form-control" value="Rachel McAdams" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Rachel McAdams';}">
                                     </div>
                                     <h3>Email</h3>
                                     <div class="email-group">
@@ -180,8 +180,7 @@
                                         </div>
                                         <div class="clear"></div>
                                     </div>
-                                    
-                                    @*Bosluq*@
+
 
                                 </div>
                                 <div class="update">
@@ -190,6 +189,44 @@
                                 <div class="clear"></div>
                             </div>
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+                                <div class="interests">
+                                    <h3>Interested in</h3>
+                                    <div class="single-bottom">
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="brand" value="">
+                                                <label for="brand"><span></span>Arts & Entertainment</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="brand1" value="">
+                                                <label for="brand1"><span></span> Beauty & Fitness</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="brand2" value="">
+                                                <label for="brand2"><span></span> Finance</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="brand3" value="">
+                                                <label for="brand3"><span></span> Computer & Electronics</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="brand4" value="">
+                                                <label for="brand4"><span></span>Food And Drinks</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="brand5" value="">
+                                                <label for="brand5"><span></span>Business & Industrial</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="brand6" value="">
+                                                <label for="brand6"><span></span>Home & Garden</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="update">
+                                    <a href="#">Update</a>
+                                </div>
                                 <div class="clear"></div>
                             </div>
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
@@ -216,8 +253,7 @@
                                 </div>
                             </div>
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
-                                @Html.Partial("~/Views/Manage/_partialPassword.cshtml", new DeadLiner.Models.ChangePasswordViewModel())
-                                @*<div class="work-play">
+                                <div class="work-play">
                                     <h3>Work and Organization</h3>
                                     <h4>Profile Name</h4>
                                     <form>
@@ -239,12 +275,11 @@
                                 </div>
                                 <div class="update">
                                     <a href="#">Update</a>
-                                </div>*@
+                                </div>
                                 <div class="clear"></div>
                             </div>
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-4">
-                                @Html.Partial("~/Views/Manage/_partialPassword.cshtml", new DeadLiner.Models.ChangePasswordViewModel())
-                                @*<div class="work-play">
+                                <div class="work-play">
                                     <h3>Settings</h3>
                                     <h4>Profile Name</h4>
                                     <form>
@@ -265,7 +300,7 @@
                                 </div>
                                 <div class="update">
                                     <a href="#">Update</a>
-                                </div>*@
+                                </div>
                                 <div class="clear"></div>
                             </div>
                         </div>

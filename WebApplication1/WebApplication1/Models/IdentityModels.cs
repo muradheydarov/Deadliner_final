@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using WebApplication1.Models;
 
 namespace DeadLiner.Models
 {
@@ -24,7 +25,7 @@ namespace DeadLiner.Models
         public string Surname { get; set; }
         public string UserStatus { get; set; }
         public string Gender { get; set; }
-        public ICollection<TaskAssigned> TaskAssigneds { get; set; }
+        public ICollection<TaskToUser> TaskAssigneds { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -33,12 +34,13 @@ namespace DeadLiner.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public DbSet<TasksModel> TasksModels { get; set; }
-        public DbSet<TaskAssigned> TaskAssigneds { get; set; }
+
+        public DbSet<TasksModel> TaskModels { get; set; }
+        public DbSet<TaskToUser> TaskToUsers { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
-        }
+        }        
     }
 }

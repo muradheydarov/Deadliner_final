@@ -9,9 +9,6 @@
     <thead>
     <tr>
         <th>
-            S.No
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -38,16 +35,10 @@
     </tr>
     </thead>
     <tbody>
-    @{
-        var a = 0;
-    }
     @foreach (var item in Model)
     {
-        a++;
+
         <tr>
-            <td>
-                @a
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -79,6 +70,7 @@
     </tbody>
 </table>
 
+
 @section scripts
 {
     <script>
@@ -89,4 +81,3 @@
         });
     </script>
 }
-

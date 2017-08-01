@@ -3,19 +3,15 @@
 
 .coLeft {
   width: 16.85%;
-  float: left; 
-    height:100%;
-}
+  float: left; }
 
 .coRight {
   width: 83.15%;
-  float:left; }
+  float: left; }
 
 .minimizedLeft {
   float: left;
-  width: 3.69%; 
-  height:100%;
-}
+  width: 3.69%; }
 
 .minimizedRight {
   float: left;
@@ -174,8 +170,6 @@ body {
           background: #367FA9; }
       body #content #topPanel #account {
         float: right;
-        display: flex;
-        justify-content: flex-end;
         padding-right: 0; }
         body #content #topPanel #account ul {
           margin:0;

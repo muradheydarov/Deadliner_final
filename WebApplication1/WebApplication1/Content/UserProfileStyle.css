@@ -47,9 +47,9 @@ label{
 	margin:0;
 }
 /*-- main --*/
-/*.main{
+.main{
 	padding:70px 0;
-}*/
+}
 .main h1{
 	font-size:35px;
 	text-align:center;
@@ -59,9 +59,9 @@ label{
 	margin-bottom: 65px;
 	letter-spacing:1px;
 }
-.contents {
-    width: 65%;
-    margin: 0 auto;
+.content{
+	width:36%;
+	margin:0 auto;
 }
 p.footer {
 	color: #fff;
@@ -79,11 +79,6 @@ p.footer a:hover{
 .port-left{
 	float:left;
 	width:25%;
-}
-.port-left img {
-    padding-bottom: 5px;
-    height: 197px;
-    width: 100%;
 }
 
 /******** SAP ************/
@@ -152,11 +147,11 @@ h2.resp-accordion {
    display: block;
 }
 .port-right {
-    background: #fff;
-    padding: 42px 40px;
-    min-height: 393px;
-    float: left;
-    width: 75%;
+	background: #fff;
+	padding: 22px 30px;
+	min-height: 393px;
+	float: left;
+	width: 64.4%;
 }
 .portfolio-grid{
 	border-bottom:2px solid #c4d9d9;
@@ -167,27 +162,24 @@ h2.resp-accordion {
 	margin-bottom: 6px;
 	font-weight: 500;
 }
-.form-controls {
-    border: none;
-    outline: none;
-    padding: 9px 9px;
-    font-size: 14px;
-    color: #9a9a9a;
-    font-family: 'Lato', sans-serif;
-    width: 77%;
-    background: #efefef;
+.form-control {
+	width: 76.9%;
+	padding: 9px 12px;
+	font-size: 14px;
+	color: #9a9a9a;
+	background: #efefef;
+border:none;
+	margin-left: -3px;
+	font-family: 'Lato', sans-serif;
 }
-
 select.btn.btn-default.button-one {
-    background: #dbdbdb;
-    color: #909090;
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
-    width: 55px;
-    height: 39px;
-    padding: 0px;
-    margin-right: 3px;
+	background: #dbdbdb;
+	color: #909090;
+	font-size: 16px;
+	padding: 7px 0px;
+	width: 16%;
+	font-weight: 500;
+border:none;
 }
 .radio ,.radio2{
 	position: relative;
@@ -261,7 +253,7 @@ select.btn.btn-default.button-one {
 	border-bottom: 3px solid #2B9881 !important;
 }
 .radio2 {
-	width: 20%;
+	width: 30%;
 	float: left;
 	background: #F5C63B;
 	margin: 0px 15px 0 0 !important;
@@ -310,7 +302,7 @@ border:none;
 .email-form input[type="text"],.cell-form input[type="text"]  {
 	border: none;
 	outline: none;
-padding: 7px 12px;
+padding: 9px 12px;
 	font-size: 14px;
 	color: #9a9a9a;
 	font-family: 'Lato', sans-serif;
@@ -450,27 +442,15 @@ padding: 7px 12px;
 	background: #f5c63b;
 	border-bottom:3px solid #E0AD16;	
 }
-
-.btndesign {
-    background: #1bcba5;
-    font-size: 16px;
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 0px;
-    border-bottom: 3px solid #20987E;
-    font-weight: 600;
-    display: block;
-    text-align: center;
-}
 /*-- responsive media queries --*/
-@media (max-width: 1680px) {
-    .resp-tab-item {
+@media (max-width: 1680px){
+	.resp-tab-item {
 		padding: 17.3px 0;
 	}	
 }
 @media (max-width: 1600px){
 	.resp-tab-item {
-		padding: 26px 0;
+		padding: 18px 0;
 	}		
 }
 @media (max-width: 1440px){
@@ -490,9 +470,9 @@ padding: 7px 12px;
 	.port-right {
 		min-height: 394px;
 	}
-    .port-right {
-        padding: 53px 39px;
-    }	
+	.port-right {
+		padding: 21px 30px;
+	}	
 }
 @media (max-width: 1280px){
 	.content {

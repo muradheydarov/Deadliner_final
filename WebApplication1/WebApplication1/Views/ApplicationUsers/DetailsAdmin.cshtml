@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <div class="container">
     <div class="row">
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -14,7 +14,7 @@
         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1 toppad">
 
             <div class="panel panel-info">
-                <div class="asa">
+                <div class="panel-heading">
                     <h3 class="panel-title">@Html.DisplayFor(model => model.Name)</h3>
                 </div>
                 <div class="panel-body">
@@ -23,7 +23,7 @@
                             @{
                                 var imgUrl = Url.Content("~/Content/images/profile/" + User.Identity.GetUserName() + ".png") + "?time=" + DateTime.Now.ToString();
                             }
-                            <img src="@imgUrl" height="160" width="160" onerror="this.onerror=null;this.src='/Content/images/profile/avatar.png'" class="img-circle img-responsive" />
+                            <img src="@imgUrl" height="300" width="300" onerror="this.onerror=null;this.src='/Content/images/profile/avatar.png'" class="img-circle img-responsive" />
                         </div>
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
