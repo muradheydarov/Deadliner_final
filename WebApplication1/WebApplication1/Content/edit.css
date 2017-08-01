@@ -132,6 +132,10 @@
 .table {
     font-size: 15px;
 }
+.panel-info .panel-heading {
+    background: #3C8DBC;
+    color: white;
+}
 
 /*Index view*/
 .aFont {
