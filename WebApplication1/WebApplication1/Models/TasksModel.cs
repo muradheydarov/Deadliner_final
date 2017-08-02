@@ -20,9 +20,12 @@ namespace DeadLiner.Models
 
         [Required(ErrorMessage = "Start Date is required")]
         [DisplayName(displayName: "Start Date")]
+        [DataType(DataType.DateTime)]        
         public DateTime StartDate { get; set; }
 
+        [Required(ErrorMessage = "End Date is required")]
         [DisplayName(displayName: "End Date")]
+        [DataType(DataType.DateTime)]        
         public DateTime EndDate { get; set; }
 
         [DisplayName(displayName: "Created By")]

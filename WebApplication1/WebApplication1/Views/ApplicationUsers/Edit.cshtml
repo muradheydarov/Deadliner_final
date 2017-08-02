@@ -55,7 +55,7 @@
                             @Html.HiddenFor(x => x.PasswordHash)
                             @Html.HiddenFor(x => x.PhoneNumberConfirmed)
                             @Html.HiddenFor(x => x.SecurityStamp)
-                            @Html.HiddenFor(x => x.TwoFactorEnabled)                            
+                            @Html.HiddenFor(x => x.TwoFactorEnabled)
                             <div class=" col-md-12">
                                 <div class="empty">
                                     <h3>Login Details</h3>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-md-6 form">
                                 <p>User Type</p>
-                                @Html.DropDownListFor(x => x.UserStatus, new SelectList(new[] {"Teacher","Student"}), "Select User Status")
+                                @Html.DropDownListFor(x => x.UserStatus, new SelectList(new[] { "Teacher", "Student" }), "Select User Status")
                                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-md-6 form">

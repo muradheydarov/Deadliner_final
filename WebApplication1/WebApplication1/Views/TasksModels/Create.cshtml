@@ -4,79 +4,162 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
+        <div class="form-horizontal">
+            <h4>TasksModel</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Heading, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Heading, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TasksModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Heading, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Heading, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" id="datetimepicker1">
+                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class='input-group date col-md-10' id='datetimepicker1'>
+                    <input type='text' class="form-control text-box single-line" id="Content" name="Content" value=""/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Users, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @for (int i = 0; i < Model.Users.Count(); i++)
+                    {
+                        @Html.EditorFor(m => m.Users[i].Checked)
+                        @Html.DisplayFor(m => m.Users[i].Name)<br />
+
+                        @Html.HiddenFor(m => m.Users[i].Name)
+                        @Html.HiddenFor(m => m.Users[i].Id)
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
+    }*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-            </div>
-        </div>
+@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+        <section class="manager">
+            <div class="header  ">
+                <h1>Create Task</h1>
             </div>
-        </div>        
-        
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-            </div>
-        </div> 
+            <div class="container-fluid eight">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="content">
+                            <div class=" col-md-12 empty">
+                                <h3>Task Details</h3>
+                            </div>
+                            <div class="row user">
+                                <div class="col-md-12 form">
+                                    <p>Heading</p>
+                                    @Html.EditorFor(model => model.Heading, new { htmlAttributes = new { @class = "form-control", required = "The Heading field is required." } })
+                                    @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-12 form">
+                                    <p>Content</p>
+                                    @Html.TextAreaFor(model => model.Content, new { @class = "form-control", required = "The Content field is required." })
+                                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Users, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-12" style="height: 120px; overflow-y: scroll;">
+                                        @for (int i = 0; i < Model.Users.Count(); i++)
+                                        {
+                                            @Html.EditorFor(m => m.Users[i].Checked, new { htmlAttributes = new { @style = "margin-right: 5px;" } })
+                                            @Html.DisplayFor(m => m.Users[i].Name)<br />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Users, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @for (int i = 0; i < Model.Users.Count(); i++)
-                {
-                    @Html.EditorFor(m => m.Users[i].Checked)
-                    @Html.DisplayFor(m => m.Users[i].Name)<br />
+                                            @Html.HiddenFor(m => m.Users[i].Name)
+                                            @Html.HiddenFor(m => m.Users[i].Id)
+                                        }
+                                    </div>
+                                </div>
 
-                    @Html.HiddenFor(m => m.Users[i].Name)
-                    @Html.HiddenFor(m => m.Users[i].Id)
-                }
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class='input-group date col-md-12' id='datetimepicker1' style="padding-left: 15px; padding-right: 15px;">
+                                        <input class="form-control text-box single-line" data-val="true" data-val-date="The field StartDate must be a date." data-val-required="The StartDate field is required." id="StartDate" name="StartDate" type="text" value="" readonly>                           
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class='input-group date col-md-12' id='datetimepicker2' style="padding-left: 15px; padding-right: 15px;">
+                                        <input type='text' class="form-control text-box single-line" data-val="true" data-val-date="The field EndDate must be a date." data-val-required="The EndDate field is required." id="EndDate" name="EndDate" value="" readonly/>
+                                        
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 four">
+                        <div class="asd">
+                            <div class=" col-md-12 empty">
+                                <h3>Status</h3>
+                            </div>
+                            <div class="col-md-12 btn">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-}
+        </section>
+    }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -90,7 +173,37 @@
 {
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker1').datetimepicker();
+            var checkBoxList = $(".check-box")
+            
+            for (var i = 0; i < checkBoxList.length; i++) {
+                checkBoxList[i].checked = false;                
+            }
+
+            $('#datetimepicker1').datetimepicker({
+                ignoreReadonly: true,
+                format: 'DD, MMMM, YYYY HH:mm',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                },
+                minDate: moment()
+            }).on('dp.change',
+                function(e) {
+                    $('#datetimepicker2').data("DateTimePicker").minDate(e.date)
+                });
+
+            $('#datetimepicker2').datetimepicker({
+                ignoreReadonly: true,
+                format: 'DD, MMMM, YYYY HH:mm',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            });
         });
-    </script>    
+    </script>
 }

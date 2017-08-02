@@ -143,6 +143,10 @@ namespace WebApplication1.Controllers
             MyViewModel.TaskId = id.Value;
             MyViewModel.Heading = tasksModel.Heading;
             MyViewModel.Content = tasksModel.Content;
+            MyViewModel.CreatedBy = tasksModel.CreatedBy;
+            MyViewModel.CreatedOn = tasksModel.CreatedOn;
+            MyViewModel.EndDate = tasksModel.EndDate;
+            MyViewModel.Status = tasksModel.Status;
 
             var MyCheckBoxList = new List<CheckBoxViewModel>();
 
@@ -165,9 +169,14 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var MyTask = db.TaskModels.Find(tasksModel.TaskId);
+                var MyTask = db.TaskModels.Find(tasksModel.TaskId);                
                 MyTask.Heading = tasksModel.Heading;
                 MyTask.Content = tasksModel.Content;
+                MyTask.StartDate = tasksModel.StartDate;
+                MyTask.EndDate = tasksModel.EndDate;
+                MyTask.CreatedBy = tasksModel.CreatedBy;
+                MyTask.CreatedOn = tasksModel.CreatedOn;
+                MyTask.Status = tasksModel.Status;                
 
                 foreach (var item in db.TaskToUsers)
                 {
@@ -184,8 +193,10 @@ namespace WebApplication1.Controllers
                         db.TaskToUsers.Add(new TaskToUser() { UserIdInt = item.Id, TaskId = tasksModel.TaskId });
                     }
                 }
-            }
 
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
             return View(tasksModel);
         }
