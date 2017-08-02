@@ -58,7 +58,7 @@
 
     <section class="manager">
         <div class="header  ">
-            <h1>Create Task</h1>
+            <h1>Edit Task</h1>
         </div>
 
         <div class="container-fluid eight">
@@ -100,11 +100,10 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.StartDate, htmlAttributes: new {@class = "control-label col-md-2"})
                                 <div class='input-group date col-md-12' id='datetimepicker1' style="padding-left: 15px; padding-right: 15px;">
-                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field StartDate must be a date." data-val-required="The StartDate field is required." id="StartDate" name="StartDate" type="text" value="" readonly>
+                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control text-box single-line", required = "The StartDate field is required.", @readonly = "readonly"} })
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
-
                                 </div>
                                 @Html.ValidationMessageFor(model => model.StartDate, "", new {@class = "text-danger"})
                             </div>
@@ -112,8 +111,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.EndDate, htmlAttributes: new {@class = "control-label col-md-2"})
                                 <div class='input-group date col-md-12' id='datetimepicker2' style="padding-left: 15px; padding-right: 15px;">
-                                    <input type='text' class="form-control text-box single-line" data-val="true" data-val-date="The field EndDate must be a date." data-val-required="The EndDate field is required." id="EndDate" name="EndDate" value="" readonly/>
-
+                                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control text-box single-line", required = "The EndDate field is required.", @readonly = "readonly" } })
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -150,19 +148,18 @@
 {
     <script type="text/javascript">
         $(function () {
-            
             $('#datetimepicker1').datetimepicker({
                 ignoreReadonly: true,
                 format: 'DD, MMMM, YYYY HH:mm',                
                 minDate: moment()
             }).on('dp.change',
-                function(e) {
+                function (e) {
                     $('#datetimepicker2').data("DateTimePicker").minDate(e.date)
                 });
 
             $('#datetimepicker2').datetimepicker({
                 ignoreReadonly: true,
-                format: 'DD, MMMM, YYYY HH:mm'
+                format: 'DD, MMMM, YYYY HH:mm',                     
             });
         });
     </script>

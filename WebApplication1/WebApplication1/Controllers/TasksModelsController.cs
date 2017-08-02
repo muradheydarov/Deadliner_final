@@ -14,11 +14,17 @@ namespace WebApplication1.Controllers
     public class TasksModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        
+        // GET
+        public ActionResult MyTasks()
+        {
+            return View();
+        }
 
         // GET: TasksModels
         public ActionResult Index()
         {
-            return View(db.TaskModels.ToList());
+            return View(db.TaskModels.ToList());           
         }
 
         // GET: TasksModels/Details/5
@@ -57,8 +63,6 @@ namespace WebApplication1.Controllers
             }
 
             MyViewModel.Users = MyCheckBoxList;
-
-
             return View(MyViewModel);
         }
 
@@ -100,7 +104,7 @@ namespace WebApplication1.Controllers
 
                 db.TaskModels.Add(newTask);
 
-                db.SaveChanges(); // user id is null
+                db.SaveChanges(); 
 
                 foreach (var item in tasksModel.Users)
                 {
@@ -145,6 +149,7 @@ namespace WebApplication1.Controllers
             MyViewModel.Content = tasksModel.Content;
             MyViewModel.CreatedBy = tasksModel.CreatedBy;
             MyViewModel.CreatedOn = tasksModel.CreatedOn;
+            MyViewModel.StartDate = tasksModel.StartDate;
             MyViewModel.EndDate = tasksModel.EndDate;
             MyViewModel.Status = tasksModel.Status;
 
@@ -156,7 +161,6 @@ namespace WebApplication1.Controllers
             }
 
             MyViewModel.Users = MyCheckBoxList;
-
             return View(MyViewModel);
         }
 
@@ -176,11 +180,13 @@ namespace WebApplication1.Controllers
                 MyTask.EndDate = tasksModel.EndDate;
                 MyTask.CreatedBy = tasksModel.CreatedBy;
                 MyTask.CreatedOn = tasksModel.CreatedOn;
-                MyTask.Status = tasksModel.Status;                
+                MyTask.Status = tasksModel.Status;
+
+                db.SaveChanges();
 
                 foreach (var item in db.TaskToUsers)
                 {
-                    if (item.UserIdInt == tasksModel.TaskId)
+                    if (item.TaskId == tasksModel.TaskId)
                     {
                         db.Entry(item).State = EntityState.Deleted;
                     }
@@ -190,15 +196,15 @@ namespace WebApplication1.Controllers
                 {
                     if (item.Checked)
                     {
-                        db.TaskToUsers.Add(new TaskToUser() { UserIdInt = item.Id, TaskId = tasksModel.TaskId });
+                        db.TaskToUsers.Add(new TaskToUser() { UserIdInt = MyTask.Id, TaskId = item.Id });
                     }
                 }
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(tasksModel);
+            
         }
 
         // GET: TasksModels/Delete/5

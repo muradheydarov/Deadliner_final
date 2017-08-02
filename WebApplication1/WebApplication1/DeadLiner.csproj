@@ -588,6 +588,7 @@
     <Content Include="Views\TasksModels\Edit.cshtml" />
     <Content Include="Views\TasksModels\Index.cshtml" />
     <Content Include="Views\Manage\_partialPassword.cshtml" />
+    <Content Include="Views\TasksModels\MyTasks.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

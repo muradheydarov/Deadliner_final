@@ -1,0 +1,61 @@
+﻿@model DeadLiner.Models.TaskViewModel
+
+@{
+    ViewBag.Title = "MyTasks";
+}
+
+<h2>MyTasks</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Heading)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(item => item.Heading)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.Status)
+            </td>
+        </tr>
+    </tbody>
+</table>
