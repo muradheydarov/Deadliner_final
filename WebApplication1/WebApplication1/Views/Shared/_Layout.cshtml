@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
     @RenderSection("cssStyle", required: false)
     @Styles.Render("~/Content/css")
+    <link href="~/Content/themes/themes/jquery-ui.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -226,6 +227,7 @@
     <div class="clear"></div>
     
     @Scripts.Render("~/bundles/lib")    
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     @RenderSection("scripts", required: false)
     @RenderSection("scriptDateTimePicker", required: false)
 </body>
