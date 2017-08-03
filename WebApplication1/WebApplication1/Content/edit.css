@@ -23,6 +23,10 @@
     border-radius: 3px;
     font-weight:700;
 }
+.bat {
+    font-size: x-large;
+    padding-right: 5px;
+}
 .content:last-child{
     min-height: 50px;
 }
