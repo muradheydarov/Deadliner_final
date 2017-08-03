@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
     public class TasksModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
         // GET
         public ActionResult MyTasks()
         {
@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
         // GET: TasksModels
         public ActionResult Index()
         {
-            return View(db.TaskModels.ToList());           
+            return View(db.TaskModels.ToList());
         }
 
         // GET: TasksModels/Details/5
@@ -41,14 +41,14 @@ namespace WebApplication1.Controllers
                 return HttpNotFound();
             }
             var result = from a in db.Users
-                select new
-                {
-                    a.ApplicationUserId,
-                    a.UserName,
-                    Checked = (from ab in db.TaskToUsers
-                        where (ab.UserIdInt == id) & (ab.TaskId == a.ApplicationUserId)
-                        select ab).Any()
-                };
+                         select new
+                         {
+                             a.ApplicationUserId,
+                             a.UserName,
+                             Checked = (from ab in db.TaskToUsers
+                                        where (ab.UserIdInt == id) & (ab.TaskId == a.ApplicationUserId)
+                                        select ab).Any()
+                         };
 
             var MyViewModel = new TaskViewModel();
             MyViewModel.TaskId = id.Value;
@@ -63,20 +63,21 @@ namespace WebApplication1.Controllers
             }
 
             MyViewModel.Users = MyCheckBoxList;
-            return View(MyViewModel);
+            //return View(MyViewModel);
+            return Json(new { data = MyViewModel }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: TasksModels/Create
         public ActionResult Create()
         {
             var result = from a in db.Users
-                select new
-                {
-                    a.ApplicationUserId,
-                    a.UserName,
-                    Checked = (from ab in db.TaskToUsers
-                        select ab).Any()
-                };
+                         select new
+                         {
+                             a.ApplicationUserId,
+                             a.UserName,
+                             Checked = (from ab in db.TaskToUsers
+                                        select ab).Any()
+                         };
 
             var MyViewModel = new TaskViewModel();
 
@@ -97,14 +98,14 @@ namespace WebApplication1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TaskViewModel tasksModel)
-        {            
+        {
             if (ModelState.IsValid)
             {
-                var newTask = new TasksModel() { Id = tasksModel.TaskId, Heading = tasksModel.Heading, Content = tasksModel.Content, StartDate = tasksModel.StartDate,  CreatedBy = User.Identity.GetUserName(), CreatedOn = DateTime.Now, EndDate = tasksModel.EndDate};
+                var newTask = new TasksModel() { Id = tasksModel.TaskId, Heading = tasksModel.Heading, Content = tasksModel.Content, StartDate = tasksModel.StartDate, CreatedBy = User.Identity.GetUserName(), CreatedOn = DateTime.Now, EndDate = tasksModel.EndDate };
 
                 db.TaskModels.Add(newTask);
 
-                db.SaveChanges(); 
+                db.SaveChanges();
 
                 foreach (var item in tasksModel.Users)
                 {
@@ -116,7 +117,6 @@ namespace WebApplication1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(tasksModel);
         }
 
@@ -134,14 +134,14 @@ namespace WebApplication1.Controllers
             }
 
             var result = from a in db.Users
-                select new
-                {
-                    a.ApplicationUserId,
-                    a.UserName,
-                    Checked = (from ab in db.TaskToUsers
-                        where (ab.UserIdInt == id) & (ab.TaskId == a.ApplicationUserId)
-                        select ab).Any()
-                };
+                         select new
+                         {
+                             a.ApplicationUserId,
+                             a.UserName,
+                             Checked = (from ab in db.TaskToUsers
+                                        where (ab.UserIdInt == id) & (ab.TaskId == a.ApplicationUserId)
+                                        select ab).Any()
+                         };
 
             var MyViewModel = new TaskViewModel();
             MyViewModel.TaskId = id.Value;
@@ -171,40 +171,45 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(TaskViewModel tasksModel)
         {
+            bool status = false;
+
             if (ModelState.IsValid)
             {
-                var MyTask = db.TaskModels.Find(tasksModel.TaskId);                
-                MyTask.Heading = tasksModel.Heading;
-                MyTask.Content = tasksModel.Content;
-                MyTask.StartDate = tasksModel.StartDate;
-                MyTask.EndDate = tasksModel.EndDate;
-                MyTask.CreatedBy = tasksModel.CreatedBy;
-                MyTask.CreatedOn = tasksModel.CreatedOn;
-                MyTask.Status = tasksModel.Status;
-
-                db.SaveChanges();
-
-                foreach (var item in db.TaskToUsers)
+                using (db)
                 {
-                    if (item.TaskId == tasksModel.TaskId)
-                    {
-                        db.Entry(item).State = EntityState.Deleted;
-                    }
-                }
+                    var MyTask = db.TaskModels.Find(tasksModel.TaskId);
+                    MyTask.Heading = tasksModel.Heading;
+                    MyTask.Content = tasksModel.Content;
+                    MyTask.StartDate = tasksModel.StartDate;
+                    MyTask.EndDate = tasksModel.EndDate;
+                    MyTask.CreatedBy = tasksModel.CreatedBy;
+                    MyTask.CreatedOn = tasksModel.CreatedOn;
+                    MyTask.Status = tasksModel.Status;
 
-                foreach (var item in tasksModel.Users)
-                {
-                    if (item.Checked)
-                    {
-                        db.TaskToUsers.Add(new TaskToUser() { UserIdInt = MyTask.Id, TaskId = item.Id });
-                    }
-                }
+                    db.SaveChanges();
 
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    foreach (var item in db.TaskToUsers)
+                    {
+                        if (item.TaskId == tasksModel.TaskId)
+                        {
+                            db.Entry(item).State = EntityState.Deleted;
+                        }
+                    }
+
+                    foreach (var item in tasksModel.Users)
+                    {
+                        if (item.Checked)
+                        {
+                            db.TaskToUsers.Add(new TaskToUser() { UserIdInt = MyTask.Id, TaskId = item.Id });
+                        }
+                    }
+                    //return RedirectToAction("Index");
+                    db.SaveChanges();
+                    status = true;
+                }
             }
-            return View(tasksModel);
-            
+            //return View(tasksModel);            
+            return new JsonResult { Data = new { status = status } };
         }
 
         // GET: TasksModels/Delete/5
@@ -227,10 +232,25 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TasksModel tasksModel = db.TaskModels.Find(id);
-            db.TaskModels.Remove(tasksModel);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            bool status = false;
+            using (db)
+            {
+                TasksModel tasksModel = db.TaskModels.Find(id);
+                if (tasksModel != null)
+                {
+                    db.TaskModels.Remove(tasksModel);
+                    db.SaveChanges();
+                    status = true;
+                }
+            }
+            //return RedirectToAction("Index");            
+            return new JsonResult { Data = new { status = status } };
+        }
+
+        public ActionResult GetEmployees()
+        {
+            var employees = db.TaskModels.ToList();
+            return Json(new { data = employees }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

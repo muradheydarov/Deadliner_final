@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<div class="tablecontainer"> 
 <table class="table table-bordered ui celled" id="myTable">
     <thead>
         <tr>
@@ -33,7 +33,7 @@
             </th>
         </tr>
     </thead>
-    <tbody>
+    @*<tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -71,16 +71,85 @@
                 </td>
             </tr>
         }
-    </tbody>
+    </tbody>*@
 </table>
-
+</div>
 @section scripts
 {
     <script>
         $(document).ready(function () {
-            $("#myTable").DataTable({
-                responsive: true
+            var oTable = $("#myTable").DataTable({
+                responsive: true,
+                "ajax": {
+                    "url": "/TasksModels/GetEmployees",
+                    "type": "get",
+                    "datatype":"json"
+                },
+                "columns": [
+                    { "data":"Heading","autoWidth":true},
+                    { "data":"Content","autoWidth":true},
+                    { "data":"StartDate","autoWidth":true},
+                    { "data":"EndDate","autoWidth":true},
+                    { "data":"CreatedBy","autoWidth":true},
+                    { "data": "CreatedOn", "autoWidth": true },
+                    { "data": "Status", "autoWidth": true },
+                    { 
+                        "data": "Id", "width": "50px", "render": function (data) {
+                            return '<a class="popup" href="/TasksModels/Edit/' + data + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
+                                '<a class="popup" href="/TasksModels/Details/' + data + '"><i class="fa fa-info" aria-hidden="true"></i></a>' +
+                                '<a class="popup" href="/TasksModels/Delete/' + data + '"><i class="fa fa-times" aria-hidden="true"></i></a>';
+                        }
+                    }                   
+                ]                                    
             });
+            $('.tablecontainer').on('click',
+                'a.popup',
+                function(e) {
+                    e.preventDefault();
+                    OpenPopup($(this).attr('href'));
+                });
+            function OpenPopup(pageUrl) {
+                var $pageContent = $('<div/>');
+                $pageContent.load(pageUrl, function () {
+                    $('#popupForm', $pageContent).removeData('validator');
+                    $('#popupForm', $pageContent).removeData('unobtrusiveValidation');
+                    $.validator.unobtrusive.parse('form');
+
+                });
+
+                $dialog = $('<div class="popupWindow" style="overflow:auto"></div>')
+                    .html($pageContent)
+                    .dialog({
+                        draggable : false,
+                        autoOpen : false,
+                        resizable : false,
+                        model : true,
+                        title:'Popup Dialog',
+                        height : 550,
+                        width : 600,
+                        close: function () {
+                            $dialog.dialog('destroy').remove();
+                        }
+                    })
+
+                $('.popupWindow').on('submit', '#popupForm', function (e) {
+                    var url = $('#popupForm')[0].action;
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: $('#popupForm').serialize(),
+                        success: function (data) {
+                            if (data.status) {
+                                $dialog.dialog('close');
+                                oTable.ajax.reload();
+                            }
+                        }
+                    })
+
+                    e.preventDefault();
+                })
+                $dialog.dialog('open');
+            }
         });
     </script>
 }

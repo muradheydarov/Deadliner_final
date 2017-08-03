@@ -9,13 +9,14 @@ namespace DeadLiner
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
-                      "~/Scripts/jquery.min.js",
-                      "~/Scripts/moment.js",
-                      "~/Scripts/easyResponsiveTabs.js",
+                      "~/Scripts/jquery-3.2.1.js",
+                      "~/Scripts/jquery.validate*",
+                      "~/Scripts/jquery.validate.unobtrusive.js",
                       "~/Scripts/DataTables/jquery.dataTables.js",
-                      "~/Scripts/DataTables/dataTables.bootstrap.js",
-                      "~/Scripts/DataTables/dataTables.semanticui.min.js",
-                      "~/Scripts/jquery-{version}.js",
+                      "~/Scripts/jquery-ui-1.12.1.js",
+                      "~/Scripts/moment.js",
+                      "~/Scripts/easyResponsiveTabs.js",                                                                                       
+                      "~/Scripts/DataTables/dataTables.bootstrap.js",                      
                       "~/Scripts/main.js",
                       "~/Scripts/tether/tether.js",
                       "~/Scripts/bootstrap.js",
@@ -37,7 +38,7 @@ namespace DeadLiner
                       "~/Content/bootstrap-datetimepicker.css",
                       "~/Content/bootstrap-theme.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
-                      "~/Content/DataTables/css/dataTables.semanticui.min.css",                      
+                      "~/Content/themes/themes/jquery-ui.css",                  
                       "~/Content/edit.css",
                       "~/Content/main.css",
                       "~/Content/tether/tether.css"));

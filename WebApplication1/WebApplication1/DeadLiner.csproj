@@ -405,6 +405,47 @@
     <Content Include="Content\tether\tether-theme-basic.min.css" />
     <Content Include="Content\tether\tether.css" />
     <Content Include="Content\tether\tether.min.css" />
+    <Content Include="Content\themes\themes\accordion.css" />
+    <Content Include="Content\themes\themes\all.css" />
+    <Content Include="Content\themes\themes\autocomplete.css" />
+    <Content Include="Content\themes\themes\base.css" />
+    <Content Include="Content\themes\themes\button.css" />
+    <Content Include="Content\themes\themes\core.css" />
+    <Content Include="Content\themes\themes\datepicker.css" />
+    <Content Include="Content\themes\themes\dialog.css" />
+    <Content Include="Content\themes\themes\draggable.css" />
+    <Content Include="Content\themes\themes\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\themes\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\themes\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\themes\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\themes\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\themes\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\themes\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\themes\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\themes\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\themes\jquery-ui.css" />
+    <Content Include="Content\themes\themes\jquery-ui.min.css" />
+    <Content Include="Content\themes\themes\menu.css" />
+    <Content Include="Content\themes\themes\progressbar.css" />
+    <Content Include="Content\themes\themes\resizable.css" />
+    <Content Include="Content\themes\themes\selectable.css" />
+    <Content Include="Content\themes\themes\selectmenu.css" />
+    <Content Include="Content\themes\themes\slider.css" />
+    <Content Include="Content\themes\themes\sortable.css" />
+    <Content Include="Content\themes\themes\spinner.css" />
+    <Content Include="Content\themes\themes\tabs.css" />
+    <Content Include="Content\themes\themes\theme.css" />
+    <Content Include="Content\themes\themes\tooltip.css" />
     <Content Include="Content\UserProfileStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -430,7 +471,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="images\1.jpg" />
     <Content Include="images\1.png" />
     <Content Include="images\2.jpeg" />
@@ -524,9 +564,14 @@
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -593,9 +638,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201707170810277_SeedUsers.resx">
