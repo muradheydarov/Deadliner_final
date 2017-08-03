@@ -3,21 +3,15 @@
 @{
     ViewBag.Title = "Details";
     Layout = null;
-
-    var options = new AjaxOptions()
-    {
-        UpdateTargetId = "tabledata",
-        Url = Url.Action("Details")        
-    };
 }
-@using (Ajax.BeginForm(options))
+@using (Html.BeginForm(new {id = "popupForm"}))
 {
     <h2>Details</h2>
 
     <div>
         <h4>TasksModel</h4>
         <hr/>
-        <dl class="dl-horizontal" id="tabledata">
+        <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Heading)
             </dt>

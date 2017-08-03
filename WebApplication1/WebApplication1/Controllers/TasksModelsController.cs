@@ -247,7 +247,7 @@ namespace WebApplication1.Controllers
             return new JsonResult { Data = new { status = status } };
         }
 
-        public ActionResult GetEmployees()
+        public ActionResult GetData()
         {
             var employees = db.TaskModels.ToList();
             return Json(new { data = employees }, JsonRequestBehavior.AllowGet);
