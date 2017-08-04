@@ -634,9 +634,8 @@
     <Content Include="Views\TasksModels\Index.cshtml" />
     <Content Include="Views\Manage\_partialPassword.cshtml" />
     <Content Include="Views\TasksModels\MyTasks.cshtml" />
-    <Content Include="Views\Shared\_LayoutStudent.cshtml" />
-    <Content Include="Views\Home\StudentIndex.cshtml" />
-    <Content Include="Views\TasksModels\IndexStudent.cshtml" />
+    <Content Include="Views\Shared\_StudentLayout.cshtml" />
+    <Content Include="Views\Shared\_TeacherLayout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

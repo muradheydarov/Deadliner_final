@@ -104,6 +104,7 @@
                     $('#popupForm', $pageContent).removeData('validator');
                     $('#popupForm', $pageContent).removeData('unobtrusiveValidation');
                     $.validator.unobtrusive.parse('form');
+
                 });
 
                 $dialog = $('<div class="popupWindow" style="overflow:auto"></div>')
@@ -112,7 +113,8 @@
                         draggable : false,
                         autoOpen : false,
                         resizable : false,
-                        model : true,                                                
+                        model : true,
+                        title:'Popup Dialog',
                         height : 550,
                         width : 600,
                         close: function () {
@@ -124,7 +126,7 @@
                     var url = $('#popupForm')[0].action;
                     $.ajax({
                         type: "POST",
-                        url: url,                        
+                        url: url,
                         data: $('#popupForm').serialize(),
                         success: function (data) {
                             if (data.status) {

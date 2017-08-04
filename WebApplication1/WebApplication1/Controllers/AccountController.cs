@@ -19,6 +19,11 @@ namespace DeadLiner.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        public AccountController()
+        {
+            // Nolar ishde.
+        }
+
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
@@ -68,15 +73,36 @@ namespace DeadLiner.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
-            }
+            }            
+
             var userid = UserManager.FindByName(model.UserName).Id;
+            var userName = UserManager.FindByName(model.UserName);
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            
             if (!UserManager.IsEmailConfirmed(userid))
             {
                 return View("EmailNotConfirmed");
             }
             else
             {
+                if (userName.UserStatus == "Student")
+                {
+                    if (!UserManager.IsInRole(userid, "Student") && !UserManager.IsInRole(userid, "Admin"))
+                    {
+                        UserManager.RemoveFromRole(userid, "Teacher");
+                        UserManager.AddToRole(userid, "Student");
+                    }
+                }
+
+                else if (userName.UserStatus=="Teacher")
+                {
+                    if (!UserManager.IsInRole(userid,"Teacher") && !UserManager.IsInRole(userid, "Admin"))
+                    {
+                        UserManager.RemoveFromRole(userid, "Student");
+                        UserManager.AddToRole(userid, "Teacher");
+                    }
+                }                
+
                 switch (result)
                 {
                     case SignInStatus.Success:
@@ -155,10 +181,21 @@ namespace DeadLiner.Controllers
         {
             if (ModelState.IsValid)
             {                
+                ApplicationDbContext tor = new ApplicationDbContext();
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Name=model.Name, Surname = model.Surname, UserStatus = "Student"};
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
                 if (result.Succeeded)
                 {
+                    if (!roleManager.RoleExists("Student") && !roleManager.RoleExists("Teacher"))
+                    {
+                        await roleManager.CreateAsync(new IdentityRole("Student"));
+                        await roleManager.CreateAsync(new IdentityRole("Teacher"));
+                    }                                        
+
+                    await UserManager.AddToRoleAsync(user.Id, "Student");
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -167,7 +204,7 @@ namespace DeadLiner.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    //return RedirectToAction("ActivationCodeSend", "Account");
+                    return RedirectToAction("Login", "Account");
                     //return View("ActivationSendEmail");
                 }
                 AddErrors(result);
