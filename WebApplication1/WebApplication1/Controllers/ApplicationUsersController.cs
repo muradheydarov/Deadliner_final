@@ -21,6 +21,7 @@ namespace WebApplication1.Models
             {
                 return View("AdminIndex", db.Users.ToList());
             }
+            
             return View("UsersIndex", db.Users.ToList());
         }
         

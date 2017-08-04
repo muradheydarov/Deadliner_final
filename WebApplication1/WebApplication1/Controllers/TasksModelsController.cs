@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WebApplication1.Controllers
 {
+    
     public class TasksModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -27,6 +28,10 @@ namespace WebApplication1.Controllers
             return View(db.TaskModels.ToList());
         }
 
+        public ActionResult IndexStudent()
+        {
+            return View(db.TaskModels.ToList());
+        }
         // GET: TasksModels/Details/5
         public ActionResult Details(int? id)
         {
@@ -261,5 +266,6 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+        
     }
 }

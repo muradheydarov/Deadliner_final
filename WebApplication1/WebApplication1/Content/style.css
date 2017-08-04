@@ -522,6 +522,7 @@ a.icon.gp {
 }
 .agile_remember_right{
 	float:right;
+    padding: inherit;
 }
 .agile_remember_right a{
 	font-size:1em;

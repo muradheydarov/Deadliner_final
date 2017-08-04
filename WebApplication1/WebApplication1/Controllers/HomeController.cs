@@ -15,5 +15,9 @@ namespace DeadLiner.Controllers
             return View();
         }
 
+        public ActionResult StudentIndex()
+        {
+            return View();
+        }
     }
 }
