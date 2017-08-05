@@ -23,10 +23,7 @@ namespace WebApplication1.Controllers
             var userid = db.Users.Find(User.Identity.GetUserId());
 
             var result = db.TaskToUsers.Include(t => t.TaskModel).Include(u => u.ApplicationUser)
-                .Where(w => w.UserIdInt == userid.ApplicationUserId).Select(s => new TaskViewModel
-                {
-                    Heading = s.TaskModel.Heading
-                }).ToList();
+                .Where(w => w.UserIdInt == userid.ApplicationUserId).ToList();
             return View(result);
         }
 
@@ -202,6 +199,7 @@ namespace WebApplication1.Controllers
                         if (item.TaskId == tasksModel.TaskId)
                         {
                             db.Entry(item).State = EntityState.Deleted;
+                            db.SaveChanges();   
                         }
                     }
 
