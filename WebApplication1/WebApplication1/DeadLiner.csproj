@@ -223,6 +223,7 @@
     <Compile Include="Models\TasksModel.cs" />
     <Compile Include="Models\TaskToUser.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
+    <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -636,6 +637,7 @@
     <Content Include="Views\TasksModels\MyTasks.cshtml" />
     <Content Include="Views\Shared\_StudentLayout.cshtml" />
     <Content Include="Views\Shared\_TeacherLayout.cshtml" />
+    <Content Include="Views\Manage\CustomChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

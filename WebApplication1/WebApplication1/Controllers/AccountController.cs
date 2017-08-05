@@ -180,8 +180,7 @@ namespace DeadLiner.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {                
-                ApplicationDbContext tor = new ApplicationDbContext();
+            {                                
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Name=model.Name, Surname = model.Surname, UserStatus = "Student"};
                 var result = await UserManager.CreateAsync(user, model.Password);
 

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DeadLiner.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace WebApplication1.Controllers
 {
@@ -18,8 +19,15 @@ namespace WebApplication1.Controllers
 
         // GET
         public ActionResult MyTasks()
-        {
-            return View();
+        {            
+            var userid = db.Users.Find(User.Identity.GetUserId());
+
+            var result = db.TaskToUsers.Include(t => t.TaskModel).Include(u => u.ApplicationUser)
+                .Where(w => w.UserIdInt == userid.ApplicationUserId).Select(s => new TaskViewModel
+                {
+                    Heading = s.TaskModel.Heading
+                });
+            return View(result);
         }
 
         // GET: TasksModels
@@ -64,8 +72,8 @@ namespace WebApplication1.Controllers
             }
 
             MyViewModel.Users = MyCheckBoxList;
-            //return View(MyViewModel);
-            return Json(new { data = MyViewModel }, JsonRequestBehavior.AllowGet);
+            return View(MyViewModel);
+           // return Json(new { data = MyViewModel }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: TasksModels/Create
@@ -251,6 +259,7 @@ namespace WebApplication1.Controllers
         public ActionResult GetData()
         {
             var employees = db.TaskModels.ToList();
+            //var employees = db.TaskModels.Select(s => new { status = "open", taskid = s.Id });
             return Json(new { data = employees }, JsonRequestBehavior.AllowGet);
         }
 

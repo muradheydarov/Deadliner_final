@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using DeadLiner.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using WebApplication1.Models;
 
 namespace DeadLiner.Controllers
 {
@@ -59,6 +63,7 @@ namespace DeadLiner.Controllers
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message== ManageMessageId.ChangePasswordError ? "Your password can not be changed."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
@@ -229,7 +234,7 @@ namespace DeadLiner.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
-        {
+        {           
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -245,7 +250,84 @@ namespace DeadLiner.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
             AddErrors(result);
-            return View(model);
+            var UserProfile = new UserProfileViewModel();
+            UserProfile.ChangePasswordViewModels = model;
+            //return View(model);            
+            return RedirectToAction("Index", UserProfile);            
+        }
+
+        public ActionResult CustomChangePassword()
+        {
+            if (User.Identity.GetUserId() == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
+                UserProfileViewModel UserProf = new UserProfileViewModel {Users = applicationUser};
+                if (applicationUser == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(UserProf);
+            }         
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CustomChangePassword(UserProfileViewModel model)
+        {
+            var changePass = model.ChangePasswordViewModels;
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            if (model.ChangePasswordViewModels!=null)
+            {
+                var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), changePass.OldPassword, changePass.NewPassword);
+
+                if (result.Succeeded)
+                {
+                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                    if (user != null)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
+                    return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+                AddErrors(result);
+            }
+            else if (model.Users != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        var MyUser = db.Users.Find(User.Identity.GetUserId());
+                        MyUser.UserStatus = model.Users.UserStatus;
+                        MyUser.Gender = model.Users.Gender;
+                        MyUser.Name = model.Users.Name;
+                        MyUser.Surname = model.Users.Surname;
+                        MyUser.UserName = model.Users.UserName;
+                        MyUser.AccessFailedCount = model.Users.AccessFailedCount;
+                        MyUser.Email = model.Users.Email;
+                        MyUser.EmailConfirmed = model.Users.EmailConfirmed;
+                        MyUser.LockoutEnabled = model.Users.LockoutEnabled;
+                        MyUser.LockoutEndDateUtc = model.Users.LockoutEndDateUtc;
+                        MyUser.PasswordHash = model.Users.PasswordHash;
+                        MyUser.PhoneNumber = model.Users.PhoneNumber;
+                        MyUser.PhoneNumberConfirmed = model.Users.PhoneNumberConfirmed;
+                        MyUser.SecurityStamp = model.Users.SecurityStamp;
+                        MyUser.TwoFactorEnabled = model.Users.TwoFactorEnabled;
+
+                        db.SaveChanges();
+                    }
+                }
+            }                                                       
+            return View(model);            
+            //return RedirectToAction(UserProfile);
         }
 
         //
@@ -414,6 +496,7 @@ namespace DeadLiner.Controllers
         {
             AddPhoneSuccess,
             ChangePasswordSuccess,
+            ChangePasswordError,
             SetTwoFactorSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,

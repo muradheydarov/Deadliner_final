@@ -1,4 +1,4 @@
-﻿@model DeadLiner.Models.TaskViewModel
+﻿@model IEnumerable<DeadLiner.Models.TasksModel>
 
 @{
     ViewBag.Title = "MyTasks";
@@ -34,28 +34,31 @@
     </tr>
     </thead>
     <tbody>
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
-                @Html.DisplayFor(item => item.Heading)
+                @Html.DisplayFor(modelItem => item.Heading)
             </td>
             <td>
-                @Html.DisplayFor(item => item.Content)
+                @Html.DisplayFor(modelItem => item.Content)
             </td>
             <td>
-                @Html.DisplayFor(item => item.StartDate)
+                @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(item => item.EndDate)
+                @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.DisplayFor(item => item.CreatedBy)
+                @Html.DisplayFor(itmodelItemem => item.CreatedBy)
             </td>
             <td>
-                @Html.DisplayFor(item => item.CreatedOn)
+                @Html.DisplayFor(modelItem => item.CreatedOn)
             </td>
             <td>
-                @Html.DisplayFor(item => item.Status)
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
         </tr>
+    }
     </tbody>
 </table>
