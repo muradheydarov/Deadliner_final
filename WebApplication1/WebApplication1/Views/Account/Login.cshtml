@@ -102,14 +102,7 @@
         </section>
         <h4>Continue With</h4>
         <div class="social_icons agileinfo">
-            <section class="social">
-                <a href="" class="icon fb"><img src="~/images/f.png" alt="" /></a>
-                <a href="" class="icon tw"><img src="~/images/t.png" alt="" /></a>
-                <a href="" class="icon gp"><img src="~/images/g.png" alt="" /></a>
-            </section>
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </div>
         <h5>Don't have an account? <a href="@Url.Action("Register","Account")">Sign Up</a></h5>
     </div>

@@ -1,0 +1,54 @@
+﻿@model DeadLiner.Models.TaskViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+    @ViewBag.cc;
+
+<div>
+    <h4>TasksModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Heading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Heading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dd>
+            @foreach (var item in Model.Users.Where(x => x.Checked))
+            {
+                @Html.DisplayFor(model => item.Name)
+            }
+        </dd>
+    </dl>
+</div>
+
+@*<div class="modals col-md-6 col-md-offset-3">
+        <div class="headHP col-md-12">
+            <h2 class="headH2">User Name</h2>
+            <p class="headP">
+                <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+            </p>
+        </div>
+        <div class="contentS col-md-12">
+            <h3 class="contH3">Bashliq</h3>
+            @foreach (var item in Model.Users.Where(x => x.Checked))
+                {
+                <div class="contDiv">
+                    <h4 class="contH4">Heading:</h4>
+                    <span class="contP">@Html.DisplayFor(model => item.Name)</span>
+                </div>
+            }
+        </div>
+    </div>*@
+

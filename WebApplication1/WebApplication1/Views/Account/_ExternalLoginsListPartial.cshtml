@@ -13,15 +13,24 @@
             </p>
         </div>
     }
-    else {
-        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
+    else
+    {
+        var myList = loginProviders.ToList();
+        var count = myList[1].AuthenticationType;
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+        {
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
-                <p>
-                    @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
-                    }
-                </p>
+                <button type="submit" class="buttonSecond" id="@count" name="provider" value="@count" title="Log in using your account">
+                    <a class="buttonA fb">
+                        <img src="~/images/f.png" alt="" />
+                    </a>
+                </button>
+                <button type="submit" class="buttonSecond" id="@loginProviders.First().AuthenticationType" name="provider" value="@loginProviders.First().AuthenticationType" title="Log in using your account">
+                    <a class="buttonA gp">
+                        <img src="~/images/g.png" alt="" />
+                    </a>
+                </button>
             </div>
         }
     }

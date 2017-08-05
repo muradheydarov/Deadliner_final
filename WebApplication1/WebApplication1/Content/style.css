@@ -993,3 +993,84 @@ h5.rest {
         width: 78.5%;
     }
 }
+
+
+#socialLoginList {
+    position: relative;
+    margin: 22px auto;
+}
+
+    #socialLoginList .buttonA {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 60px;
+        border-radius: 50%;
+        background: #46629E;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -o-border-radius: 50%;
+        -ms-border-radius: 50%;
+        text-align: center;
+        margin-right: 30px;
+    }
+
+    #socialLoginList .fb {
+        background: #46629E;
+    }
+
+    #socialLoginList .buttonSecond .fb:before,
+    #socialLoginList .buttonSecond .fb:after {
+        border-color: #46629E;
+    }
+
+    #socialLoginList .tw {
+        background: #00ACEE;
+    }
+
+        #socialLoginList .tw:before,
+        #socialLoginList .tw:after {
+            border-color: #00ACEE;
+        }
+
+    #socialLoginList .gp {
+        background: #DD4B39;
+    }
+
+    #socialLoginList .buttonSecond .gp:before,
+    #socialLoginList .buttonSecond .gp:after {
+        border-color: #DD4B39;
+    }
+
+    #socialLoginList .buttonA:before,
+    #socialLoginList .buttonA:after {
+        content: "";
+        display: block;
+        position: absolute;
+        background: transparent;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 50%;
+        transition: .3s all;
+        border: 3px solid;
+    }
+
+    #socialLoginList .buttonA:hover:after {
+        -webkit-transform: scale(1.5);
+    }
+
+    #socialLoginList .buttonA:hover:before {
+        -webkit-transform: scale(2);
+        transition: .3s all;
+        opacity: 0;
+    }
+
+    #socialLoginList .buttonSecond {
+        background: transparent;
+        border: none;
+        outline: none;
+        width: 55px;
+    }
