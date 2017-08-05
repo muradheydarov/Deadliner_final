@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
                 .Where(w => w.UserIdInt == userid.ApplicationUserId).Select(s => new TaskViewModel
                 {
                     Heading = s.TaskModel.Heading
-                });
+                }).ToList();
             return View(result);
         }
 
