@@ -256,25 +256,18 @@ namespace DeadLiner.Controllers
         public ActionResult GetData()
         {
             var taskList = db.TaskModels.ToList();            
-            dynamic tor="";            
-            foreach (var item in taskList)
+            DateTime now = DateTime.Now;
+            var tor = db.TaskModels.Select(s => new
             {
-                var EndDate = item.EndDate;
-                DateTime now = DateTime.Now;
-
-                var Status = EndDate > now ? "Open" : "Closed";
-                tor = db.TaskModels.Select(s => new
-                {
-                    s.Heading,
-                    s.Id,
-                    s.EndDate,
-                    s.StartDate,
-                    s.Content,
-                    s.CreatedBy,
-                    s.CreatedOn,
-                    Status
-                }).ToList();
-            }                       
+                s.Heading,
+                s.Id,
+                s.EndDate,
+                s.StartDate,
+                s.Content,
+                s.CreatedBy,
+                s.CreatedOn,
+                Status = s.EndDate > now ? "Open" : "Closed"
+        }).ToList();
             return Json(new { data = tor }, JsonRequestBehavior.AllowGet);            
         }
 
