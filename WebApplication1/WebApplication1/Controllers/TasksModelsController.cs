@@ -10,9 +10,8 @@ using DeadLiner.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace WebApplication1.Controllers
-{
-    [Authorize]
+namespace DeadLiner.Controllers
+{    
     public class TasksModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -256,9 +255,27 @@ namespace WebApplication1.Controllers
 
         public ActionResult GetData()
         {
-            var employees = db.TaskModels.ToList();
-            //var employees = db.TaskModels.Select(s => new { status = "open", taskid = s.Id });
-            return Json(new { data = employees }, JsonRequestBehavior.AllowGet);
+            var taskList = db.TaskModels.ToList();            
+            dynamic tor="";            
+            foreach (var item in taskList)
+            {
+                var EndDate = item.EndDate;
+                DateTime now = DateTime.Now;
+
+                var Status = EndDate > now ? "Open" : "Closed";
+                tor = db.TaskModels.Select(s => new
+                {
+                    s.Heading,
+                    s.Id,
+                    s.EndDate,
+                    s.StartDate,
+                    s.Content,
+                    s.CreatedBy,
+                    s.CreatedOn,
+                    Status
+                }).ToList();
+            }                       
+            return Json(new { data = tor }, JsonRequestBehavior.AllowGet);            
         }
 
         protected override void Dispose(bool disposing)
