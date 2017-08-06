@@ -88,6 +88,9 @@
                     }                   
                 ]                                    
             });
+            setInterval( function () {
+                $('#myTable').DataTable().ajax.reload( null, false ); 
+            }, 1000 );
 
             $('.tablecontainer').on('click',
                 'a.popup',

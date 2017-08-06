@@ -11,18 +11,19 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DeadLiner.Controllers
-{    
+{
     public class TasksModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET
         public ActionResult MyTasks()
-        {            
+        {
             var userid = db.Users.Find(User.Identity.GetUserId());
 
             var result = db.TaskToUsers.Include(t => t.TaskModel).Include(u => u.ApplicationUser)
                 .Where(w => w.UserIdInt == userid.ApplicationUserId).ToList();
+            
             return View(result);
         }
 
@@ -69,7 +70,7 @@ namespace DeadLiner.Controllers
 
             MyViewModel.Users = MyCheckBoxList;
             return View(MyViewModel);
-           // return Json(new { data = MyViewModel }, JsonRequestBehavior.AllowGet);
+            // return Json(new { data = MyViewModel }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: TasksModels/Create
@@ -198,7 +199,7 @@ namespace DeadLiner.Controllers
                         if (item.TaskId == tasksModel.TaskId)
                         {
                             db.Entry(item).State = EntityState.Deleted;
-                            db.SaveChanges();   
+                            db.SaveChanges();
                         }
                     }
 
@@ -255,7 +256,6 @@ namespace DeadLiner.Controllers
 
         public ActionResult GetData()
         {
-            var taskList = db.TaskModels.ToList();            
             DateTime now = DateTime.Now;
             var tor = db.TaskModels.Select(s => new
             {
@@ -267,8 +267,8 @@ namespace DeadLiner.Controllers
                 s.CreatedBy,
                 s.CreatedOn,
                 Status = s.EndDate > now ? "Open" : "Closed"
-        }).ToList();
-            return Json(new { data = tor }, JsonRequestBehavior.AllowGet);            
+            }).ToList();
+            return Json(new { data = tor }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

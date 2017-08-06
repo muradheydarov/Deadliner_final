@@ -5,15 +5,16 @@
     {
     @Html.AntiForgeryToken()
 
-        <ul class="nav_profile">
+        <ul class="nav_profile">            
             <li>
                 @{
                     var imgUrl = Url.Content("~/Content/images/profile/" + User.Identity.GetUserName() + ".png") + "?time=" + DateTime.Now.ToString();
                 }
-                <img src="@imgUrl" height="50" width="50" onerror="this.onerror=null;this.src='/Content/images/profile/avatar.png'"/>
+                <img src="@imgUrl" height="50" width="50" onerror="this.onerror = null;this.src = '/Content/images/profile/avatar.png'"/>
             </li>
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + " !", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+                <a href="@Url.Action("CustomChangePassword","Manage")" title="Manage">Hello @Url.Content(User.Identity.GetUserName())!<span class="badge" style="background: red; position: relative; top: -15px;">5</span></a>
+                @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + " !", "CustomChangePassword", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})*@
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
