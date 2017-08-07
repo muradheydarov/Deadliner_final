@@ -16,23 +16,24 @@
                     <div class="content">
                         <div class="dl-horizontals">
                             <p class="margin">
-                                <span class="EditHeading">@Html.DisplayNameFor(model => model.Heading)</span>
+                                <span class="EditHeading">@Html.DisplayNameFor(model => model.Heading):</span>
                                 <span class="editContent">@Html.DisplayFor(model => model.Heading)</span>
                             </p>
                             <p class="margin">
-                                <span class="EditHeading">@Html.DisplayNameFor(model => model.Content)</span>
+                                <span class="EditHeading">@Html.DisplayNameFor(model => model.Content):</span>
                                 <span class="editContent">@Html.DisplayFor(model => model.Content)</span>
                             </p>
-                            <p>
-                                <span class="EditHeading"> User Name</span>
+                            <div>
+                                <div class="EditHeading"> Assigned Users:</div>
+                                <div class="editContentAll" style="display: flex; flex-direction: column;"> 
                                 @foreach (var item in Model.Users.Where(x => x.Checked))
                                 {
-                                    <span class="editContent">
+                                    <div class="editContent">
                                         @Html.DisplayFor(model => item.Name)
-                                    </span>
-
+                                    </div>
                                 }
-                            </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

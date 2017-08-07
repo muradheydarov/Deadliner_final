@@ -266,7 +266,7 @@ namespace DeadLiner.Controllers
                 s.Content,
                 s.CreatedBy,
                 s.CreatedOn,
-                Status = s.EndDate > now ? "Open" : "Closed"
+                Status = s.EndDate > now && s.StartDate<now ? "Open" : "Closed"
             }).ToList();
             return Json(new { data = tor }, JsonRequestBehavior.AllowGet);
         }
