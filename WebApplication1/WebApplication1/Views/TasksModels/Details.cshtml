@@ -4,37 +4,39 @@
     ViewBag.Title = "Details";
     Layout = null;
 }
-@using (Html.BeginForm(new {id = "popupForm"}))
+@using (Html.BeginForm(new { id = "popupForm" }))
 {
-    <h2>Details</h2>
+    <section class="manager">
+        <div class="header  ">
+            <h1>Details</h1>
+        </div>
+        <div class="container-fluid eight">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content">
+                        <div class="dl-horizontals">
+                            <p class="margin">
+                                <span class="EditHeading">@Html.DisplayNameFor(model => model.Heading)</span>
+                                <span class="editContent">@Html.DisplayFor(model => model.Heading)</span>
+                            </p>
+                            <p class="margin">
+                                <span class="EditHeading">@Html.DisplayNameFor(model => model.Content)</span>
+                                <span class="editContent">@Html.DisplayFor(model => model.Content)</span>
+                            </p>
+                            <p>
+                                <span class="EditHeading"> User Name</span>
+                                @foreach (var item in Model.Users.Where(x => x.Checked))
+                                {
+                                    <span class="editContent">
+                                        @Html.DisplayFor(model => item.Name)
+                                    </span>
 
-    <div>
-        <hr/>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Heading)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Heading)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Content)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Content)
-            </dd>
-            <dt>
-                Users
-            </dt>
-            <dd>
-                @foreach (var item in Model.Users.Where(x => x.Checked))
-                {
-                    @Html.DisplayFor(model => item.Name)
-                }
-            </dd>
-        </dl>
-    </div>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 }
