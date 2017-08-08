@@ -177,7 +177,8 @@ p.footer {
 }
 
 .resp-tab-item {
-    color: #1bcba5;
+    /*color: #1bcba5;*/
+    color:#66c5ea;
     padding: 18px 0;
     background: #ebebeb;
     font-size: 17px;
@@ -193,7 +194,8 @@ p.footer {
     -ms-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-    border-left: 8px solid rgba(87, 220, 212, 0.43);
+    /*border-left: 8px solid rgba(87, 220, 212, 0.43);*/
+    border-left:8px solid rgb(145, 211, 236);
     border-top: 2px solid #F5F4F4;
     border-right: 2px transparent;
     border-bottom: 2px transparent;
@@ -203,7 +205,8 @@ p.footer {
     text-shadow: none;
     color: #a9b2ba;
     background: #fff;
-    border-left: 8px solid #57dcd4;
+    /*border-left: 8px solid #57dcd4;*/
+    border-left: 8px solid #3c8dbc;
 }
 
 .resp-tabs-container {
@@ -1126,7 +1129,7 @@ select.btn.btn-default.button-one {
 .updateMargin {
     position: absolute;
     right: 272px;
-    top: 448px;
+    top: 427px;
     z-index: 111;
 }
 
