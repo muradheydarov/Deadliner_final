@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@model int?
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
@@ -13,7 +14,7 @@
                 <img src="@imgUrl" height="50" width="50" onerror="this.onerror = null;this.src = '/Content/images/profile/avatar.png'"/>
             </li>
             <li>
-                <a href="@Url.Action("CustomChangePassword","Manage")" title="Manage">Hello @Url.Content(User.Identity.GetUserName())!<span class="badge" style="background: red; position: relative; top: -15px;">5</span></a>
+                <a href="@Url.Action("CustomChangePassword","Manage")" title="Manage">Hello @Url.Content(User.Identity.GetUserName())!<span class="badge" style="background: red; position: relative; top: -15px;">@Model</span></a>
                 @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + " !", "CustomChangePassword", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})*@
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>

@@ -300,6 +300,26 @@ namespace DeadLiner.Controllers
             return Json(new { data = list }, JsonRequestBehavior.AllowGet);
         }
 
+        [ChildActionOnly]
+        public ActionResult SendDataForNotify()
+        {
+            var userid = db.Users.Find(User.Identity.GetUserId());
+            DateTime now = DateTime.Now;
+
+            List<TaskViewModel> list = (from t in db.TaskModels
+                join usr in db.TaskToUsers on t.Id equals usr.Id
+                where usr.UserIdInt == userid.ApplicationUserId
+                select new TaskViewModel()
+                {                    
+                    EndDate = t.EndDate,
+                    StartDate = t.StartDate,                    
+                    Status = t.EndDate > now && t.StartDate < now ? "Open" : "Closed"
+                }).ToList();
+
+            return PartialView("~/Views/Shared/_LoginPartial.cshtml", list.Count());
+            //return PartialView("~/Views/Shared/_LoginPartial.cshtml", list.Count());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -639,7 +639,9 @@
     <Content Include="Views\Shared\_TeacherLayout.cshtml" />
     <Content Include="Views\Manage\CustomChangePassword.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Base\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
