@@ -21,10 +21,12 @@ namespace DeadLiner.Controllers
         {
             var userid = db.Users.Find(User.Identity.GetUserId());
 
-            var result = db.TaskToUsers.Include(t => t.TaskModel).Include(u => u.ApplicationUser)
-                .Where(w => w.UserIdInt == userid.ApplicationUserId).ToList();
-            
-            return View(result);
+            var list = from t in db.TaskModels
+                join usr in db.TaskToUsers on t.Id equals usr.Id
+                where usr.UserIdInt == userid.ApplicationUserId
+                select t;          
+
+            return View(list);
         }
 
         // GET: TasksModels
@@ -60,6 +62,10 @@ namespace DeadLiner.Controllers
             MyViewModel.TaskId = id.Value;
             MyViewModel.Heading = tasksModel.Heading;
             MyViewModel.Content = tasksModel.Content;
+            MyViewModel.CreatedBy = tasksModel.CreatedBy;
+            MyViewModel.CreatedOn = tasksModel.CreatedOn;
+            MyViewModel.StartDate = tasksModel.StartDate;
+            MyViewModel.EndDate = tasksModel.EndDate;
 
             var MyCheckBoxList = new List<CheckBoxViewModel>();
 
@@ -266,9 +272,32 @@ namespace DeadLiner.Controllers
                 s.Content,
                 s.CreatedBy,
                 s.CreatedOn,
-                Status = s.EndDate > now && s.StartDate<now ? "Open" : "Closed"
+                Status = s.EndDate > now && s.StartDate < now ? "Open" : "Closed"
             }).ToList();
             return Json(new { data = tor }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetDataMyTasks()
+        {
+            var userid = db.Users.Find(User.Identity.GetUserId());
+            DateTime now = DateTime.Now;
+
+            var list = from t in db.TaskModels
+                join usr in db.TaskToUsers on t.Id equals usr.Id
+                where usr.UserIdInt == userid.ApplicationUserId
+                select new
+                {
+                    t.Heading,
+                    t.Id,
+                    t.EndDate,
+                    t.StartDate,
+                    t.Content,
+                    t.CreatedBy,
+                    t.CreatedOn,
+                    Status = t.EndDate > now && t.StartDate < now ? "Open" : "Closed"
+                };
+           
+            return Json(new { data = list }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
