@@ -1124,7 +1124,10 @@ select.btn.btn-default.button-one {
 }
 
 .updateMargin {
-    margin-top: 29px;
+    position: absolute;
+    right: 272px;
+    top: 448px;
+    z-index: 111;
 }
 
 .iconPassword {
