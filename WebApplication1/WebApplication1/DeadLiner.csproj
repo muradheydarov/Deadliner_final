@@ -190,6 +190,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TasksModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +221,10 @@
     <Compile Include="Migrations\201708091350013_taskAgain.cs" />
     <Compile Include="Migrations\201708091350013_taskAgain.Designer.cs">
       <DependentUpon>201708091350013_taskAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091959045_UserIdInt.cs" />
+    <Compile Include="Migrations\201708091959045_UserIdInt.Designer.cs">
+      <DependentUpon>201708091959045_UserIdInt.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -639,6 +644,11 @@
     <Content Include="Views\Shared\_StudentLayout.cshtml" />
     <Content Include="Views\Shared\_TeacherLayout.cshtml" />
     <Content Include="Views\Manage\CustomChangePassword.cshtml" />
+    <Content Include="Views\TasksModels\Create.cshtml" />
+    <Content Include="Views\TasksModels\Delete.cshtml" />
+    <Content Include="Views\TasksModels\Details.cshtml" />
+    <Content Include="Views\TasksModels\Edit.cshtml" />
+    <Content Include="Views\TasksModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
@@ -667,6 +677,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708091350013_taskAgain.resx">
       <DependentUpon>201708091350013_taskAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091959045_UserIdInt.resx">
+      <DependentUpon>201708091959045_UserIdInt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

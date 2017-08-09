@@ -10,7 +10,8 @@ namespace DeadLiner.Models
     {
         [Key]
         public int TaskToUserID { get; set; }
-        public string Id { get; set; }        
+        public string Id { get; set; }
+        public int UserIdInt { get; set; }
         public int TasksModelID { get; set; }
 
         public virtual ApplicationUser User { get; set; }
