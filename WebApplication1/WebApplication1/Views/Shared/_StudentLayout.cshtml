@@ -51,7 +51,7 @@
             </a>
             <ul>
                 <li>
-                    <a href="@Url.Action("mytasks","TasksModels")">
+                    <a href="">
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                         <span>My Tasks</span>
                     </a>
@@ -174,8 +174,8 @@
             </a>
         </div>
         <div id="account" class="col-6">
-            @*@Html.Partial("_LoginPartial")*@
-            @Html.Action("SendDataForNotify", "TasksModels")
+            @Html.Partial("_LoginPartial")
+            @*@Html.Action("SendDataForNotify", "TasksModels")*@
         </div>
     </div>
     <!-- C O N T E N T   H E A D L I N E  -->

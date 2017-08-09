@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,8 +9,8 @@ namespace DeadLiner.Models
 {
     public class TasksModel
     {
-        public int Id { get; set; }
-        
+        public int TasksModelID { get; set; }
+
         [Required(ErrorMessage = "Heading is required")]
         public string Heading { get; set; }
 
@@ -20,12 +19,12 @@ namespace DeadLiner.Models
 
         [Required(ErrorMessage = "Start Date is required")]
         [DisplayName(displayName: "Start Date")]
-        [DataType(DataType.DateTime)]        
+        [DataType(DataType.DateTime)]
         public DateTime StartDate { get; set; }
 
         [Required(ErrorMessage = "End Date is required")]
         [DisplayName(displayName: "End Date")]
-        [DataType(DataType.DateTime)]        
+        [DataType(DataType.DateTime)]
         public DateTime EndDate { get; set; }
 
         [DisplayName(displayName: "Created By")]
@@ -36,6 +35,6 @@ namespace DeadLiner.Models
 
         public string Status { get; set; }
 
-        public virtual ICollection<TaskToUser> UserToTasks { get; set; }
+        public virtual ICollection<TaskToUser> TaskToUsers { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace DeadLiner.Models
         public string Surname { get; set; }
         public string UserStatus { get; set; }
         public string Gender { get; set; }
-        public ICollection<TaskToUser> TaskAssigneds { get; set; }
+        public virtual ICollection<TaskToUser> TaskToUsers { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -34,9 +34,8 @@ namespace DeadLiner.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
-        public DbSet<TasksModel> TaskModels { get; set; }
-        public DbSet<TaskToUser> TaskToUsers { get; set; }
+        public virtual DbSet<TasksModel> TasksModels { get; set; }
+        public virtual DbSet<TaskToUser> TaskToUsers { get; set; }
 
         public static ApplicationDbContext Create()
         {

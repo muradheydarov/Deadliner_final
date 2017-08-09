@@ -190,7 +190,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\TasksModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,6 +212,14 @@
     <Compile Include="Migrations\201707310934211_TaskAdd.cs" />
     <Compile Include="Migrations\201707310934211_TaskAdd.Designer.cs">
       <DependentUpon>201707310934211_TaskAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091333574_tor.cs" />
+    <Compile Include="Migrations\201708091333574_tor.Designer.cs">
+      <DependentUpon>201708091333574_tor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091350013_taskAgain.cs" />
+    <Compile Include="Migrations\201708091350013_taskAgain.Designer.cs">
+      <DependentUpon>201708091350013_taskAgain.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -628,13 +635,7 @@
     <Content Include="Views\ApplicationUsers\AdminIndex.cshtml" />
     <Content Include="Views\ApplicationUsers\UsersIndex.cshtml" />
     <Content Include="Views\ApplicationUsers\DetailsUser.cshtml" />
-    <Content Include="Views\TasksModels\Create.cshtml" />
-    <Content Include="Views\TasksModels\Delete.cshtml" />
-    <Content Include="Views\TasksModels\Details.cshtml" />
-    <Content Include="Views\TasksModels\Edit.cshtml" />
-    <Content Include="Views\TasksModels\Index.cshtml" />
     <Content Include="Views\Manage\_partialPassword.cshtml" />
-    <Content Include="Views\TasksModels\MyTasks.cshtml" />
     <Content Include="Views\Shared\_StudentLayout.cshtml" />
     <Content Include="Views\Shared\_TeacherLayout.cshtml" />
     <Content Include="Views\Manage\CustomChangePassword.cshtml" />
@@ -660,6 +661,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707310934211_TaskAdd.resx">
       <DependentUpon>201707310934211_TaskAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091333574_tor.resx">
+      <DependentUpon>201708091333574_tor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091350013_taskAgain.resx">
+      <DependentUpon>201708091350013_taskAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
