@@ -80,10 +80,9 @@
                     },
                     { "data": "Status", "autoWidth": true },
                     {
-                        "data": "Id", "width": "70px", "render": function (data) {
-                            return '<a class="popup" href="/TasksModels/Edit/' + data + '"><i class="fa fa-pencil-square-o bat" aria-hidden="true"></i></a> ' +
-                                '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>' +
-                                '<a class="popup" href="/TasksModels/Delete/' + data + '"><i class="fa fa-times bat" aria-hidden="true"></i></a>';
+                        "data": "TasksModelID", "width": "70px", "render": function (data) {
+                            return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>' +
+                                '<a class="popup" href="/TasksModels/Delete/' + data + '"><i class="fa fa-reply bat" aria-hidden="true" style="color:seagreen;"></i></a>';
                         }
                     }
                 ],
