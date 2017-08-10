@@ -121,7 +121,7 @@ namespace WebApplication1.Controllers
         public ActionResult Create(TaskViewModel tasksModel)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 var newTask = new TasksModel()
                 {
                     TasksModelID = tasksModel.TaskId,
@@ -130,7 +130,8 @@ namespace WebApplication1.Controllers
                     StartDate = tasksModel.StartDate,
                     CreatedBy = User.Identity.GetUserName(),
                     CreatedOn = DateTime.Now,
-                    EndDate = tasksModel.EndDate
+                    EndDate = tasksModel.EndDate,
+                    Status = tasksModel.EndDate > tasksModel.CreatedOn && tasksModel.StartDate < tasksModel.CreatedOn ? "Open" : "Closed"
                 };
 
                 db.TasksModels.Add(newTask);
@@ -313,7 +314,7 @@ namespace WebApplication1.Controllers
                            t.CreatedBy,
                            t.CreatedOn,
                            Status = t.EndDate > now && t.StartDate < now ? "Open" : "Closed"
-                       };
+                       };            
 
             return Json(new { data = list }, JsonRequestBehavior.AllowGet);
         }

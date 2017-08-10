@@ -40,6 +40,9 @@
     <script>
         $(document).ready(function () {
 
+            $.fn.dataTable.moment( 'DD/MM/YYYY' );
+            $.fn.dataTable.moment( 'dddd, DD/MM/YYYY' );
+
             var oTable = $("#myTable").DataTable({
                 responsive: true,
                 "ajax": {
@@ -51,43 +54,58 @@
                 "columns": [
                     { "data": null },
                     { "data":"Heading","autoWidth":true},
-                    { "data":"StartDate","autoWidth":true, "render":function(date) {
-                        if (date === null) return "";
-
-                        var pattern = /Date\(([^)]+)\)/;
-                        var results = pattern.exec(date);
-                        var dt = new Date(parseFloat(results[1]));
-
-                        return (dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes());
-                    }},
                     {
-                        "data": "EndDate", "autoWidth": true, "render": function (date) {
-                            if (date === null) return "";
-
-                            var pattern = /Date\(([^)]+)\)/;
-                            var results = pattern.exec(date);
-                            var dt = new Date(parseFloat(results[1]));
-
-                            return (dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes());
+                        "data": "StartDate", "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (type === 'display' || type === 'filter') {
+                                var rowvalueallday = row["EndDate"];
+                                if (rowvalueallday == 0) {
+                                    return (moment(data).format("ddd DD/MM/YYYY"));
+                                } else {
+                                    return (moment(data).format("MMMM Do YYYY, h:mm"));
+                                }
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "EndDate", "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (type === 'display' || type === 'filter') {
+                                var rowvalueallday = row["EndDate"];
+                                if (rowvalueallday == 0) {
+                                    return (moment(data).format("ddd DD/MM/YYYY"));
+                                } else {                                    
+                                    return (moment(data).format("MMMM Do YYYY, h:mm"));
+                                }
+                            }
+                            return data;
                         }
                     },
                     { "data": "CreatedBy", "autoWidth": true },
                     {
-                        "data": "CreatedOn", "autoWidth": true, "render": function (date) {
-                            if (date === null) return "";
-
-                            var pattern = /Date\(([^)]+)\)/;
-                            var results = pattern.exec(date);
-                            var dt = new Date(parseFloat(results[1]));
-
-                            return (dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes());
+                        "data": "CreatedOn", "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (type === 'display' || type === 'filter') {
+                                var rowvalueallday = row["EndDate"];
+                                if (rowvalueallday == 0) {
+                                    return (moment(data).format("ddd DD/MM/YYYY"));
+                                } else {
+                                    return (moment(data).format("MMMM Do YYYY, h:mm"));
+                                }
+                            }
+                            return data;
                         }
                     },
                     { "data": "Status", "autoWidth": true },
                     {
-                        "data": "TasksModelID", "width": "70px", "render": function (data) {
-                            return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>' +
-                                '<a class="popup" href="/TasksModels/Delete/' + data + '"><i class="fa fa-reply bat" aria-hidden="true" style="color:seagreen;"></i></a>';
+                        "data": "TasksModelID", "width": "70px",
+                        "render": function (data, type, row, meta) {
+                            if (row["Status"]=="Open") {
+                                return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>' +
+                                    '<a class="popup" href="/TasksModels/Delete/' + data + '"><i class="fa fa-reply bat" aria-hidden="true" style="color:seagreen;"></i></a>';    
+                            }
+                            return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>'                                
                         }
                     }
                 ]
