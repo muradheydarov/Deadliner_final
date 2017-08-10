@@ -295,7 +295,7 @@ namespace DeadLiner.Controllers
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     }
-                    return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                    return RedirectToAction("CustomChangePassword", new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
                 AddErrors(result);
             }
