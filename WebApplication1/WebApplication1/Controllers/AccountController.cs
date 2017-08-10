@@ -73,50 +73,59 @@ namespace DeadLiner.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
-            }            
+            }
 
-            var userid = UserManager.FindByName(model.UserName).Id;
-            var userName = UserManager.FindByName(model.UserName);
-            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            try
+            {
+                var userid = UserManager.FindByName(model.UserName).Id;
+
+                var userName = UserManager.FindByName(model.UserName);
+                var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+
+                if (!UserManager.IsEmailConfirmed(userid))
+                {
+                    return View("EmailNotConfirmed");
+                }
+                else
+                {
+                    if (userName.UserStatus == "Student")
+                    {
+                        if (!UserManager.IsInRole(userid, "Student") && !UserManager.IsInRole(userid, "Admin"))
+                        {
+                            UserManager.RemoveFromRole(userid, "Teacher");
+                            UserManager.AddToRole(userid, "Student");
+                        }
+                    }
+
+                    else if (userName.UserStatus == "Teacher")
+                    {
+                        if (!UserManager.IsInRole(userid, "Teacher") && !UserManager.IsInRole(userid, "Admin"))
+                        {
+                            UserManager.RemoveFromRole(userid, "Student");
+                            UserManager.AddToRole(userid, "Teacher");
+                        }
+                    }
+
+                    switch (result)
+                    {
+                        case SignInStatus.Success:
+                            return RedirectToLocal(returnUrl);
+                        case SignInStatus.LockedOut:
+                            return View("Lockout");
+                        case SignInStatus.RequiresVerification:
+                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                        case SignInStatus.Failure:
+                        default:
+                            ModelState.AddModelError("", "Invalid login attempt.");
+                            return View(model);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return HttpNotFound();
+            }
             
-            if (!UserManager.IsEmailConfirmed(userid))
-            {
-                return View("EmailNotConfirmed");
-            }
-            else
-            {
-                if (userName.UserStatus == "Student")
-                {
-                    if (!UserManager.IsInRole(userid, "Student") && !UserManager.IsInRole(userid, "Admin"))
-                    {
-                        UserManager.RemoveFromRole(userid, "Teacher");
-                        UserManager.AddToRole(userid, "Student");
-                    }
-                }
-
-                else if (userName.UserStatus=="Teacher")
-                {
-                    if (!UserManager.IsInRole(userid,"Teacher") && !UserManager.IsInRole(userid, "Admin"))
-                    {
-                        UserManager.RemoveFromRole(userid, "Student");
-                        UserManager.AddToRole(userid, "Teacher");
-                    }
-                }                
-
-                switch (result)
-                {
-                    case SignInStatus.Success:
-                        return RedirectToLocal(returnUrl);
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
-                        return View(model);
-                }
-            }
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true            
         }
