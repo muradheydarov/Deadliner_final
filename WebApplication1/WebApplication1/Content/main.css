@@ -259,3 +259,54 @@ body {
     align-items: center;
 }
 /*# sourceMappingURL=main.css.map */
+@media (max-width: 1280px) {
+    .minimizedLeft {
+        float: left;
+        width: 4.69%;
+    }
+
+    .minimizedRight {
+        float: left;
+        width: 95.31%;
+    }
+}
+
+@media(max-width:1080px) {
+    .coLeft {
+        width: 18.85%;
+    }
+
+    .coRight {
+        width: 81.15%;
+    }
+}
+
+@media (max-width: 991px) {
+    .minimizedLeft {
+        float: left;
+        width: 5.69%;
+    }
+
+    .minimizedRight {
+        float: left;
+        width: 94.31%;
+    }
+
+    .coLeft {
+        width: 20.85%;
+    }
+
+    .coRight {
+        width: 79.15%;
+    }
+}
+
+@media(max-width:870px) {
+    .coLeft {
+        width: 22.85%;
+    }
+
+    .coRight {
+        width: 77.15%;
+    }
+}

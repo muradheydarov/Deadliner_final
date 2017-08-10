@@ -621,7 +621,7 @@ select.btn.btn-default.button-one {
 
 @media (max-width: 1280px) {
     .content {
-        width: 46%;
+        width: 70%;
         margin: 0 auto;
     }
 
@@ -632,7 +632,7 @@ select.btn.btn-default.button-one {
 
 @media (max-width: 1080px) {
     .content {
-        width: 54%;
+        width:70%;
         margin: 0 auto;
     }
 
