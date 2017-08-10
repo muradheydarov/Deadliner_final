@@ -649,6 +649,7 @@
     <Content Include="Views\TasksModels\Details.cshtml" />
     <Content Include="Views\TasksModels\Edit.cshtml" />
     <Content Include="Views\TasksModels\Index.cshtml" />
+    <Content Include="Views\TasksModels\MyTasks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

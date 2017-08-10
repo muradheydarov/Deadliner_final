@@ -1,0 +1,154 @@
+﻿@model IEnumerable<DeadLiner.Models.TasksModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="tablecontainer">
+    <table class="table table-bordered ui celled" id="myTable">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Heading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        </thead>
+    </table>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            var oTable = $("#myTable").DataTable({
+                responsive: true,
+                "ajax": {
+                    "url": "/TasksModels/GetDataMyTasks",
+                    "type": "get",
+                    "datatype":"json"
+                },
+                "columns": [
+                    { "data":"Heading","autoWidth":true},
+                    { "data":"StartDate","autoWidth":true, "render":function(date) {
+                        if (date === null) return "";
+
+                        var pattern = /Date\(([^)]+)\)/;
+                        var results = pattern.exec(date);
+                        var dt = new Date(parseFloat(results[1]));
+
+                        return (dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes());
+                    }},
+                    {
+                        "data": "EndDate", "autoWidth": true, "render": function (date) {
+                            if (date === null) return "";
+
+                            var pattern = /Date\(([^)]+)\)/;
+                            var results = pattern.exec(date);
+                            var dt = new Date(parseFloat(results[1]));
+
+                            return (dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes());
+                        }
+                    },
+                    { "data": "CreatedBy", "autoWidth": true },
+                    {
+                        "data": "CreatedOn", "autoWidth": true, "render": function (date) {
+                            if (date === null) return "";
+
+                            var pattern = /Date\(([^)]+)\)/;
+                            var results = pattern.exec(date);
+                            var dt = new Date(parseFloat(results[1]));
+
+                            return (dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes());
+                        }
+                    },
+                    { "data": "Status", "autoWidth": true },
+                    {
+                        "data": "Id", "width": "70px", "render": function (data) {
+                            return '<a class="popup" href="/TasksModels/Edit/' + data + '"><i class="fa fa-pencil-square-o bat" aria-hidden="true"></i></a> ' +
+                                '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>' +
+                                '<a class="popup" href="/TasksModels/Delete/' + data + '"><i class="fa fa-times bat" aria-hidden="true"></i></a>';
+                        }
+                    }
+                ],
+
+            });
+            setInterval( function () {
+                $('#myTable').DataTable().ajax.reload( null, false );
+            }, 1000 );
+
+            $('.tablecontainer').on('click',
+                'a.popup',
+                function(e) {
+                    e.preventDefault();
+                    OpenPopup($(this).attr('href'));
+                });
+            function OpenPopup(pageUrl) {
+                var $pageContent = $('<div/>');
+                $pageContent.load(pageUrl, function () {
+                    $('#popupForm', $pageContent).removeData('validator');
+                    $('#popupForm', $pageContent).removeData('unobtrusiveValidation');
+                    $.validator.unobtrusive.parse('form');
+
+                });
+
+                $dialog = $('<div class="popupWindow" style="overflow:auto"></div>')
+                    .html($pageContent)
+                    .dialog({
+                        draggable : false,
+                        autoOpen : false,
+                        resizable : false,
+                        model : true,
+                        title:'Popup Dialog',
+                        height : 550,
+                        width : 600,
+                        close: function () {
+                            $dialog.dialog('destroy').remove();
+                        }
+                    })
+
+                $('.popupWindow').on('submit', '#popupForm', function (e) {
+                    var url = $('#popupForm')[0].action;
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: $('#popupForm').serialize(),
+                        success: function (data) {
+                            if (data.status) {
+                                $dialog.dialog('close');
+                                oTable.ajax.reload();
+                            }
+                        }
+                    })
+
+                    e.preventDefault();
+                })
+                $dialog.dialog('open');
+            }
+
+            //setImterval(check, 5);
+            //var check =  function() {
+            //    $.ajax()
+            //    {
+
+            //    }
+            //}
+        });
+    </script>
+}

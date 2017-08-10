@@ -1,4 +1,4 @@
-﻿ <!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -51,13 +51,13 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
+                        <a href="@Url.Action("Index","TasksModels")">
                             <i class="fa fa-circle-o" aria-hidden="true"></i>
                             <span>Manage Tasks</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="@Url.Action("Create", "TasksModels")">
                             <i class="fa fa-circle-o" aria-hidden="true"></i>
                             <span>Add New Task</span>
                         </a>
@@ -181,7 +181,6 @@
             </div>
             <div id="account" class="col-6">
                 @Html.Partial("_LoginPartial")
-                @*@Html.Action("SendDataForNotify", "TasksModels")*@
             </div>
         </div>
         <!-- C O N T E N T   H E A D L I N E  -->
@@ -214,11 +213,12 @@
         </div>
     </div>
     <div class="clear"></div>
-    
-    @Scripts.Render("~/bundles/lib")    
+
+    @Scripts.Render("~/bundles/lib")
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
     @RenderSection("scripts", required: false)
     @RenderSection("scriptDateTimePicker", required: false)
 </body>
 </html>
+
