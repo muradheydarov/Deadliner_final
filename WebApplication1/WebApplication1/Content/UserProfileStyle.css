@@ -29,10 +29,10 @@ blockquote, q {
     quotes: none;
 }
 
-    blockquote:before, blockquote:after, q:before, q:after {
-        content: '';
-        content: none;
-    }
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
 
 table {
     border-collapse: collapse;
@@ -142,13 +142,13 @@ p.footer {
     margin-top: 60px;
 }
 
-    p.footer a {
-        color: #1bcba5;
-    }
+p.footer a {
+    color: #1bcba5;
+}
 
-        p.footer a:hover {
-            color: #fff;
-        }
+p.footer a:hover {
+    color: #fff;
+}
 /*-- start tabs --*/
 .port-left {
     float: left;
@@ -287,10 +287,10 @@ select.btn.btn-default.button-one {
     cursor: pointer;
 }
 
-    .radio input[type="radio"], .radio2 input[type="radio"] {
-        position: absolute;
-        left: -9999px;
-    }
+.radio input[type="radio"], .radio2 input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+}
 
 .radio-btns label {
     font-size: 14px;
@@ -363,29 +363,29 @@ select.btn.btn-default.button-one {
     padding: 6px 20px 0px 5px;
     border-bottom: 3px solid #D2A41E;
 }
-    /*** normal state ***/
-    .radio i, .radio2 i {
-        transition: border-color 0.3s;
-        -o-transition: border-color 0.3s;
-        -ms-transition: border-color 0.3s;
-        -moz-transition: border-color 0.3s;
-        -webkit-transition: border-color 0.3s;
-    }
-    /*** checked state ***/
-    .radio input + i:after, .radio2 input + i:after {
-        content: '';
-        background: url("../images/tick-mark1.png") no-repeat center;
-        top: 1px;
-        left: 2px;
-        width: 16px;
-        height: 16px;
-        text-align: center;
-    }
+/*** normal state ***/
+.radio i, .radio2 i {
+    transition: border-color 0.3s;
+    -o-transition: border-color 0.3s;
+    -ms-transition: border-color 0.3s;
+    -moz-transition: border-color 0.3s;
+    -webkit-transition: border-color 0.3s;
+}
+/*** checked state ***/
+.radio input + i:after, .radio2 input + i:after {
+    content: '';
+    background: url("../images/tick-mark1.png") no-repeat center;
+    top: 1px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+}
 
-    .radio input:checked + i, .radio2 input:checked + i {
-        border: none;
-        background: #fff;
-    }
+.radio input:checked + i, .radio2 input:checked + i {
+    border: none;
+    background: #fff;
+}
 
 
 .email-icon span {
@@ -406,16 +406,16 @@ select.btn.btn-default.button-one {
     border: none;
 }
 
-    .email-form input[type="text"], .cell-form input[type="text"] {
-        border: none;
-        outline: none;
-        padding: 8px 12px;
-        font-size: 14px;
-        color: #9a9a9a;
-        font-family: 'Lato', sans-serif;
-        width: 92%;
-        background: #efefef;
-    }
+.email-form input[type="text"], .cell-form input[type="text"] {
+    border: none;
+    outline: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #9a9a9a;
+    font-family: 'Lato', sans-serif;
+    width: 92%;
+    background: #efefef;
+}
 
 .input-group, .email-group, .phone-group {
     margin-bottom: 15px;
@@ -429,14 +429,14 @@ select.btn.btn-default.button-one {
     font-size: 18px;
 }
 
-    .cell-icon span {
-        background: url('../images/cell.png') no-repeat 18px 9px #dbdbdb;
-        width: 54px;
-        height: 35px;
-        display: inline-block;
-        border: none;
-        padding: 19px;
-    }
+.cell-icon span {
+    background: url('../images/cell.png') no-repeat 18px 9px #dbdbdb;
+    width: 54px;
+    height: 35px;
+    display: inline-block;
+    border: none;
+    padding: 19px;
+}
 
 .profile-content {
     padding-bottom: 18px;
@@ -448,68 +448,68 @@ select.btn.btn-default.button-one {
     width: 22%;
 }
 
-    .update a {
-        background: #1bcba5;
-        font-size: 16px;
-        color: #fff;
-        text-decoration: none;
-        padding: 8px 0px;
-        border-bottom: 3px solid #20987E;
-        font-weight: 600;
-        display: block;
-        text-align: center;
-    }
+.update a {
+    background: #1bcba5;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 0px;
+    border-bottom: 3px solid #20987E;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+}
 
-    .update input {
-        background: #1bcba5;
-        font-size: 16px;
-        color: #fff;
-        text-decoration: none;
-        padding: 8px 8px;
-        border-bottom: 3px solid #20987E;
-        float: right;
-        margin-right: 41px;
-    }
+.update input {
+    background: #1bcba5;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 8px;
+    border-bottom: 3px solid #20987E;
+    float: right;
+    margin-right: 41px;
+}
 
 .single-bottom ul li {
     list-style: none;
     padding: 9px 20px;
 }
 
-    .single-bottom ul li input[type="checkbox"] {
-        display: none;
-    }
+.single-bottom ul li input[type="checkbox"] {
+    display: none;
+}
 
-        .single-bottom ul li input[type="checkbox"] + label {
-            position: relative;
-            padding-left: 31px;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            color: #9a9a9a;
-            font-family: 'Lato', sans-serif;
-        }
+.single-bottom ul li input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 31px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #9a9a9a;
+    font-family: 'Lato', sans-serif;
+}
 
-            .single-bottom ul li input[type="checkbox"] + label span:first-child {
-                width: 14px;
-                height: 14px;
-                display: inline-block;
-                border: 2px solid #1BCBA5;
-                position: absolute;
-                left: 0;
-                bottom: -1px;
-            }
+.single-bottom ul li input[type="checkbox"] + label span:first-child {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    border: 2px solid #1BCBA5;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+}
 
-        .single-bottom ul li input[type="checkbox"]:checked + label span:first-child:before {
-            content: "";
-            background: url(../images/11.png)no-repeat;
-            position: absolute;
-            left: 2px;
-            top: 2px;
-            font-size: 10px;
-            width: 16px;
-            height: 16px;
-        }
+.single-bottom ul li input[type="checkbox"]:checked + label span:first-child:before {
+    content: "";
+    background: url(../images/11.png)no-repeat;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+}
 
 .interests h3, .social-life h3, .work-play h3 {
     color: #1bcba5;
@@ -755,9 +755,9 @@ select.btn.btn-default.button-one {
         padding: 65px 0;
     }
 
-        .main h1 {
-            margin-bottom: 35px;
-        }
+    .main h1 {
+        margin-bottom: 35px;
+    }
 
     .resp-tab-item {
         padding: 18px 0;
@@ -1015,9 +1015,9 @@ select.btn.btn-default.button-one {
         padding: 40px 0;
     }
 
-        .main h1 {
-            font-size: 24px;
-        }
+    .main h1 {
+        font-size: 24px;
+    }
 
     .resp-tab-item {
         padding: 18px 0 17.5px 0;

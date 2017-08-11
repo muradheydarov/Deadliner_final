@@ -180,7 +180,8 @@
                 </a>
             </div>
             <div id="account" class="col-6">
-                @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LoginPartial")*@
+                @Html.Action("SendDataForNotify", "TasksModels")
             </div>
         </div>
         <!-- C O N T E N T   H E A D L I N E  -->

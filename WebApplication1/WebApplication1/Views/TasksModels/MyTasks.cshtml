@@ -112,7 +112,7 @@
             });
             setInterval( function () {
                 $('#myTable').DataTable().ajax.reload( null, false );
-            }, 1000 );
+            }, 60000 );
 
             oTable.on('order.dt search.dt', function () {
                 oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
