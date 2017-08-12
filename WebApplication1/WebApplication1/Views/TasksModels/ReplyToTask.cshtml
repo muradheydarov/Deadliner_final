@@ -1,0 +1,45 @@
+﻿@model DeadLiner.Models.TaskToUserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+@using (Html.BeginForm("ReplyToTask", "TasksModels", FormMethod.Post, new { id = "popupForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.TaskToUserViewModelId)
+    @Html.HiddenFor(x => x.UserIdInt)    
+    @Html.HiddenFor(x => x.TaskModelID)
+    <section class="manager">
+        <div class="header  ">
+            <h1>Edit Task</h1>
+        </div>
+
+        <div class="container-fluid eight">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content">
+                        <div class=" col-md-12 empty">
+                            <h3>Task Details</h3>
+                        </div>
+                        <div class="row user">
+                            @Html.HiddenFor(model => model.TaskToUserViewModelId)
+                            @Html.HiddenFor(model => model.AnswerTime)                            
+                            <div class="col-md-12 form">
+                                <p>Heading</p>
+                                @Html.EditorFor(model => model.StudentReply, new { htmlAttributes = new { @class = "form-control", required = "The Heading field is required." } })
+                                @Html.ValidationMessageFor(model => model.StudentReply, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 four">
+                    <div class="col-md-12 btn">
+                        <input type="submit" value="Edit" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
