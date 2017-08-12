@@ -9,8 +9,9 @@ namespace DeadLiner.Models
     public class ReplyToTask
     {
         [Key]
-        public int ReplyToTaskId { get; set; }        
+        public int ReplyToTaskId { get; set; }
 
+        [DataType(DataType.Url)]
         [Required(ErrorMessage = "Answer is required")]
         [Display(Name = "User Answer")]
         public string UserAnswer { get; set; }

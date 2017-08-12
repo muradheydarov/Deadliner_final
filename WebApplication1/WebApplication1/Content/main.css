@@ -21,7 +21,10 @@ td.details-control {
     cursor: pointer;
 }
 .ui-dialog {
-    top: 20% !important;    
+    top: 10% !important;    
+}
+.ui-dialog-content {
+    max-height: 500px !important;
 }
 tr.details td.details-control {
     background: url('../resources/details_close.png') no-repeat center center;
