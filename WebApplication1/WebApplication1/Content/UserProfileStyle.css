@@ -29,10 +29,10 @@ blockquote, q {
     quotes: none;
 }
 
-blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
-    content: none;
-}
+    blockquote:before, blockquote:after, q:before, q:after {
+        content: '';
+        content: none;
+    }
 
 table {
     border-collapse: collapse;
@@ -142,13 +142,13 @@ p.footer {
     margin-top: 60px;
 }
 
-p.footer a {
-    color: #1bcba5;
-}
+    p.footer a {
+        color: #1bcba5;
+    }
 
-p.footer a:hover {
-    color: #fff;
-}
+        p.footer a:hover {
+            color: #fff;
+        }
 /*-- start tabs --*/
 .port-left {
     float: left;
@@ -287,10 +287,10 @@ select.btn.btn-default.button-one {
     cursor: pointer;
 }
 
-.radio input[type="radio"], .radio2 input[type="radio"] {
-    position: absolute;
-    left: -9999px;
-}
+    .radio input[type="radio"], .radio2 input[type="radio"] {
+        position: absolute;
+        left: -9999px;
+    }
 
 .radio-btns label {
     font-size: 14px;
@@ -363,29 +363,29 @@ select.btn.btn-default.button-one {
     padding: 6px 20px 0px 5px;
     border-bottom: 3px solid #D2A41E;
 }
-/*** normal state ***/
-.radio i, .radio2 i {
-    transition: border-color 0.3s;
-    -o-transition: border-color 0.3s;
-    -ms-transition: border-color 0.3s;
-    -moz-transition: border-color 0.3s;
-    -webkit-transition: border-color 0.3s;
-}
-/*** checked state ***/
-.radio input + i:after, .radio2 input + i:after {
-    content: '';
-    background: url("../images/tick-mark1.png") no-repeat center;
-    top: 1px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    text-align: center;
-}
+    /*** normal state ***/
+    .radio i, .radio2 i {
+        transition: border-color 0.3s;
+        -o-transition: border-color 0.3s;
+        -ms-transition: border-color 0.3s;
+        -moz-transition: border-color 0.3s;
+        -webkit-transition: border-color 0.3s;
+    }
+    /*** checked state ***/
+    .radio input + i:after, .radio2 input + i:after {
+        content: '';
+        background: url("../images/tick-mark1.png") no-repeat center;
+        top: 1px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        text-align: center;
+    }
 
-.radio input:checked + i, .radio2 input:checked + i {
-    border: none;
-    background: #fff;
-}
+    .radio input:checked + i, .radio2 input:checked + i {
+        border: none;
+        background: #fff;
+    }
 
 
 .email-icon span {
@@ -406,16 +406,16 @@ select.btn.btn-default.button-one {
     border: none;
 }
 
-.email-form input[type="text"], .cell-form input[type="text"] {
-    border: none;
-    outline: none;
-    padding: 8px 12px;
-    font-size: 14px;
-    color: #9a9a9a;
-    font-family: 'Lato', sans-serif;
-    width: 100%;
-    background: #efefef;
-}
+    .email-form input[type="text"], .cell-form input[type="text"] {
+        border: none;
+        outline: none;
+        padding: 8px 12px;
+        font-size: 14px;
+        color: #9a9a9a;
+        font-family: 'Lato', sans-serif;
+        width: 100%;
+        background: #efefef;
+    }
 
 .input-group, .email-group, .phone-group {
     margin-bottom: 15px;
@@ -434,14 +434,14 @@ select.btn.btn-default.button-one {
     align-items: center;
 }
 
-.cell-icon span {
-    background: url('../images/cell.png') no-repeat 18px 9px #dbdbdb;
-    width: 54px;
-    height: 35px;
-    display: inline-block;
-    border: none;
-    padding: 19px;
-}
+    .cell-icon span {
+        background: url('../images/cell.png') no-repeat 18px 9px #dbdbdb;
+        width: 54px;
+        height: 35px;
+        display: inline-block;
+        border: none;
+        padding: 19px;
+    }
 
 .profile-content {
     padding-bottom: 18px;
@@ -452,66 +452,66 @@ select.btn.btn-default.button-one {
     margin-top: 25px;
 }
 
-.update a {
-    background: #1bcba5;
-    font-size: 16px;
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 0px;
-    border-bottom: 3px solid #20987E;
-    font-weight: 600;
-    display: block;
-    text-align: center;
-}
+    .update a {
+        background: #1bcba5;
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+        padding: 8px 0px;
+        border-bottom: 3px solid #20987E;
+        font-weight: 600;
+        display: block;
+        text-align: center;
+    }
 
-.update input {
-    background: #1bcba5;
-    font-size: 16px;
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 8px;
-    border-bottom: 3px solid #20987E;
-}
+    .update input {
+        background: #1bcba5;
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+        padding: 8px 8px;
+        border-bottom: 3px solid #20987E;
+    }
 
 .single-bottom ul li {
     list-style: none;
     padding: 9px 20px;
 }
 
-.single-bottom ul li input[type="checkbox"] {
-    display: none;
-}
+    .single-bottom ul li input[type="checkbox"] {
+        display: none;
+    }
 
-.single-bottom ul li input[type="checkbox"] + label {
-    position: relative;
-    padding-left: 31px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #9a9a9a;
-    font-family: 'Lato', sans-serif;
-}
+        .single-bottom ul li input[type="checkbox"] + label {
+            position: relative;
+            padding-left: 31px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #9a9a9a;
+            font-family: 'Lato', sans-serif;
+        }
 
-.single-bottom ul li input[type="checkbox"] + label span:first-child {
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-    border: 2px solid #1BCBA5;
-    position: absolute;
-    left: 0;
-    bottom: -1px;
-}
+            .single-bottom ul li input[type="checkbox"] + label span:first-child {
+                width: 14px;
+                height: 14px;
+                display: inline-block;
+                border: 2px solid #1BCBA5;
+                position: absolute;
+                left: 0;
+                bottom: -1px;
+            }
 
-.single-bottom ul li input[type="checkbox"]:checked + label span:first-child:before {
-    content: "";
-    background: url(../images/11.png)no-repeat;
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    font-size: 10px;
-    width: 16px;
-    height: 16px;
-}
+        .single-bottom ul li input[type="checkbox"]:checked + label span:first-child:before {
+            content: "";
+            background: url(../images/11.png)no-repeat;
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            font-size: 10px;
+            width: 16px;
+            height: 16px;
+        }
 
 .interests h3, .social-life h3, .work-play h3 {
     color: #1bcba5;
@@ -722,14 +722,16 @@ select.btn.btn-default.button-one {
     .port-right {
         width: 64.9%;
     }
-    .radio2{
-        width:24%;
+
+    .radio2 {
+        width: 23%;
+        ;
     }
 }
 
 @media (max-width: 800px) {
     .content {
-        width: 88.5%;
+        width: 77.5%;
         margin: 0 auto;
     }
 
@@ -737,23 +739,32 @@ select.btn.btn-default.button-one {
         padding: 17px 0 17px 0;
     }
 
+    .port-left {
+        display: none;
+    }
+
+    h2.resp-accordion {
+        display: block;
+        font-size: 24px;
+    }
+
+    .radio2 {
+        width: 18%;
+    }
+
+    .port-right {
+        padding: 18px 30px;
+    }
+
     .port-right {
         min-height: 402px;
-    }
-    .resp-tabs-list img{
-        height:182px;
-    }
-    .responsiveBtn{
-        width:200px;
-    }
-    .responsiveBtn input{
-        width:100%;
+        width: 93%;
     }
 }
 
 @media (max-width: 768px) {
     .content {
-        width: 90.4%;
+        width: 79.4%;
         margin: 0 auto;
     }
 
@@ -768,6 +779,11 @@ select.btn.btn-default.button-one {
     p.footer {
         margin-top: 70px;
     }
+
+    .port-right {
+        padding: 35px 30px;
+    }
+
     .resp-tab-item {
         padding: 20px 0 21px 0;
     }
@@ -775,17 +791,11 @@ select.btn.btn-default.button-one {
     .port-right {
         min-height: 400px;
     }
-    .resp-tabs-list img {
-        height: 136px;
-    }
-    .profile-content{
-        padding-bottom:0px;
-    }
 }
 
 @media (max-width: 736px) {
     .content {
-        width: 87.4%;
+        width: 83.4%;
         margin: 0 auto;
     }
 
@@ -798,8 +808,7 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        padding: 16px 30px;
-        width: 68.9%;
+        padding: 21px 30px;
     }
 
     p.footer {
@@ -809,14 +818,11 @@ select.btn.btn-default.button-one {
     .radio {
         width: 14%;
     }
-    .radio2{
-        width:27%;
-    }
 }
 
 @media (max-width: 667px) {
     .content {
-        width: 89%;
+        width: 84%;
         margin: 0 auto;
     }
 
@@ -834,7 +840,11 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        width: 70.2%;
+        width: 93.2%;
+    }
+
+    .radio2 {
+        width: 25%;
     }
 
     select.btn.btn-default.button-one {
@@ -849,6 +859,7 @@ select.btn.btn-default.button-one {
         font-size: 14px;
         border-radius: 0px !important;
     }
+
     .email-form input[type="text"], .cell-form input[type="text"] {
         padding: 7px 12px 7px 12px;
     }
@@ -860,10 +871,7 @@ select.btn.btn-default.button-one {
     }
 
     .update {
-        margin-top: 13px;
-    }
-    .updateMargin{
-        margin-top:3px;
+        margin-top: 1px;
     }
 
     .port-right {
@@ -879,7 +887,7 @@ select.btn.btn-default.button-one {
 
 @media (max-width: 640px) {
     .port-right {
-        width: 69%;
+        width: 92%;
     }
 
     .update a {
@@ -898,7 +906,7 @@ select.btn.btn-default.button-one {
 
     .port-left {
         float: left;
-        width: 100%;
+        width: 23%;
     }
 
     .work-play input[type="text"], .work-play input[type="password"] {
@@ -941,7 +949,6 @@ select.btn.btn-default.button-one {
 
     .port-right {
         min-height: 369px;
-        width:95%;
     }
 
     p.footer {
@@ -953,21 +960,33 @@ select.btn.btn-default.button-one {
     .port-right {
         padding: 15px 18px;
     }
+
+    .responsiveBtn {
+        width: 200px;
+    }
+
+        .responsiveBtn input {
+            width: 100%;
+        }
+
+    .content {
+        width: 93%;
+    }
 }
 
 @media (max-width: 480px) {
     .content {
-        width: 97%;
+        width: 98%;
         margin: 0 auto;
     }
 
     .port-left {
         float: left;
-        width: 100%;
+        width: 26%;
     }
 
     .port-right {
-        width: 98%;
+        width: 93%;
     }
 
     select.btn.btn-default.button-one {
@@ -988,9 +1007,8 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        padding: 14px 14px;
+        padding: 14px 18px;
         min-height: 365px;
-        padding-left:0px;
     }
 
     p.footer {
@@ -1001,7 +1019,7 @@ select.btn.btn-default.button-one {
     }
 
     .radio, .radio2 {
-        width: 27%;
+        width: 28%;
     }
 
     .main h1 {
@@ -1020,8 +1038,17 @@ select.btn.btn-default.button-one {
         width: 31%;
     }
 
+    li.resp-tab-item:nth-child(2) {
+        margin-top: 0;
+    }
+
     .resp-tab-item {
-        padding: -5px;
+        float: left;
+        width: 32%;
+    }
+
+    .resp-tab-item {
+        padding: 17px 0;
     }
 
     li.resp-tab-item:nth-child(6) {
@@ -1029,15 +1056,11 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        width: 97%;
+        width: 94%;
     }
 
     p.footer {
         width: 94%;
-    }
-
-    .main {
-        padding: 40px 0;
     }
 
     .main h1 {
@@ -1046,6 +1069,15 @@ select.btn.btn-default.button-one {
 
     .resp-tab-item {
         padding: 18px 0 17.5px 0;
+    }
+
+    .radio2 {
+        width: 32%;
+    }
+
+    .updateMargin {
+        float: left;
+        margin-top: 10px;
     }
 }
 
@@ -1065,7 +1097,7 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        width: 97.3%;
+        width: 94.3%;
     }
 }
 
@@ -1075,18 +1107,15 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        width: 98%;
+        width: 94%;
     }
 
     .main h1 {
         font-size: 23px;
     }
-    .radio2{
-        width:31%;
-    }
-    .updateMargin{
-        float:left;
-        margin-top:5px;
+
+    .radio2 {
+        width: 37%;
     }
 }
 
