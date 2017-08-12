@@ -62,7 +62,7 @@
                                 if (rowvalueallday == 0) {
                                     return (moment(data).format("ddd DD/MM/YYYY"));
                                 } else {
-                                    return (moment(data).format("MMMM Do YYYY, h:mm"));
+                                    return (moment(data).format("MMMM Do YYYY, HH:mm"));
                                 }
                             }
                             return data;
@@ -76,7 +76,7 @@
                                 if (rowvalueallday == 0) {
                                     return (moment(data).format("ddd DD/MM/YYYY"));
                                 } else {
-                                    return (moment(data).format("MMMM Do YYYY, h:mm"));
+                                    return (moment(data).format("MMMM Do YYYY, HH:mm"));
                                 }
                             }
                             return data;
@@ -91,7 +91,7 @@
                                 if (rowvalueallday == 0) {
                                     return (moment(data).format("ddd DD/MM/YYYY"));
                                 } else {
-                                    return (moment(data).format("MMMM Do YYYY, h:mm"));
+                                    return (moment(data).format("MMMM Do YYYY, HH:mm"));
                                 }
                             }
                             return data;
@@ -139,9 +139,8 @@
                         draggable: false,
                         autoOpen: false,
                         resizable: false,
-                        model: true,
-                        title: 'Popup Dialog',
-                        height: 550,
+                        model: true,                        
+                        height: 'auto',
                         width: 600,
                         close: function () {
                             $dialog.dialog('destroy').remove();
@@ -166,14 +165,6 @@
                 })
                 $dialog.dialog('open');
             }
-
-            //setImterval(check, 5);
-            //var check =  function() {
-            //    $.ajax()
-            //    {
-
-            //    }
-            //}
         });
     </script>
 }

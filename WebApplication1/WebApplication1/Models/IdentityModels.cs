@@ -36,6 +36,7 @@ namespace DeadLiner.Models
         }
         public virtual DbSet<TasksModel> TasksModels { get; set; }
         public virtual DbSet<TaskToUser> TaskToUsers { get; set; }
+        public virtual DbSet<ReplyToTask> ReplyToTasks { get; set; }
 
         public static ApplicationDbContext Create()
         {

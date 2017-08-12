@@ -26,6 +26,7 @@
                             @Html.HiddenFor(model => model.CreatedBy)
                             @Html.HiddenFor(model => model.CreatedOn)
                             @Html.HiddenFor(model => model.Status)
+                            @Html.HiddenFor(model => model.StartDate)
                             <div class="col-md-12 form">
                                 <p>Heading</p>
                                 @Html.EditorFor(model => model.Heading, new { htmlAttributes = new { @class = "form-control", required = "The Heading field is required." } })
@@ -88,7 +89,8 @@
 
             $('#datetimepicker1').datetimepicker({
                 ignoreReadonly: true,
-                format: 'DD, MMMM, YYYY HH:mm'
+                format: 'DD, MMMM, YYYY HH:mm',
+                
             }).on('dp.change',
                 function (e) {
                     $('#datetimepicker2').data("DateTimePicker").minDate(e.date)

@@ -226,12 +226,17 @@
     <Compile Include="Migrations\201708091959045_UserIdInt.Designer.cs">
       <DependentUpon>201708091959045_UserIdInt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708121134221_UserReply.cs" />
+    <Compile Include="Migrations\201708121134221_UserReply.Designer.cs">
+      <DependentUpon>201708121134221_UserReply.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Models\CheckBoxViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ReplyToTask.cs" />
     <Compile Include="Models\TasksModel.cs" />
     <Compile Include="Models\TaskToUser.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
@@ -651,6 +656,7 @@
     <Content Include="Views\TasksModels\Edit.cshtml" />
     <Content Include="Views\TasksModels\Index.cshtml" />
     <Content Include="Views\TasksModels\MyTasks.cshtml" />
+    <Content Include="Views\TasksModels\ReplyToTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
@@ -682,6 +688,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708091959045_UserIdInt.resx">
       <DependentUpon>201708091959045_UserIdInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708121134221_UserReply.resx">
+      <DependentUpon>201708121134221_UserReply.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

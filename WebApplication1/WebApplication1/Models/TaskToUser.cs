@@ -16,5 +16,6 @@ namespace DeadLiner.Models
 
         public virtual ApplicationUser User { get; set; }
         public virtual TasksModel TasksModel { get; set; }
+        public virtual ICollection<ReplyToTask> ReplyToTasks { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DeadLiner.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace WebApplication1.Controllers
@@ -53,7 +54,7 @@ namespace WebApplication1.Controllers
                              a.ApplicationUserId,
                              a.UserName,
                              Checked = (from ab in db.TaskToUsers
-                                        where (ab.UserIdInt == a.ApplicationUserId) & (ab.TasksModelID ==  id)
+                                        where (ab.UserIdInt == a.ApplicationUserId) & (ab.TasksModelID == id)
                                         select ab).Any()
                          };
 
@@ -86,11 +87,11 @@ namespace WebApplication1.Controllers
         // GET: TasksModels/Create
         public ActionResult Create()
         {
-            var result = from a in db.Users.Where(x => x.UserStatus=="Student")
+            var result = from a in db.Users.Where(x => x.UserStatus == "Student")
                          select new
                          {
                              a.ApplicationUserId,
-                             a.UserName,                             
+                             a.UserName,
                              Checked = (from ab in db.TaskToUsers
                                         select ab).Any()
                          };
@@ -105,7 +106,7 @@ namespace WebApplication1.Controllers
                 {
                     Id = item.ApplicationUserId,
                     Name = item.UserName,
-                    Checked = item.Checked,                    
+                    Checked = item.Checked,
                 });
             }
 
@@ -121,7 +122,7 @@ namespace WebApplication1.Controllers
         public ActionResult Create(TaskViewModel tasksModel)
         {
             if (ModelState.IsValid)
-            {                
+            {
                 var newTask = new TasksModel()
                 {
                     TasksModelID = tasksModel.TaskId,
@@ -131,7 +132,7 @@ namespace WebApplication1.Controllers
                     CreatedBy = User.Identity.GetUserName(),
                     CreatedOn = DateTime.Now,
                     EndDate = tasksModel.EndDate,
-                    Status = tasksModel.EndDate > tasksModel.CreatedOn && tasksModel.StartDate < tasksModel.CreatedOn ? "Open" : "Closed"
+                    Status = tasksModel.Status
                 };
 
                 db.TasksModels.Add(newTask);
@@ -218,13 +219,13 @@ namespace WebApplication1.Controllers
                 MyTask.EndDate = tasksModel.EndDate;
                 MyTask.CreatedBy = tasksModel.CreatedBy;
                 MyTask.CreatedOn = tasksModel.CreatedOn;
-                MyTask.Status = tasksModel.Status;                
+                MyTask.Status = tasksModel.Status;
 
                 foreach (var item in db.TaskToUsers)
                 {
                     if (item.TasksModelID == tasksModel.TaskId)
                     {
-                        db.Entry(item).State = EntityState.Deleted;                        
+                        db.Entry(item).State = EntityState.Deleted;
                     }
                 }
 
@@ -314,7 +315,7 @@ namespace WebApplication1.Controllers
                            t.CreatedBy,
                            t.CreatedOn,
                            Status = t.EndDate > now && t.StartDate < now ? "Open" : "Closed"
-                       };            
+                       };
 
             return Json(new { data = list }, JsonRequestBehavior.AllowGet);
         }
@@ -323,7 +324,7 @@ namespace WebApplication1.Controllers
         public ActionResult SendDataForNotify()
         {
             var userid = db.Users.Find(User.Identity.GetUserId());
-            DateTime now = DateTime.Now;            
+            DateTime now = DateTime.Now;
 
             List<TaskViewModel> list = (from t in db.TasksModels
                                         join user in db.TaskToUsers on t.TasksModelID equals user.TasksModelID
@@ -333,9 +334,57 @@ namespace WebApplication1.Controllers
                                             EndDate = t.EndDate,
                                             StartDate = t.StartDate,
                                             Status = t.EndDate > now && t.StartDate < now ? "Open" : "Closed"
-                                        }).Where(x => x.Status=="Open").ToList();
+                                        }).Where(x => x.Status == "Open").ToList();
 
-            return PartialView("~/Views/Shared/_LoginPartial.cshtml", list.Count);                       
+            return PartialView("~/Views/Shared/_LoginPartial.cshtml", list.Count);
+        }
+
+        //GET
+        public ActionResult ReplyToTask(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var userid = db.Users.Find(User.Identity.GetUserId()).ApplicationUserId;
+
+            var taskToUseId = db.TaskToUsers.FirstOrDefault(x => x.UserIdInt == userid && x.TasksModelID == id).TaskToUserID;
+            
+            if (db.ReplyToTasks.FirstOrDefault(x => x.TaskToUserID == taskToUseId)!=null)
+            {
+                var replyToTaskDefault = db.ReplyToTasks.FirstOrDefault(x => x.TaskToUserID == taskToUseId);
+                return View(replyToTaskDefault);
+            }
+
+            var replyToTask = new ReplyToTask();
+            replyToTask.TaskToUserID = taskToUseId;
+            return View(replyToTask);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ReplyToTask(ReplyToTask taskToUser)
+        {
+            bool status = false;
+
+            if (ModelState.IsValid)
+            {
+                if (taskToUser.ReplyToTaskId > 0)
+                {
+                    taskToUser.AnswerTime=DateTime.Now;
+                    db.Entry(taskToUser).State = EntityState.Modified;
+                }
+                else
+                {
+                    taskToUser.AnswerTime = DateTime.Now;
+                    db.ReplyToTasks.Add(taskToUser);
+                }
+                
+                db.SaveChanges();
+                status = true;
+            }            
+            return new JsonResult { Data = new { status = status } };
         }
 
         protected override void Dispose(bool disposing)

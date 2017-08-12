@@ -62,7 +62,7 @@
                                 if (rowvalueallday == 0) {
                                     return (moment(data).format("ddd DD/MM/YYYY"));
                                 } else {
-                                    return (moment(data).format("MMMM Do YYYY, h:mm"));
+                                    return (moment(data).format("MMMM Do YYYY, HH:mm"));
                                 }
                             }
                             return data;
@@ -76,7 +76,7 @@
                                 if (rowvalueallday == 0) {
                                     return (moment(data).format("ddd DD/MM/YYYY"));
                                 } else {
-                                    return (moment(data).format("MMMM Do YYYY, h:mm"));
+                                    return (moment(data).format("MMMM Do YYYY, HH:mm"));
                                 }
                             }
                             return data;
@@ -91,7 +91,7 @@
                                 if (rowvalueallday == 0) {
                                     return (moment(data).format("ddd DD/MM/YYYY"));
                                 } else {
-                                    return (moment(data).format("MMMM Do YYYY, h:mm"));
+                                    return (moment(data).format("MMMM Do YYYY, HH:mm"));
                                 }
                             }
                             return data;
@@ -140,10 +140,13 @@
                         draggable: false,
                         autoOpen: false,
                         resizable: false,
-                        model: true,
-                        title: 'Popup Dialog',
-                        height: 550,
+                        model: true,                        
+                        height: 'auto',
                         width: 600,
+                        position: {        
+                            my: 'top', 
+                            at: 'top'            
+                        },
                         close: function () {
                             $dialog.dialog('destroy').remove();
                         }
