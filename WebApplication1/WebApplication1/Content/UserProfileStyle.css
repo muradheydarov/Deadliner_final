@@ -722,11 +722,14 @@ select.btn.btn-default.button-one {
     .port-right {
         width: 64.9%;
     }
+    .radio2{
+        width:24%;
+    }
 }
 
 @media (max-width: 800px) {
     .content {
-        width: 77.5%;
+        width: 88.5%;
         margin: 0 auto;
     }
 
@@ -735,17 +738,22 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        padding: 18px 30px;
-    }
-
-    .port-right {
         min-height: 402px;
+    }
+    .resp-tabs-list img{
+        height:182px;
+    }
+    .responsiveBtn{
+        width:200px;
+    }
+    .responsiveBtn input{
+        width:100%;
     }
 }
 
 @media (max-width: 768px) {
     .content {
-        width: 79.4%;
+        width: 90.4%;
         margin: 0 auto;
     }
 
@@ -757,18 +765,9 @@ select.btn.btn-default.button-one {
         margin-bottom: 75px;
     }
 
-    .main {
-        padding: 90px 0;
-    }
-
     p.footer {
         margin-top: 70px;
     }
-
-    .port-right {
-        padding: 35px 30px;
-    }
-
     .resp-tab-item {
         padding: 20px 0 21px 0;
     }
@@ -776,16 +775,18 @@ select.btn.btn-default.button-one {
     .port-right {
         min-height: 400px;
     }
+    .resp-tabs-list img {
+        height: 136px;
+    }
+    .profile-content{
+       padding-bottom:0px;
+    }
 }
 
 @media (max-width: 736px) {
     .content {
-        width: 83.4%;
+        width: 87.4%;
         margin: 0 auto;
-    }
-
-    .main {
-        padding: 65px 0;
     }
 
         .main h1 {
@@ -797,7 +798,8 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        padding: 21px 30px;
+        padding: 16px 30px;
+        width: 68.9%;
     }
 
     p.footer {
@@ -807,11 +809,14 @@ select.btn.btn-default.button-one {
     .radio {
         width: 14%;
     }
+    .radio2{
+        width:27%;
+    }
 }
 
 @media (max-width: 667px) {
     .content {
-        width: 84%;
+        width: 89%;
         margin: 0 auto;
     }
 
@@ -829,7 +834,7 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        width: 69.2%;
+        width: 70.2%;
     }
 
     select.btn.btn-default.button-one {
@@ -844,10 +849,6 @@ select.btn.btn-default.button-one {
         font-size: 14px;
         border-radius: 0px !important;
     }
-
-    .formPadding {
-    }
-
     .email-form input[type="text"], .cell-form input[type="text"] {
         padding: 7px 12px 7px 12px;
     }
@@ -860,7 +861,9 @@ select.btn.btn-default.button-one {
 
     .update {
         margin-top: 13px;
-        width: 22%;
+    }
+    .updateMargin{
+        margin-top:3px;
     }
 
     .port-right {
@@ -895,7 +898,7 @@ select.btn.btn-default.button-one {
 
     .port-left {
         float: left;
-        width: 23%;
+        width: 100%;
     }
 
     .work-play input[type="text"], .work-play input[type="password"] {
@@ -938,6 +941,7 @@ select.btn.btn-default.button-one {
 
     .port-right {
         min-height: 369px;
+        width:95%;
     }
 
     p.footer {
@@ -953,17 +957,17 @@ select.btn.btn-default.button-one {
 
 @media (max-width: 480px) {
     .content {
-        width: 92%;
+        width: 97%;
         margin: 0 auto;
     }
 
     .port-left {
         float: left;
-        width: 26%;
+        width: 100%;
     }
 
     .port-right {
-        width: 65%;
+        width: 98%;
     }
 
     select.btn.btn-default.button-one {
@@ -976,7 +980,7 @@ select.btn.btn-default.button-one {
 
     .email-form, .cell-form {
         float: left;
-        width: 79%;
+        width: 100%;
     }
 
     .resp-tab-item {
@@ -984,8 +988,9 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        padding: 14px 18px;
+        padding: 14px 14px;
         min-height: 365px;
+        padding-left:0px;
     }
 
     p.footer {
@@ -995,12 +1000,8 @@ select.btn.btn-default.button-one {
         line-height: 2em;
     }
 
-    .update {
-        width: 27%;
-    }
-
     .radio, .radio2 {
-        width: 17%;
+        width: 27%;
     }
 
     .main h1 {
@@ -1019,17 +1020,8 @@ select.btn.btn-default.button-one {
         width: 31%;
     }
 
-    li.resp-tab-item:nth-child(2) {
-        margin-top: 0;
-    }
-
     .resp-tab-item {
-        float: left;
-        width: 32%;
-    }
-
-    .resp-tab-item {
-        padding: 17px 0;
+        padding: -5px;
     }
 
     li.resp-tab-item:nth-child(6) {
@@ -1037,7 +1029,7 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        width: 90%;
+        width: 97%;
     }
 
     p.footer {
@@ -1073,7 +1065,7 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        width: 89.3%;
+        width: 97.3%;
     }
 }
 
@@ -1083,11 +1075,18 @@ select.btn.btn-default.button-one {
     }
 
     .port-right {
-        width: 89%;
+        width: 98%;
     }
 
     .main h1 {
         font-size: 23px;
+    }
+    .radio2{
+        width:31%;
+    }
+    .updateMargin{
+        float:left;
+        margin-top:5px;
     }
 }
 
