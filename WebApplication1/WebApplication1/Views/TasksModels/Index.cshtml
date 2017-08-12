@@ -6,32 +6,32 @@
 <div class="tablecontainer">
     <table class="table table-bordered ui celled" id="myTable">
         <thead>
-        <tr>
-            <th>
-                No.s
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Heading)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                Action
-            </th>
-        </tr>
+            <tr>
+                <th>
+                    No.s
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Heading)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
         </thead>
     </table>
 </div>
@@ -108,9 +108,9 @@
                 ],
 
             });
-            setInterval( function () {
-                $('#myTable').DataTable().ajax.reload( null, false );
-            }, 60000 );
+            setInterval(function () {
+                $('#myTable').DataTable().ajax.reload(null, false);
+            }, 60000);
 
             oTable.on('order.dt search.dt', function () {
                 oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
@@ -120,7 +120,7 @@
 
             $('.tablecontainer').on('click',
                 'a.popup',
-                function(e) {
+                function (e) {
                     e.preventDefault();
                     OpenPopup($(this).attr('href'));
                 });
@@ -136,13 +136,13 @@
                 $dialog = $('<div class="popupWindow" style="overflow:auto"></div>')
                     .html($pageContent)
                     .dialog({
-                        draggable : false,
-                        autoOpen : false,
-                        resizable : false,
-                        model : true,
-                        title:'Popup Dialog',
-                        height : 550,
-                        width : 600,
+                        draggable: false,
+                        autoOpen: false,
+                        resizable: false,
+                        model: true,
+                        title: 'Popup Dialog',
+                        height: 550,
+                        width: 600,
                         close: function () {
                             $dialog.dialog('destroy').remove();
                         }

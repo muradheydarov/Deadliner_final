@@ -84,11 +84,11 @@
     </section>
 
     <script type="text/javascript">
-        $(function () {            
+        $(function () {
 
             $('#datetimepicker1').datetimepicker({
                 ignoreReadonly: true,
-                format: 'DD, MMMM, YYYY HH:mm'                
+                format: 'DD, MMMM, YYYY HH:mm'
             }).on('dp.change',
                 function (e) {
                     $('#datetimepicker2').data("DateTimePicker").minDate(e.date)

@@ -6,32 +6,32 @@
 <div class="tablecontainer">
     <table class="table table-bordered ui celled" id="myTable">
         <thead>
-        <tr>
-            <th>
-                No.s
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Heading)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                Action
-            </th>
-        </tr>
+            <tr>
+                <th>
+                    No.s
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Heading)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
         </thead>
     </table>
 </div>
@@ -40,20 +40,20 @@
     <script>
         $(document).ready(function () {
 
-            $.fn.dataTable.moment( 'DD/MM/YYYY' );
-            $.fn.dataTable.moment( 'dddd, DD/MM/YYYY' );
+            $.fn.dataTable.moment('DD/MM/YYYY');
+            $.fn.dataTable.moment('dddd, DD/MM/YYYY');
 
             var oTable = $("#myTable").DataTable({
                 responsive: true,
                 "ajax": {
                     "url": "/TasksModels/GetDataMyTasks",
                     "type": "get",
-                    "datatype":"json"
+                    "datatype": "json"
                 },
                 "order": [[6]],
                 "columns": [
                     { "data": null },
-                    { "data":"Heading","autoWidth":true},
+                    { "data": "Heading", "autoWidth": true },
                     {
                         "data": "StartDate", "autoWidth": true,
                         "render": function (data, type, row) {
@@ -75,7 +75,7 @@
                                 var rowvalueallday = row["EndDate"];
                                 if (rowvalueallday == 0) {
                                     return (moment(data).format("ddd DD/MM/YYYY"));
-                                } else {                                    
+                                } else {
                                     return (moment(data).format("MMMM Do YYYY, h:mm"));
                                 }
                             }
@@ -101,18 +101,18 @@
                     {
                         "data": "TasksModelID", "width": "70px",
                         "render": function (data, type, row, meta) {
-                            if (row["Status"]=="Open") {
+                            if (row["Status"] == "Open") {
                                 return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>' +
-                                    '<a class="popup" href="/TasksModels/ReplyToTask/' + data + '"><i class="fa fa-reply bat" aria-hidden="true" style="color:seagreen;"></i></a>';    
+                                    '<a class="popup" href="/TasksModels/ReplyToTask/' + data + '"><i class="fa fa-reply bat" aria-hidden="true" style="color:seagreen;"></i></a>';
                             }
-                            return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>'                                
+                            return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>'
                         }
                     }
                 ]
             });
-            setInterval( function () {
-                $('#myTable').DataTable().ajax.reload( null, false );
-            }, 60000 );
+            setInterval(function () {
+                $('#myTable').DataTable().ajax.reload(null, false);
+            }, 60000);
 
             oTable.on('order.dt search.dt', function () {
                 oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
@@ -122,7 +122,7 @@
 
             $('.tablecontainer').on('click',
                 'a.popup',
-                function(e) {
+                function (e) {
                     e.preventDefault();
                     OpenPopup($(this).attr('href'));
                 });
@@ -137,13 +137,13 @@
                 $dialog = $('<div class="popupWindow" style="overflow:auto"></div>')
                     .html($pageContent)
                     .dialog({
-                        draggable : false,
-                        autoOpen : false,
-                        resizable : false,
-                        model : true,
-                        title:'Popup Dialog',
-                        height : 550,
-                        width : 600,
+                        draggable: false,
+                        autoOpen: false,
+                        resizable: false,
+                        model: true,
+                        title: 'Popup Dialog',
+                        height: 550,
+                        width: 600,
                         close: function () {
                             $dialog.dialog('destroy').remove();
                         }

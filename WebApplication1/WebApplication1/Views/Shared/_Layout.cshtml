@@ -26,127 +26,54 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div id="nav" class="coLeft">
-        <div id="logo">
-            <a id="logoName" href="@Url.Action("Index","Home")">
-                <span id="mlx">DeadLiner</span>                
-            </a>
-        </div>
-        <div id="navName">
-            <p id="name">main navigation</p>
-        </div>
-        <ul id="navigations">
-            <li id="dashboard">
-                <a href="#">
-                    <i class="fa fa-tachometer" aria-hidden="true"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li id="taskManager">
-                <a href="#">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>Task Manager</span>
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                </a>
-                <ul>
-                    <li>
-                        <a href="@Url.Action("Index","TasksModels")">
-                            <i class="fa fa-circle-o" aria-hidden="true"></i>
-                            <span>Manage Tasks</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Create", "TasksModels")">
-                            <i class="fa fa-circle-o" aria-hidden="true"></i>
-                            <span>Add New Task</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("mytasks","TasksModels")">
-                            <i class="fa fa-circle-o" aria-hidden="true"></i>
-                            <span>My Tasks</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li id="userManager">
-                <a class="cursor_pointer">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>User Manager</span>
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                </a>
-                <ul>
-                    <li>
-                        <a href="@Url.Action("Index","ApplicationUsers")">
-                            <i class="fa fa-circle-o" aria-hidden="true"></i>
-                            <span>Manage Users</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-circle-o" aria-hidden="true"></i>
-                            <span>Add New User</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li id="settings">
-                <a href="#">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>Settings</span>
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                </a>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-circle-o" aria-hidden="true"></i>
-                            <span>General Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-circle-o" aria-hidden="true"></i>
-                            <span>Change Password</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+<div id="nav" class="coLeft">
+    <div id="logo">
+        <a id="logoName" href="@Url.Action("Index","Home")">
+            <span id="mlx">DeadLiner</span>                
+        </a>
     </div>
-    <ul id="minimizedNavigations">
-        <li id="minimizedDashboard">
+    <div id="navName">
+        <p id="name">main navigation</p>
+    </div>
+    <ul id="navigations">
+        <li id="dashboard">
             <a href="#">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>
                 <span>Dashboard</span>
             </a>
         </li>
-        <li id="minimizedTaskManager">
+        <li id="taskManager">
             <a href="#">
+                <i class="fa fa-user" aria-hidden="true"></i>
                 <span>Task Manager</span>
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
             </a>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="@Url.Action("Index","TasksModels")">
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                         <span>Manage Tasks</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="@Url.Action("Create", "TasksModels")">
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                         <span>Add New Task</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="@Url.Action("mytasks","TasksModels")">
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                         <span>My Tasks</span>
                     </a>
                 </li>
             </ul>
         </li>
-        <li id="minimizedUserManager">
-            <a href="#">
+        <li id="userManager">
+            <a class="cursor_pointer">
+                <i class="fa fa-user" aria-hidden="true"></i>
                 <span>User Manager</span>
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
             </a>
             <ul>
                 <li>
@@ -163,9 +90,11 @@
                 </li>
             </ul>
         </li>
-        <li id="minimizedSettings">
+        <li id="settings">
             <a href="#">
+                <i class="fa fa-user" aria-hidden="true"></i>
                 <span>Settings</span>
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
             </a>
             <ul>
                 <li>
@@ -183,25 +112,96 @@
             </ul>
         </li>
     </ul>
-    <div id="content" class="coRight">
-        <div id="topPanel" class="rows">
-            <div id="bars" class="col-md-6">
+</div>
+<ul id="minimizedNavigations">
+    <li id="minimizedDashboard">
+        <a href="#">
+            <span>Dashboard</span>
+        </a>
+    </li>
+    <li id="minimizedTaskManager">
+        <a href="#">
+            <span>Task Manager</span>
+        </a>
+        <ul>
+            <li>
                 <a href="#">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <span>Manage Tasks</span>
                 </a>
-            </div>
-            <div id="account" class="col-6">
-                @*@Html.Partial("_LoginPartial")*@
-                @Html.Action("SendDataForNotify","TasksModels")
-            </div>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <span>Add New Task</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <span>My Tasks</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li id="minimizedUserManager">
+        <a href="#">
+            <span>User Manager</span>
+        </a>
+        <ul>
+            <li>
+                <a href="@Url.Action("Index","ApplicationUsers")">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <span>Manage Users</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <span>Add New User</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li id="minimizedSettings">
+        <a href="#">
+            <span>Settings</span>
+        </a>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <span>General Settings</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <span>Change Password</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<div id="content" class="coRight">
+    <div id="topPanel" class="rows">
+        <div id="bars" class="col-md-6">
+            <a href="#">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
         </div>
-        <!-- C O N T E N T   H E A D L I N E  -->
-        <div class="contentHeadline">
-            <div class="left">
-            </div>
-            <div class="right">
-                <ul>
-                    @*<li>
+        <div id="account" class="col-6">
+            @*@Html.Partial("_LoginPartial")*@
+            @Html.Action("SendDataForNotify","TasksModels")
+        </div>
+    </div>
+    <!-- C O N T E N T   H E A D L I N E  -->
+    <div class="contentHeadline">
+        <div class="left">
+        </div>
+        <div class="right">
+            <ul>
+                @*<li>
                         <a href="#">
                             <i class="fa fa-tachometer" aria-hidden="true"></i>
                             <span>Home</span>
@@ -211,25 +211,25 @@
                         <span>&gt;</span>
                         <span>Dashboard</span>
                     </li>*@
-                </ul>
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="contentArea">
-            <!-- H E R E -->
-            @RenderBody()
-
-        </div>
-        <div id="footer">
-            <span><b>Version</b> 1.0</span>
+            </ul>
         </div>
     </div>
     <div class="clear"></div>
+    <div class="contentArea">
+        <!-- H E R E -->
+        @RenderBody()
+
+    </div>
+    <div id="footer">
+        <span><b>Version</b> 1.0</span>
+    </div>
+</div>
+<div class="clear"></div>
     
-    @Scripts.Render("~/bundles/lib")    
-    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>    
-    @RenderSection("scripts", required: false)
-    @RenderSection("scriptDateTimePicker", required: false)
+@Scripts.Render("~/bundles/lib")    
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>    
+@RenderSection("scripts", required: false)
+@RenderSection("scriptDateTimePicker", required: false)
 </body>
 </html>
