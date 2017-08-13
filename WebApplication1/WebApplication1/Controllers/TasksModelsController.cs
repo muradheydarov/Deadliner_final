@@ -80,8 +80,7 @@ namespace WebApplication1.Controllers
             }
 
             MyViewModel.Users = MyCheckBoxList;
-            return View(MyViewModel);
-            // return Json(new { data = MyViewModel }, JsonRequestBehavior.AllowGet);
+            return View(MyViewModel);            
         }
 
         // GET: TasksModels/Create
@@ -350,8 +349,8 @@ namespace WebApplication1.Controllers
             var userid = db.Users.Find(User.Identity.GetUserId()).ApplicationUserId;
 
             var taskToUseId = db.TaskToUsers.FirstOrDefault(x => x.UserIdInt == userid && x.TasksModelID == id).TaskToUserID;
-            
-            if (db.ReplyToTasks.FirstOrDefault(x => x.TaskToUserID == taskToUseId)!=null)
+
+            if (db.ReplyToTasks.FirstOrDefault(x => x.TaskToUserID == taskToUseId) != null)
             {
                 var replyToTaskDefault = db.ReplyToTasks.FirstOrDefault(x => x.TaskToUserID == taskToUseId);
                 return View(replyToTaskDefault);
@@ -372,7 +371,7 @@ namespace WebApplication1.Controllers
             {
                 if (taskToUser.ReplyToTaskId > 0)
                 {
-                    taskToUser.AnswerTime=DateTime.Now;
+                    taskToUser.AnswerTime = DateTime.Now;
                     db.Entry(taskToUser).State = EntityState.Modified;
                 }
                 else
@@ -380,11 +379,35 @@ namespace WebApplication1.Controllers
                     taskToUser.AnswerTime = DateTime.Now;
                     db.ReplyToTasks.Add(taskToUser);
                 }
-                
+
                 db.SaveChanges();
                 status = true;
-            }            
+            }
             return new JsonResult { Data = new { status = status } };
+        }
+
+        //GET
+        public ActionResult TeacherShowAnswer()
+        {                        
+            return View(db.TasksModels.ToList());            
+        }
+
+        //GET DATA
+        public ActionResult GetDataTeacherShowAnswer()
+        {
+            DateTime now = DateTime.Now;
+            var tor = db.TasksModels.Select(s => new
+            {
+                s.Heading,
+                s.TasksModelID,
+                s.EndDate,
+                s.StartDate,
+                s.Content,
+                s.CreatedBy,
+                s.CreatedOn,
+                Status = s.EndDate > now && s.StartDate < now ? "Open" : "Closed"
+            }).ToList();
+            return Json(new { data = tor }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

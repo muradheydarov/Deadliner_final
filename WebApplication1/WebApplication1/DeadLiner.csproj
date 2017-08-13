@@ -237,6 +237,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ReplyToTask.cs" />
+    <Compile Include="Models\TaskAnswerView.cs" />
     <Compile Include="Models\TasksModel.cs" />
     <Compile Include="Models\TaskToUser.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
@@ -412,6 +413,7 @@
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\edit.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\profile\avatar.png" />
     <Content Include="Content\images\profile\muradcode.png" />
     <Content Include="Content\main.css" />
@@ -659,6 +661,7 @@
     <Content Include="Views\TasksModels\Index.cshtml" />
     <Content Include="Views\TasksModels\MyTasks.cshtml" />
     <Content Include="Views\TasksModels\ReplyToTask.cshtml" />
+    <Content Include="Views\TasksModels\TeacherShowAnswer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

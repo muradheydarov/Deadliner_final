@@ -41,6 +41,7 @@ namespace DeadLiner
                       "~/Content/bootstrap-theme.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/DataTables/css/dataTables.semanticui.min.css",
+                      "~/Content/DataTables/css/dataTables.jqueryui.css",
                       "~/Content/bootstrap-formhelpers.css",
                       "~/Content/edit.css",
                       "~/Content/main.css",

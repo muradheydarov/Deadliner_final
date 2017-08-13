@@ -555,7 +555,7 @@ select.btn.btn-default.button-one {
 .work-play input[type="text"], .work-play input[type="password"] {
     border: none;
     outline: none;
-    padding: 9px 12px;
+    padding: 8.2px 12px;
     font-size: 14px;
     color: #9a9a9a;
     font-family: 'Lato', sans-serif;

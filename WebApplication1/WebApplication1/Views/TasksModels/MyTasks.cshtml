@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DeadLiner.Models.TasksModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Tasks";
 }
 <div class="tablecontainer">
     <table class="table table-bordered ui celled" id="myTable">
@@ -50,7 +50,10 @@
                     "type": "get",
                     "datatype": "json"
                 },
-                "order": [[6]],
+                "columnDefs": [
+                    { "className": "dt-center", "targets": [6,7] }
+                ],
+                "order": [[3]],
                 "columns": [
                     { "data": null },
                     { "data": "Heading", "autoWidth": true },
@@ -97,10 +100,18 @@
                             return data;
                         }
                     },
-                    { "data": "Status", "autoWidth": true },
+                    {
+                        "data": "Status", "autoWidth": true,
+                        "render": function (data) {
+                            if (data == "Open") {
+                                return '<i class="fa fa-unlock bat" aria-hidden="true" style="color:green;"></i>';
+                            }
+                            return '<i class="fa fa-lock bat" aria-hidden="true" style="color:red;"></i>';
+                        }
+                    },
                     {
                         "data": "TasksModelID", "width": "70px",
-                        "render": function (data, type, row, meta) {
+                        "render": function (data, type, row) {
                             if (row["Status"] == "Open") {
                                 return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>' +
                                     '<a class="popup" href="/TasksModels/ReplyToTask/' + data + '"><i class="fa fa-reply bat" aria-hidden="true" style="color:seagreen;"></i></a>';
@@ -165,19 +176,10 @@
                             }
                         }
                     })
-
                     e.preventDefault();
                 })
                 $dialog.dialog('open');
             }
-
-            //setImterval(check, 5);
-            //var check =  function() {
-            //    $.ajax()
-            //    {
-
-            //    }
-            //}
         });
     </script>
 }

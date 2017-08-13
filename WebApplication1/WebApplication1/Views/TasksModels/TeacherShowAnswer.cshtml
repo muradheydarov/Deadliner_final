@@ -1,0 +1,160 @@
+﻿@model IEnumerable<DeadLiner.Models.TasksModel>
+@{
+    ViewBag.Title = "Show Answers";    
+}
+
+<div class="tablecontainer">
+    <table class="table table-bordered ui" id="myTable">
+        <thead>
+        <tr>
+            <th>
+                Details
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Heading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+        </thead>
+    </table>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $.fn.dataTable.moment('DD/MM/YYYY');
+            $.fn.dataTable.moment('dddd, DD/MM/YYYY');
+
+            function format ( d ) {
+                return 'Full name: ' + d.Heading + '<br>'+
+                    'Salary: ' + d.CreatedBy+'<br>'+
+                    'The child row can contain any data you wish, including links, images, inner tables etc.';
+            }
+
+            var oTable = $("#myTable").DataTable({
+                responsive: true,
+                "ajax": {
+                    "url": "/TasksModels/GetDataTeacherShowAnswer",
+                    "type": "get",
+                    "datatype": "json"
+                },
+                "columnDefs": [
+                    { "className": "dt-center", "targets": 6}
+                ],
+                "order": [[3]],
+                "columns": [
+                    {
+                        "class":          "details-control",
+                        "orderable":      false,
+                        "data":           null,
+                        "defaultContent": ""
+                    },                    
+                    { "data": "Heading", "autoWidth": true },
+                    {
+                        "data": "StartDate", "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (type === 'display' || type === 'filter') {
+                                var rowvalueallday = row["EndDate"];
+                                if (rowvalueallday == 0) {
+                                    return (moment(data).format("ddd DD/MM/YYYY"));
+                                } else {
+                                    return (moment(data).format("MMMM Do YYYY, HH:mm"));
+                                }
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "EndDate", "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (type === 'display' || type === 'filter') {
+                                var rowvalueallday = row["EndDate"];
+                                if (rowvalueallday == 0) {
+                                    return (moment(data).format("ddd DD/MM/YYYY"));
+                                } else {
+                                    return (moment(data).format("MMMM Do YYYY, HH:mm"));
+                                }
+                            }
+                            return data;
+                        }
+                    },
+                    { "data": "CreatedBy", "autoWidth": true },
+                    {
+                        "data": "CreatedOn", "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (type === 'display' || type === 'filter') {
+                                var rowvalueallday = row["EndDate"];
+                                if (rowvalueallday == 0) {
+                                    return (moment(data).format("ddd DD/MM/YYYY"));
+                                } else {
+                                    return (moment(data).format("MMMM Do YYYY, HH:mm"));
+                                }
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "Status", "autoWidth": true,
+                        "render": function (data) {
+                            if (data == "Open") {
+                                return '<i class="fa fa-unlock bat" aria-hidden="true" style="color:green;"></i>';
+                            }
+                            return '<i class="fa fa-lock bat" aria-hidden="true" style="color:red;"></i>';
+                        }
+                    }                   
+                ]
+            });
+            setInterval(function () {
+                $('#myTable').DataTable().ajax.reload(null, false);
+            }, 60000);
+
+            var detailRows = [];
+
+            $('#myTable tbody').on( 'click', 'tr td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = oTable.row( tr );
+                var idx = $.inArray( tr.attr('id'), detailRows );
+
+                if ( row.child.isShown() ) {
+                    tr.removeClass( 'details' );
+                    row.child.hide();
+
+                    // Remove from the 'open' array
+                    detailRows.splice( idx, 1 );
+                }
+                else {
+                    tr.addClass( 'details' );
+                    row.child( format( row.data() ) ).show();
+
+                    // Add to the 'open' array
+                    if ( idx === -1 ) {
+                        detailRows.push( tr.attr('id') );
+                    }
+                }
+            } );
+
+            // On each draw, loop over the `detailRows` array and show any child rows
+            oTable.on( 'draw', function () {
+                $.each( detailRows, function ( i, id ) {
+                    $('#'+id+' td.details-control').trigger( 'click' );
+                } );
+            } );                
+        });
+    </script>
+}
+

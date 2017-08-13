@@ -16,9 +16,24 @@
 .minimizedRight {
     float: left;
     width: 96.31%; }
+
 td.details-control {
-    background: url('../resources/details_open.png') no-repeat center center;
-    cursor: pointer;
+    background: url('DataTables/images/details_open.png') no-repeat center center;
+    cursor: pointer;    
+}
+
+tr.details td.details-control {
+    background: url('DataTables/images/details_close.png') no-repeat center center;    
+}
+
+.coLeft img{
+    display:none;
+}                        
+.minimizedLeft span{
+    display:none;
+}
+.minimizedLeft img {
+    width: 20px;    
 }
 .ui-dialog {
     top: 10% !important;    
@@ -26,9 +41,7 @@ td.details-control {
 .ui-dialog-content {
     max-height: 500px !important;
 }
-tr.details td.details-control {
-    background: url('../resources/details_close.png') no-repeat center center;
-}
+
 body {
     height: 100%;
     margin: 0;

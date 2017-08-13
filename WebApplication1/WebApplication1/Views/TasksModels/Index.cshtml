@@ -50,7 +50,10 @@
                     "type": "get",
                     "datatype": "json"
                 },
-                "order": [[6]],
+                "columnDefs": [
+                    { "className": "dt-center", "targets": [6, 7] }
+                ],
+                "order": [[3]],
                 "columns": [
                     { "data": null },
                     { "data": "Heading", "autoWidth": true },
@@ -97,7 +100,15 @@
                             return data;
                         }
                     },
-                    { "data": "Status", "autoWidth": true },
+                    {
+                        "data": "Status", "autoWidth": true,
+                        "render": function (data) {
+                            if (data == "Open") {
+                                return '<i class="fa fa-unlock bat" aria-hidden="true" style="color:green;"></i>';
+                            }
+                            return '<i class="fa fa-lock bat" aria-hidden="true" style="color:red;"></i>';
+                        }
+                    },
                     {
                         "data": "TasksModelID", "width": "70px", "render": function (data) {
                             return '<a class="popup" href="/TasksModels/Edit/' + data + '"><i class="fa fa-pencil-square-o bat" aria-hidden="true"></i></a> ' +
