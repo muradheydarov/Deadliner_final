@@ -662,6 +662,7 @@
     <Content Include="Views\TasksModels\MyTasks.cshtml" />
     <Content Include="Views\TasksModels\ReplyToTask.cshtml" />
     <Content Include="Views\TasksModels\TeacherShowAnswer.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialForTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
