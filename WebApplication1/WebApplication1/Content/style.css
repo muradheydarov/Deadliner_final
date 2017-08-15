@@ -1058,6 +1058,21 @@ h5.rest {
         border: 3px solid;
     }
 
+    #socialLoginList .borderG:before,
+    #socialLoginList .borderG:after {
+        border-color: #DD4B39;
+    }
+
+    #socialLoginList .borderF:before,
+    #socialLoginList .borderF:after {
+        border-color: #46629E;
+    }
+
+    #socialLoginList .borderT:before,
+    #socialLoginList .borderT:after {
+        border-color: #00ACEE;
+    }
+
     #socialLoginList .buttonA:hover:after {
         -webkit-transform: scale(1.5);
     }
@@ -1068,9 +1083,6 @@ h5.rest {
         opacity: 0;
     }
 
-    #socialLoginList .buttonSecond {
-        background: transparent;
-        border: none;
-        outline: none;
-        width: 55px;
+    #socialLoginList .borderF {
+        margin-left: 25px;
     }

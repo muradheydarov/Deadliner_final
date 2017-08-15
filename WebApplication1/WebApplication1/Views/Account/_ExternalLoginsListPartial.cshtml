@@ -21,16 +21,15 @@
         {
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
-                <button type="submit" class="buttonSecond" id="@count" name="provider" value="@count" title="Log in using your account">
-                    <a class="buttonA fb">
-                        <img src="~/images/f.png" alt="" />
-                    </a>
-                </button>
-                <button type="submit" class="buttonSecond" id="@loginProviders.First().AuthenticationType" name="provider" value="@loginProviders.First().AuthenticationType" title="Log in using your account">
-                    <a class="buttonA gp">
-                        <img src="~/images/g.png" alt="" />
-                    </a>
-                </button>
+                <a class="buttonA borderF fb">
+                    <img src="~/images/f.png" alt="" />
+                </a>
+                <a class="buttonA borderT tw">
+                    <img src="~/images/t.png" alt="" />
+                </a>
+                <a class="buttonA borderG gp">
+                    <img src="~/images/g.png" alt="" />
+                </a>
             </div>
         }
     }
