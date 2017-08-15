@@ -6,35 +6,36 @@
 <div class="tablecontainer">
     <table class="table table-bordered ui celled" id="myTable">
         <thead>
-            <tr>
-                <th>
-                    No.s
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Heading)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EndDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedOn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
-                <th>
-                    Action
-                </th>
-            </tr>
+        <tr>
+            <th>
+                No.s
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Heading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
         </thead>
     </table>
 </div>
+
 @section scripts
 {
     <script>
@@ -147,11 +148,15 @@
                 $dialog = $('<div class="popupWindow" style="overflow:auto"></div>')
                     .html($pageContent)
                     .dialog({
-                        draggable: false,
+                        draggable: true,
                         autoOpen: false,
-                        resizable: false,
+                        resizable: true,
                         model: true,                                                
                         width: 600,
+                        position: {
+                            my: 'top',
+                            at: 'top'
+                        },
                         height: 'auto',                        
                         close: function () {
                             $dialog.dialog('destroy').remove();

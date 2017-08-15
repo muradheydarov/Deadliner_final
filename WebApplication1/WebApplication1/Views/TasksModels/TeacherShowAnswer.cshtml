@@ -1,34 +1,34 @@
 ﻿@model IEnumerable<DeadLiner.Models.TasksModel>
 @{
-    ViewBag.Title = "Show Answers";    
+    ViewBag.Title = "Show Answers";
 }
 
 <div class="tablecontainer">
     <table class="table table-bordered ui" id="myTable">
         <thead>
-        <tr>
-            <th>
-                Details
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Heading)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-        </tr>
+            <tr>
+                <th>
+                    Details
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Heading)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+            </tr>
         </thead>
     </table>
 </div>
@@ -40,10 +40,21 @@
             $.fn.dataTable.moment('DD/MM/YYYY');
             $.fn.dataTable.moment('dddd, DD/MM/YYYY');
 
-            function format ( d ) {
-                return 'Full name: ' + d.Heading + '<br>'+
-                    'Salary: ' + d.CreatedBy+'<br>'+
-                    'The child row can contain any data you wish, including links, images, inner tables etc.';
+            function format(d) {
+                return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                    '<tr>' +
+                    '<td>Full name:</td>' +
+                    '<td>' + d.Heading + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>Created By:</td>' +
+                    '<td>' + d.CreatedBy + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>Extra info:</td>' +
+                    '<td>And any further details here (images etc)...</td>' +
+                    '</tr>' +
+                    '</table>';
             }
 
             var oTable = $("#myTable").DataTable({
@@ -54,16 +65,16 @@
                     "datatype": "json"
                 },
                 "columnDefs": [
-                    { "className": "dt-center", "targets": 6}
+                    { "className": "dt-center", "targets": 6 }
                 ],
                 "order": [[3]],
                 "columns": [
                     {
-                        "class":          "details-control",
-                        "orderable":      false,
-                        "data":           null,
+                        "class": "details-control",
+                        "orderable": false,
+                        "data": null,
                         "defaultContent": ""
-                    },                    
+                    },
                     { "data": "Heading", "autoWidth": true },
                     {
                         "data": "StartDate", "autoWidth": true,
@@ -116,7 +127,7 @@
                             }
                             return '<i class="fa fa-lock bat" aria-hidden="true" style="color:red;"></i>';
                         }
-                    }                   
+                    }
                 ]
             });
             setInterval(function () {
@@ -125,35 +136,35 @@
 
             var detailRows = [];
 
-            $('#myTable tbody').on( 'click', 'tr td.details-control', function () {
+            $('#myTable tbody').on('click', 'tr td.details-control', function () {
                 var tr = $(this).closest('tr');
-                var row = oTable.row( tr );
-                var idx = $.inArray( tr.attr('id'), detailRows );
+                var row = oTable.row(tr);
+                var idx = $.inArray(tr.attr('id'), detailRows);
 
-                if ( row.child.isShown() ) {
-                    tr.removeClass( 'details' );
+                if (row.child.isShown()) {
+                    tr.removeClass('details');
                     row.child.hide();
 
                     // Remove from the 'open' array
-                    detailRows.splice( idx, 1 );
+                    detailRows.splice(idx, 1);
                 }
                 else {
-                    tr.addClass( 'details' );
-                    row.child( format( row.data() ) ).show();
+                    tr.addClass('details');
+                    row.child(format(row.data())).show();
 
                     // Add to the 'open' array
-                    if ( idx === -1 ) {
-                        detailRows.push( tr.attr('id') );
+                    if (idx === -1) {
+                        detailRows.push(tr.attr('id'));
                     }
                 }
-            } );
+            });
 
             // On each draw, loop over the `detailRows` array and show any child rows
-            oTable.on( 'draw', function () {
-                $.each( detailRows, function ( i, id ) {
-                    $('#'+id+' td.details-control').trigger( 'click' );
-                } );
-            } );                
+            oTable.on('draw', function () {
+                $.each(detailRows, function (i, id) {
+                    $('#' + id + ' td.details-control').trigger('click');
+                });
+            });
         });
     </script>
 }

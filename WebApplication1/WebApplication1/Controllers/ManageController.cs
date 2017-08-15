@@ -404,14 +404,14 @@ namespace DeadLiner.Controllers
                     }
                     ViewBag.FilePath = filePath.ToString();
                     file.SaveAs(filePath);
-                    return RedirectToAction("Index", new { Message = ManageMessageId.PhotoUploadSuccess });
+                    return RedirectToAction("CustomChangePassword", new { Message = ManageMessageId.PhotoUploadSuccess });
                 }
                 else
                 {
-                    return RedirectToAction("Index", new { Message = ManageMessageId.FileExtensionError });
+                    return RedirectToAction("CustomChangePassword", new { Message = ManageMessageId.FileExtensionError });
                 }
             }
-            return RedirectToAction("Index", new { Message = ManageMessageId.Error });// PRG
+            return RedirectToAction("CustomChangePassword", new { Message = ManageMessageId.Error });// PRG
         }
         //
         // POST: /Manage/LinkLogin

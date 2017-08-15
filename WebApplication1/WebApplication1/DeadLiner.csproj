@@ -237,11 +237,13 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ReplyToTask.cs" />
+    <Compile Include="Models\ReplyToTaskTeacherView.cs" />
     <Compile Include="Models\TaskAnswerView.cs" />
     <Compile Include="Models\TasksModel.cs" />
     <Compile Include="Models\TaskToUser.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
+    <Compile Include="Models\UserTeacherView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

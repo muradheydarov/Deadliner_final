@@ -372,7 +372,7 @@ namespace WebApplication1.Controllers
                 if (taskToUser.ReplyToTaskId > 0)
                 {
                     taskToUser.AnswerTime = DateTime.Now;
-                    db.Entry(taskToUser).State = EntityState.Modified;
+                    db.Entry(taskToUser).State = EntityState.Modified;                    
                 }
                 else
                 {
@@ -388,8 +388,34 @@ namespace WebApplication1.Controllers
 
         //GET
         public ActionResult TeacherShowAnswer()
-        {                        
-            return View(db.TasksModels.ToList());            
+        {             
+            //return View(db.TasksModels.ToList());
+            //db.TaskToUsers.Select(s => s.ReplyToTasks.Select(t =>  new { t.UserAnswer,t.AnswerTime})
+            var data2 = db.ReplyToTasks.Select(s => new {answer = s.UserAnswer, tu = s.TaskToUser}).ToList();
+            var data = db.TasksModels.Select(s => new
+            {
+                heading = s.Heading,
+                ttu = s.TaskToUsers.Select(t => new
+                {
+                    //user = t.User,
+                    reply = t.ReplyToTasks.Select(r=>new
+                    {
+                        answer = r.UserAnswer
+                    }),
+                    user = db.Users.FirstOrDefault(f=>f.ApplicationUserId==t.UserIdInt)
+                })
+                
+            }).ToList();
+            var result = db.TasksModels
+                .Join(db.TaskToUsers, tm => tm.TasksModelID, tu => tu.TasksModelID, (tm, tu) =>
+                    new {heading = tm.Heading, tmid = tm.TasksModelID, ttuid = tu.TaskToUserID, userid = tu.UserIdInt})
+                .Join(db.ReplyToTasks, tmtu => tmtu.ttuid, rt => rt.TaskToUserID, (tmtu, ttuid) =>
+                    new
+                    {
+                        heading = tmtu.heading,
+                        userid = tmtu.userid
+                    }).ToList();
+            return View();
         }
 
         //GET DATA
