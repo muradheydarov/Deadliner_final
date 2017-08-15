@@ -190,3 +190,10 @@ minimizedSettings.mouseout(hideMinimizedSettings);
 // ===================
 // E V E N T S   E N D
 // ===================
+$(document).ready(function () {
+    if ($(window).width() < 767) {
+        console.log("asasas")
+
+
+    }
+});
