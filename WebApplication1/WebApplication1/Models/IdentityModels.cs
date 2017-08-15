@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -26,6 +27,7 @@ namespace DeadLiner.Models
         public string UserStatus { get; set; }
         public string Gender { get; set; }
         public virtual ICollection<TaskToUser> TaskToUsers { get; set; }
+        public virtual ICollection<UserFiles> UserFiles { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -37,6 +39,7 @@ namespace DeadLiner.Models
         public virtual DbSet<TasksModel> TasksModels { get; set; }
         public virtual DbSet<TaskToUser> TaskToUsers { get; set; }
         public virtual DbSet<ReplyToTask> ReplyToTasks { get; set; }
+        public virtual DbSet<UserFiles> UserFileses { get; set; }
 
         public static ApplicationDbContext Create()
         {

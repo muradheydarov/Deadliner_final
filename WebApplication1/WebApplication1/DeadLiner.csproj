@@ -230,6 +230,10 @@
     <Compile Include="Migrations\201708121134221_UserReply.Designer.cs">
       <DependentUpon>201708121134221_UserReply.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708150613414_upload-photo.cs" />
+    <Compile Include="Migrations\201708150613414_upload-photo.Designer.cs">
+      <DependentUpon>201708150613414_upload-photo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
@@ -237,13 +241,13 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ReplyToTask.cs" />
-    <Compile Include="Models\ReplyToTaskTeacherView.cs" />
     <Compile Include="Models\TaskAnswerView.cs" />
     <Compile Include="Models\TasksModel.cs" />
     <Compile Include="Models\TaskToUser.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
+    <Compile Include="Models\UploadPicViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
-    <Compile Include="Models\UserTeacherView.cs" />
+    <Compile Include="Models\_LoginPartialView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -636,7 +640,6 @@
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
@@ -665,6 +668,7 @@
     <Content Include="Views\TasksModels\ReplyToTask.cshtml" />
     <Content Include="Views\TasksModels\TeacherShowAnswer.cshtml" />
     <Content Include="Views\Shared\_LoginPartialForTeacher.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
@@ -699,6 +703,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708121134221_UserReply.resx">
       <DependentUpon>201708121134221_UserReply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708150613414_upload-photo.resx">
+      <DependentUpon>201708150613414_upload-photo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

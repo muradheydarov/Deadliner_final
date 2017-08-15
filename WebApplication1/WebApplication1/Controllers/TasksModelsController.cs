@@ -335,7 +335,29 @@ namespace WebApplication1.Controllers
                                             Status = t.EndDate > now && t.StartDate < now ? "Open" : "Closed"
                                         }).Where(x => x.Status == "Open").ToList();
 
-            return PartialView("~/Views/Shared/_LoginPartial.cshtml", list.Count);
+            var userName = User.Identity.GetUserName();
+            bool userExists = db.Users.Where(x => x.UserName == userName).Any();
+            List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
+            if (userExists)
+            {
+                var userID = User.Identity.GetUserId();
+                var userfiles = db.UserFileses.Where(x => x.UserId == userID).ToList();
+                foreach (var userFile in userfiles)
+                {
+                    string type = null;
+                    int index = userFile.FileType.IndexOf('/');
+                    if (index > 0) { type = userFile.FileType.Substring(0, index); }
+                    ufls.Add(new LoadFileViewModel() { FileName = userFile.FileName, FileType = type, Id = userFile.Id });
+                }
+            }
+            var LoginPartialView = new _LoginPartialView();
+            LoginPartialView.TaskCount = list.Count;
+            LoginPartialView.UploadImg = ufls;            
+            if (User.IsInRole("Teacher"))
+            {
+                return PartialView("~/Views/Shared/_LoginPartialForTeacher.cshtml", LoginPartialView);
+            }
+            return PartialView("~/Views/Shared/_LoginPartial.cshtml", LoginPartialView);
         }
 
         //GET

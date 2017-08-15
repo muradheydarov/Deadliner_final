@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using DeadLiner.Migrations;
 using DeadLiner.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -264,8 +266,25 @@ namespace DeadLiner.Controllers
             }
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
-                UserProfileViewModel UserProf = new UserProfileViewModel {Users = applicationUser};
+                var userName = User.Identity.GetUserName();
+                bool userExists = db.Users.Where(x => x.UserName == userName).Any();
+                List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
+                if (userExists)
+                {
+                    var userID = User.Identity.GetUserId();
+                    var userfiles = db.UserFileses.Where(x => x.UserId == userID).ToList();
+                    foreach (var userFile in userfiles)
+                    {
+                        string type = null;
+                        int index = userFile.FileType.IndexOf('/');
+                        if (index > 0) { type = userFile.FileType.Substring(0, index); }
+                        ufls.Add(new LoadFileViewModel() { FileName = userFile.FileName, FileType = type, Id = userFile.Id });
+                    }                    
+                }
+                var userId = User.Identity.GetUserId();
+                ApplicationUser applicationUser = db.Users.Find(userId);                
+                UserProfileViewModel UserProf = new UserProfileViewModel {Users = applicationUser,ImgFile = ufls};
+
                 if (applicationUser == null)
                 {
                     return HttpNotFound();
@@ -385,34 +404,7 @@ namespace DeadLiner.Controllers
             });
         }
 
-        [HttpPost]
-        public async Task<ActionResult> UploadPhoto(HttpPostedFileBase file)
-        {
-            if (file != null && file.ContentLength > 0)
-            {
-                var user = await GetCurrentUserAsync();
-                var username = user.UserName;
-                var fileExt = Path.GetExtension(file.FileName);
-                var fnm = username + ".png";
-                if (fileExt.ToLower().EndsWith(".png") || fileExt.ToLower().EndsWith(".jpg") || fileExt.ToLower().EndsWith(".gif"))// Important for security if saving in webroot
-                {
-                    var filePath = HostingEnvironment.MapPath("~/Content/images/profile/") + fnm;
-                    var directory = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/images/profile/"));
-                    if (directory.Exists == false)
-                    {
-                        directory.Create();
-                    }
-                    ViewBag.FilePath = filePath.ToString();
-                    file.SaveAs(filePath);
-                    return RedirectToAction("CustomChangePassword", new { Message = ManageMessageId.PhotoUploadSuccess });
-                }
-                else
-                {
-                    return RedirectToAction("CustomChangePassword", new { Message = ManageMessageId.FileExtensionError });
-                }
-            }
-            return RedirectToAction("CustomChangePassword", new { Message = ManageMessageId.Error });// PRG
-        }
+        
         //
         // POST: /Manage/LinkLogin
         [HttpPost]

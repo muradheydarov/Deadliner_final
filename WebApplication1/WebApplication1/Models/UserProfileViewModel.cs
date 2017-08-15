@@ -11,5 +11,7 @@ namespace DeadLiner.Models
         public IndexViewModel IndexViewModels { get; set; }
         public ChangePasswordViewModel ChangePasswordViewModels { get; set; }
         public ApplicationUser Users { get; set; }
+        public List<LoadFileViewModel> ImgFile { get; set; }
+        public UploadDataViewModel UploadData { get; set; }
     }
 }

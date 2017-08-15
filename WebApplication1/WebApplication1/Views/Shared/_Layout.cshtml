@@ -185,7 +185,7 @@
     </li>
 </ul>
 <div id="content" class="coRight">
-    <div id="topPanel" class="rows">
+    <div id="topPanel" class="rows" style="display: flex; justify-content: space-between;align-items: center">
         <div id="bars" class="col-md-6">
             <a href="#">
                 <i class="fa fa-bars" aria-hidden="true"></i>
@@ -193,7 +193,7 @@
         </div>
         <div id="account" class="col-6">
             @*@Html.Partial("_LoginPartial")*@
-            @Html.Action("SendDataForNotify","TasksModels")
+            @Html.Action("SendDataForNotify", "TasksModels")
         </div>
     </div>
     <!-- C O N T E N T   H E A D L I N E  -->

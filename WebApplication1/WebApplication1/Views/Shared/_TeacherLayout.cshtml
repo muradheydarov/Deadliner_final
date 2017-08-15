@@ -179,15 +179,15 @@
     </li>
 </ul>
 <div id="content" class="coRight">
-    <div id="topPanel" class="rows">
+    <div id="topPanel" class="rows" style="display: flex; justify-content: space-between;align-items: center">
         <div id="bars" class="col-md-6">
             <a href="#">
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </a>
         </div>
         <div id="account" class="col-6">
-            @Html.Partial("_LoginPartialForTeacher")
-            @*@Html.Action("SendDataForNotify", "TasksModels")*@
+            @*@Html.Partial("_LoginPartialForTeacher")*@
+            @Html.Action("SendDataForNotify", "TasksModels")
         </div>
     </div>
     <!-- C O N T E N T   H E A D L I N E  -->
