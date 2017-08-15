@@ -182,6 +182,7 @@ body #content #topPanel {
     background: #3C8DBC;
     height: 52px; }
 body #content #topPanel #bars a {
+    top: -25px;
     text-decoration: none;
     color: white;
     padding: 16px 15px 14px 15px;
@@ -189,7 +190,8 @@ body #content #topPanel #bars a {
     line-height: 1.42857143;
     position: absolute;
     left: 0px;
-    margin-top: 0px; }
+    margin-top: 0px;
+}
 body #content #topPanel #bars a:hover {
     text-decoration: none;
     background: #367FA9; }
@@ -209,7 +211,8 @@ body #content #topPanel #account ul li a {
     text-decoration: none;
     font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
-    font-size: 14px; }
+    font-size: 14px;
+}
 body #content #topPanel #account ul li a:hover {
     text-decoration: none;
     background: #367FA9; }
