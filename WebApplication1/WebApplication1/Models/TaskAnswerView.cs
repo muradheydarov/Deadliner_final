@@ -17,9 +17,9 @@ namespace DeadLiner.Models
         public DateTime CreatedOn { get; set; }
         public string Status { get; set; }
 
-        public  List<ReplyToTask> Replies { get; set; }
+        //public  List<ReplyToTask> Replies { get; set; }
 
-       // public List<UserTeacherView> Users { get; set; }
-       // public List<ReplyToTaskTeacherView> Answers { get; set; }
+        public List<TeacherShowAnswerUsers> teacherShowAnswerUsersesView = new List<TeacherShowAnswerUsers>();
+        public List<teacherReplyToTaskView> teacherReplyToTaskViews = new List<teacherReplyToTaskView>();
     }
 }

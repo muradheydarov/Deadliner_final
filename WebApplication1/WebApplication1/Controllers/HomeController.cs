@@ -16,81 +16,21 @@ namespace DeadLiner.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
-        public ApplicationDbContext _context;
+        public ApplicationDbContext db;
 
         public HomeController()
         {
-            _context = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
 
         public ActionResult Index()
         {
             return View();           
-        }
-
-        public ActionResult UploadToDatabase()
-        {
-            return View();
-        }
-        public ActionResult LoadFiles()
-        {
-            return View();
-        }
-        public ActionResult DisplayFilesFromDb()
-        {
-            var userName = User.Identity.GetUserName();
-            bool userExists = _context.Users.Where(x => x.UserName == userName).Any();
-            List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
-            if (userExists)
-            {
-                var userId = User.Identity.GetUserId();
-                var userFiles = _context.UserFileses.Where(x => x.UserId == userId).ToList();
-                foreach (var userFile in userFiles)
-                {
-                    string type = null;
-                    int index = userFile.FileType.IndexOf('/');
-                    if (index > 0) { type = userFile.FileType.Substring(0, index); }
-                    ufls.Add(new LoadFileViewModel() { FileName = userFile.FileName, FileType = type, Id = userFile.Id });
-                }
-                return View(ufls);
-            }
-            else
-            {
-                ModelState.AddModelError("", "User Not Exists.");
-                return RedirectToAction("DisplayFilesFromDb", "Home");
-            }
-        }
-
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public ActionResult DisplayFilesFromDb(UploadDataViewModel model)
-        //{
-        //    var userName = User.Identity.GetUserName();
-        //    bool userExists = _context.Users.Where(x => x.UserName == userName).Any();
-        //    List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
-        //    if (userExists)
-        //    {
-        //        var userId = User.Identity.GetUserId();
-        //        var userFiles = _context.UserFileses.Where(x => x.UserId == userId).ToList();
-        //        foreach (var userFile in userFiles)
-        //        {
-        //            string type = null;
-        //            int index = userFile.FileType.IndexOf('/');
-        //            if (index > 0) { type = userFile.FileType.Substring(0, index); }
-        //            ufls.Add(new LoadFileViewModel() { FileName = userFile.FileName, FileType = type, Id = userFile.Id });
-        //        }
-        //        return View(ufls);
-        //    }
-        //    else
-        //    {
-        //        ModelState.AddModelError("", "User Not Exists.");
-        //        return RedirectToAction("DisplayFilesFromDb", "Home");
-        //    }
-        //}
+        }                
 
         public ActionResult Media(string id)
         {
-            var userFile = _context.UserFileses.Where(x => x.Id == id).FirstOrDefault();
+            var userFile = db.UserFileses.Where(x => x.Id == id).FirstOrDefault();
 
             long fSize = userFile.UserFile.Length;
             long startbyte = 0;
@@ -121,7 +61,7 @@ namespace DeadLiner.Controllers
         public ActionResult UploadToDb(UserProfileViewModel model)
         {
             var userName = User.Identity.GetUserName();
-            bool userExists = _context.Users.Where(x => x.UserName == userName).Any();
+            bool userExists = db.Users.Where(x => x.UserName == userName).Any();
             if (!userExists)
             {
                 HttpNotFound();
@@ -131,20 +71,20 @@ namespace DeadLiner.Controllers
                 foreach (var file in model.UploadData.Files)
                 {
                     var fileName = Path.GetFileName(file.FileName);
-                    bool fileExists = _context.UserFileses.Where(x => x.FileName == fileName).Any();
+                    bool fileExists = db.UserFileses.Where(x => x.FileName == fileName).Any();
                     if (!fileExists && fileName.ToLower().EndsWith(".png") || fileName.ToLower().EndsWith(".jpg") || fileName.ToLower().EndsWith(".gif"))
                     {
                         var fileType = file.ContentType;
                         var fileContent = new byte[file.InputStream.Length];
                         var userId = User.Identity.GetUserId();
                         file.InputStream.Read(fileContent, 0, fileContent.Length);
-                        var userFileDb = _context.UserFileses.Where(x => x.UserId == userId).FirstOrDefault();
+                        var userFileDb = db.UserFileses.Where(x => x.UserId == userId).FirstOrDefault();
                         if (userFileDb!=null)
                         {
                             userFileDb.FileName = fileName;
                             userFileDb.FileType = fileType;
                             userFileDb.UserFile = fileContent;
-                            _context.Entry(userFileDb).State = EntityState.Modified;
+                            db.Entry(userFileDb).State = EntityState.Modified;
                         }
                         else
                         {
@@ -156,9 +96,9 @@ namespace DeadLiner.Controllers
                                 UserFile = fileContent,
                                 UserId = userId
                             };
-                            _context.UserFileses.Add(uf);
+                            db.UserFileses.Add(uf);
                         }                                                                                     
-                        _context.SaveChanges();
+                        db.SaveChanges();
                         ModelState.AddModelError("", "File Uploaded.");
                     }
                     else

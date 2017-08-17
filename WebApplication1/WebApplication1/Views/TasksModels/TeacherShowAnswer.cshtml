@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DeadLiner.Models.TasksModel>
+﻿@model IEnumerable<DeadLiner.Models.TaskAnswerView>
 @{
     ViewBag.Title = "Show Answers";
 }
@@ -6,31 +6,31 @@
 <div class="tablecontainer">
     <table class="table table-bordered ui" id="myTable">
         <thead>
-            <tr>
-                <th>
-                    Details
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Heading)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EndDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedOn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
-            </tr>
+        <tr>
+            <th>
+                Details
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Heading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>                
+        </tr>
         </thead>
-    </table>
+    </table>    
 </div>
 @section scripts
 {
@@ -40,21 +40,37 @@
             $.fn.dataTable.moment('DD/MM/YYYY');
             $.fn.dataTable.moment('dddd, DD/MM/YYYY');
 
-            function format(d) {
-                return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-                    '<tr>' +
-                    '<td>Full name:</td>' +
-                    '<td>' + d.Heading + '</td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td>Created By:</td>' +
-                    '<td>' + d.CreatedBy + '</td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td>Extra info:</td>' +
-                    '<td>And any further details here (images etc)...</td>' +
-                    '</tr>' +
-                    '</table>';
+            function format(d) {                
+                var trs = '';                
+                for (var i = 0; i < d.ttu.length; i++) {                    
+                    var a = d.ttu[i].user[0];
+                    var b = d.ttu[i].reply[0];
+                    var arraya = $.map(a, function(value, index) {
+                        return [value];                        
+                    });                    
+                    var arrayb = $.map(b, function (value, index) {
+                        return [value];
+                    });
+                                        
+                    $.each($(arraya), function (key, value) {                        
+                        trs+='<tr>' +
+                            '<td>'+value+'</td>' +
+                            '<td>' + (arrayb[key] != null ? '<a href=' + arrayb[key] + '>' + arrayb[key] + '</a>' : "") + '</td>' +
+                            '<td>' + (arrayb[key + 1] !=null ? moment(arrayb[key + 1]).format("MMMM Do YYYY, HH:mm"):"") + '</td>' +
+                            '</tr>';                        
+                    });    
+                }
+                
+
+                return '<table class="table table-border table-hover">'+
+                    '<thead>'+
+                    '<th>Assigned To :</th>'+
+                    '<th>Answer :</th>' +
+                    '<th>Answer Time :</th>' +
+                    '</thead><tbody>' +
+           	
+                    trs+
+                    '</tbody></table>';                
             }
 
             var oTable = $("#myTable").DataTable({
@@ -132,7 +148,7 @@
             });
             setInterval(function () {
                 $('#myTable').DataTable().ajax.reload(null, false);
-            }, 60000);
+            }, 300000);
 
             var detailRows = [];
 

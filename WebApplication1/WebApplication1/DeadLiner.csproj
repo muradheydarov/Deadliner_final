@@ -245,6 +245,8 @@
     <Compile Include="Models\TasksModel.cs" />
     <Compile Include="Models\TaskToUser.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
+    <Compile Include="Models\teacherReplyToTaskView.cs" />
+    <Compile Include="Models\TeacherShowAnswerUsers.cs" />
     <Compile Include="Models\UploadPicViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="Models\_LoginPartialView.cs" />

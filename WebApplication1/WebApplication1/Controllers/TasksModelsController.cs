@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using DeadLiner.Models;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -80,7 +81,7 @@ namespace WebApplication1.Controllers
             }
 
             MyViewModel.Users = MyCheckBoxList;
-            return View(MyViewModel);            
+            return View(MyViewModel);
         }
 
         // GET: TasksModels/Create
@@ -352,7 +353,7 @@ namespace WebApplication1.Controllers
             }
             var LoginPartialView = new _LoginPartialView();
             LoginPartialView.TaskCount = list.Count;
-            LoginPartialView.UploadImg = ufls;            
+            LoginPartialView.UploadImg = ufls;
             if (User.IsInRole("Teacher"))
             {
                 return PartialView("~/Views/Shared/_LoginPartialForTeacher.cshtml", LoginPartialView);
@@ -394,7 +395,7 @@ namespace WebApplication1.Controllers
                 if (taskToUser.ReplyToTaskId > 0)
                 {
                     taskToUser.AnswerTime = DateTime.Now;
-                    db.Entry(taskToUser).State = EntityState.Modified;                    
+                    db.Entry(taskToUser).State = EntityState.Modified;
                 }
                 else
                 {
@@ -410,52 +411,39 @@ namespace WebApplication1.Controllers
 
         //GET
         public ActionResult TeacherShowAnswer()
-        {             
-            //return View(db.TasksModels.ToList());
-            //db.TaskToUsers.Select(s => s.ReplyToTasks.Select(t =>  new { t.UserAnswer,t.AnswerTime})
-            var data2 = db.ReplyToTasks.Select(s => new {answer = s.UserAnswer, tu = s.TaskToUser}).ToList();
-            var data = db.TasksModels.Select(s => new
-            {
-                heading = s.Heading,
-                ttu = s.TaskToUsers.Select(t => new
-                {
-                    //user = t.User,
-                    reply = t.ReplyToTasks.Select(r=>new
-                    {
-                        answer = r.UserAnswer
-                    }),
-                    user = db.Users.FirstOrDefault(f=>f.ApplicationUserId==t.UserIdInt)
-                })
-                
-            }).ToList();
-            var result = db.TasksModels
-                .Join(db.TaskToUsers, tm => tm.TasksModelID, tu => tu.TasksModelID, (tm, tu) =>
-                    new {heading = tm.Heading, tmid = tm.TasksModelID, ttuid = tu.TaskToUserID, userid = tu.UserIdInt})
-                .Join(db.ReplyToTasks, tmtu => tmtu.ttuid, rt => rt.TaskToUserID, (tmtu, ttuid) =>
-                    new
-                    {
-                        heading = tmtu.heading,
-                        userid = tmtu.userid
-                    }).ToList();
-            return View();
+        {                        
+            List<TaskAnswerView> taskAnswer = new List<TaskAnswerView>();
+            return View(taskAnswer);
         }
 
         //GET DATA
         public ActionResult GetDataTeacherShowAnswer()
         {
-            DateTime now = DateTime.Now;
-            var tor = db.TasksModels.Select(s => new
+            var now = DateTime.Now;
+            var data = db.TasksModels.Select(s => new
             {
                 s.Heading,
-                s.TasksModelID,
-                s.EndDate,
                 s.StartDate,
-                s.Content,
+                s.EndDate,
                 s.CreatedBy,
                 s.CreatedOn,
-                Status = s.EndDate > now && s.StartDate < now ? "Open" : "Closed"
+                Status = s.EndDate > now && s.StartDate < now ? "Open" : "Closed",
+
+                ttu = s.TaskToUsers.Select(t => new
+                {
+                    reply = t.ReplyToTasks.Select(r => new
+                    {
+                        answer = r.UserAnswer,
+                        answerTime = r.AnswerTime,                                                
+                    }),                    
+                    user = db.Users.Where(f => f.ApplicationUserId==t.UserIdInt).Select(u => new
+                    {
+                        fullName = u.Name + " " + u.Surname
+                    })
+                })
             }).ToList();
-            return Json(new { data = tor }, JsonRequestBehavior.AllowGet);
+            
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
