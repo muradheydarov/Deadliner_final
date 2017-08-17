@@ -62,7 +62,8 @@
                 }
                 
 
-                return '<table class="table table-border table-hover">'+
+                return '<div class="slider">'+
+                '<table class="table table-border table-hover">' +
                     '<thead>'+
                     '<th>Assigned To :</th>'+
                     '<th>Answer :</th>' +
@@ -70,7 +71,9 @@
                     '</thead><tbody>' +
            	
                     trs+
-                    '</tbody></table>';                
+                    '</tbody>' +
+                    '</table>' +
+                    '</div>';                
             }
 
             var oTable = $("#myTable").DataTable({
@@ -152,26 +155,22 @@
 
             var detailRows = [];
 
-            $('#myTable tbody').on('click', 'tr td.details-control', function () {
+            $('#myTable tbody').on('click', 'td.details-control', function () {
                 var tr = $(this).closest('tr');
                 var row = oTable.row(tr);
-                var idx = $.inArray(tr.attr('id'), detailRows);
 
                 if (row.child.isShown()) {
-                    tr.removeClass('details');
-                    row.child.hide();
-
-                    // Remove from the 'open' array
-                    detailRows.splice(idx, 1);
+                    $('div.slider', row.child()).slideUp( function () {
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    } );
+                    
                 }
                 else {
-                    tr.addClass('details');
-                    row.child(format(row.data())).show();
+                    row.child( format(row.data()), 'no-padding' ).show();
+                    tr.addClass('shown');
 
-                    // Add to the 'open' array
-                    if (idx === -1) {
-                        detailRows.push(tr.attr('id'));
-                    }
+                    $('div.slider', row.child()).slideDown();                    
                 }
             });
 
