@@ -215,22 +215,23 @@ namespace WebApplication1.Controllers
                 MyTask.EndDate = tasksModel.EndDate;
                 MyTask.CreatedBy = tasksModel.CreatedBy;
                 MyTask.CreatedOn = tasksModel.CreatedOn;
-                MyTask.Status = tasksModel.Status;
-
-                foreach (var item in db.TaskToUsers)
-                {
-                    if (item.TasksModelID == tasksModel.TaskId)
-                    {
-                        db.Entry(item).State = EntityState.Deleted;
-                    }
-                }
+                MyTask.Status = tasksModel.Status;                
 
                 foreach (var item in tasksModel.Users)
                 {
-                    if (item.Checked)
+                    foreach (var item2 in db.TaskToUsers)
                     {
-                        db.TaskToUsers.Add(
-                            new TaskToUser() { UserIdInt = item.Id, TasksModelID = tasksModel.TaskId });
+                        if (item2.UserIdInt == item.Id && item2.TasksModelID==tasksModel.TaskId && !item.Checked)
+                        {
+                            db.Entry(item2).State = EntityState.Deleted;
+                        }
+                    }
+                    if (item.Checked)
+                    {                        
+                        if (!db.TaskToUsers.Any(x => x.UserIdInt == item.Id & x.TasksModelID == tasksModel.TaskId))
+                        {
+                            db.TaskToUsers.Add(new TaskToUser() { UserIdInt = item.Id, TasksModelID = tasksModel.TaskId });
+                        }                        
                     }
                 }
                 db.SaveChanges();
