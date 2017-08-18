@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using DeadLiner.Models
+@using Microsoft.AspNet.Identity
 @model DeadLiner.Models._LoginPartialView
 @if (Request.IsAuthenticated)
 {
@@ -6,13 +7,28 @@
     {
     @Html.AntiForgeryToken()
         <ul class="nav_profile">            
-            @foreach (var file in Model.UploadImg)
-            {
-                <img src="@Url.Action("Media","Home", new { id = file.Id })" height="50" width="50" />
-            }
+            <li style="width: 50px;">
+                @if (Model.UploadImg.Count == 0)
+                {
+                    <img src="~/Content/images/profile/boy.png" class="img-responsive" style="width: 100%; object-fit: cover;height: 52px"/>
+                }
+                else
+                {
+                    foreach (var file in Model.UploadImg)
+                    {
+                        <img src="@Url.Action("Media", "Home", new {id = file.Id})" class="img-responsive" style="width: 100%; object-fit: cover;height: 52px" />
+                    }
+                }
+            </li>
             <li>
-                @*<a href="@Url.Action("CustomChangePassword","Manage")" title="Manage">Hello @Url.Content(User.Identity.GetUserName())!<span class="badge" style="background: red; position: relative; top: -15px;">@Model</span></a>*@
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + " !", "CustomChangePassword", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+                @{
+                    using (var db = new ApplicationDbContext())
+                    {
+                        var userId = User.Identity.GetUserId();
+                        var user = db.Users.FirstOrDefault(x => x.Id == userId);                        
+                        @Html.ActionLink("Hello " + user.UserName + " !", "CustomChangePassword", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    }
+                }                
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>

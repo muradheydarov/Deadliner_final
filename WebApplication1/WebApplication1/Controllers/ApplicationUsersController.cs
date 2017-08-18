@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DeadLiner.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication1.Models
 {
@@ -23,7 +24,7 @@ namespace WebApplication1.Models
             }
             return View("UsersIndex", db.Users.ToList());
         }
-        
+
         // GET: ApplicationUsers/Details/5
         public ActionResult Details(string id)
         {
@@ -31,16 +32,33 @@ namespace WebApplication1.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
+            ApplicationUser applicationUser = db.Users.Find(id);                        
+            
+            bool userExists = db.Users.Any(x => x.Id == id);
+            List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
+            if (userExists)
+            {
+                var userfiles = db.UserFileses.Where(x => x.UserId == id).ToList();
+                foreach (var userFile in userfiles)
+                {
+                    string type = null;
+                    int index = userFile.FileType.IndexOf('/');
+                    if (index > 0) { type = userFile.FileType.Substring(0, index); }
+                    ufls.Add(new LoadFileViewModel() { FileName = userFile.FileName, FileType = type, Id = userFile.Id });
+                }
+            }
+            
+            UserProfileDetailsView details = new UserProfileDetailsView {User = applicationUser,UploadImg = ufls};            
+
             if (applicationUser == null)
             {
                 return HttpNotFound();
             }
             if (User.IsInRole("Admin"))
             {
-                return View("DetailsAdmin", applicationUser);
+                return View("DetailsAdmin", details);
             }
-            return View("DetailsUser", applicationUser);
+            return View("DetailsUser", details);
         }
 
         // GET: ApplicationUsers/Create

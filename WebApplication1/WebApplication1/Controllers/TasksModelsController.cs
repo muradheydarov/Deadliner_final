@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using DeadLiner.Models;
-using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
-using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -53,7 +49,7 @@ namespace WebApplication1.Controllers
                          select new
                          {
                              a.ApplicationUserId,
-                             a.UserName,
+                             UserName = a.Name + " " + a.Surname,
                              Checked = (from ab in db.TaskToUsers
                                         where (ab.UserIdInt == a.ApplicationUserId) & (ab.TasksModelID == id)
                                         select ab).Any()
@@ -169,7 +165,7 @@ namespace WebApplication1.Controllers
                          select new
                          {
                              a.ApplicationUserId,
-                             a.UserName,
+                             UserName = a.Name +" "+a.Surname,
                              Checked = (from ab in db.TaskToUsers
                                         where (ab.UserIdInt == a.ApplicationUserId) & (ab.TasksModelID == id)
                                         select ab).Any()
@@ -237,11 +233,9 @@ namespace WebApplication1.Controllers
                             new TaskToUser() { UserIdInt = item.Id, TasksModelID = tasksModel.TaskId });
                     }
                 }
-                //return RedirectToAction("Index");
                 db.SaveChanges();
                 status = true;
             }
-            //return View(tasksModel);            
             return new JsonResult { Data = new { status = status } };
         }
 
@@ -276,7 +270,6 @@ namespace WebApplication1.Controllers
                     status = true;
                 }
             }
-            //return RedirectToAction("Index");            
             return new JsonResult { Data = new { status = status } };
         }
 
@@ -326,22 +319,21 @@ namespace WebApplication1.Controllers
             var userid = db.Users.Find(User.Identity.GetUserId());
             DateTime now = DateTime.Now;
 
-            List<TaskViewModel> list = (from t in db.TasksModels
-                                        join user in db.TaskToUsers on t.TasksModelID equals user.TasksModelID
-                                        where user.UserIdInt == userid.ApplicationUserId
-                                        select new TaskViewModel()
-                                        {
-                                            EndDate = t.EndDate,
-                                            StartDate = t.StartDate,
-                                            Status = t.EndDate > now && t.StartDate < now ? "Open" : "Closed"
-                                        }).Where(x => x.Status == "Open").ToList();
+            List<TaskViewModel> list = db.TasksModels
+                .Join(db.TaskToUsers, t => t.TasksModelID, user => user.TasksModelID, (t, user) => new {t, user})
+                .Where(@t1 => @t1.user.UserIdInt == userid.ApplicationUserId)
+                .Select(@t1 => new TaskViewModel()
+                {
+                    EndDate = @t1.t.EndDate,
+                    StartDate = @t1.t.StartDate,
+                    Status = @t1.t.EndDate > now && @t1.t.StartDate < now ? "Open" : "Closed"
+                }).Where(x => x.Status == "Open").ToList();
 
-            var userName = User.Identity.GetUserName();
-            bool userExists = db.Users.Where(x => x.UserName == userName).Any();
+            var userID = User.Identity.GetUserId();
+            bool userExists = db.Users.Any(x => x.Id == userID);
             List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
             if (userExists)
-            {
-                var userID = User.Identity.GetUserId();
+            {                
                 var userfiles = db.UserFileses.Where(x => x.UserId == userID).ToList();
                 foreach (var userFile in userfiles)
                 {
@@ -411,7 +403,7 @@ namespace WebApplication1.Controllers
 
         //GET
         public ActionResult TeacherShowAnswer()
-        {                        
+        {
             List<TaskAnswerView> taskAnswer = new List<TaskAnswerView>();
             return View(taskAnswer);
         }
@@ -434,16 +426,50 @@ namespace WebApplication1.Controllers
                     reply = t.ReplyToTasks.Select(r => new
                     {
                         answer = r.UserAnswer,
-                        answerTime = r.AnswerTime,                                                
-                    }),                    
-                    user = db.Users.Where(f => f.ApplicationUserId==t.UserIdInt).Select(u => new
+                        answerTime = r.AnswerTime,
+                    }),
+                    user = db.Users.Where(f => f.ApplicationUserId == t.UserIdInt).Select(u => new
                     {
                         fullName = u.Name + " " + u.Surname
                     })
                 })
             }).ToList();
-            
+
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult IndividualUser(ReplyToTask taskToUser)
+        {
+            var now = DateTime.Now;
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var list = db.TasksModels
+                .Join(db.TaskToUsers, t => t.TasksModelID, usr => usr.TasksModelID, (t, usr) => new { t, usr })
+                .Where(t1 => t1.usr.UserIdInt == user.ApplicationUserId)
+                .Select(t1 => new
+                {
+                    t1.t.Heading,
+                    t1.t.TasksModelID,
+                    t1.t.EndDate,
+                    t1.t.StartDate,
+                    t1.t.Content,
+                    t1.t.CreatedBy,
+                    t1.t.CreatedOn,
+                    Status = t1.t.EndDate > now && t1.t.StartDate < now ? "Open" : "Closed",
+
+                    ttu = t1.t.TaskToUsers.Select(t => new
+                    {
+                        reply = t.ReplyToTasks.Where(x => x.TaskToUser.UserIdInt == user.ApplicationUserId).Select(r => new
+                        {
+                            answer = r.UserAnswer,
+                            answerTime = r.AnswerTime,
+                        }),
+                        user = db.Users.Where(f => f.ApplicationUserId == user.ApplicationUserId).Select(u => new
+                        {
+                            fullName = u.Name + " " + u.Surname
+                        })
+                    })
+                }).ToList();
+            return Json(new { data = list }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

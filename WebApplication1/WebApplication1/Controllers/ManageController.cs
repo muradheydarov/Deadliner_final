@@ -266,12 +266,11 @@ namespace DeadLiner.Controllers
             }
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var userName = User.Identity.GetUserName();
-                bool userExists = db.Users.Where(x => x.UserName == userName).Any();
+                var userID = User.Identity.GetUserId();
+                bool userExists = db.Users.Any(x => x.Id == userID);
                 List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
                 if (userExists)
-                {
-                    var userID = User.Identity.GetUserId();
+                {                    
                     var userfiles = db.UserFileses.Where(x => x.UserId == userID).ToList();
                     foreach (var userFile in userfiles)
                     {
@@ -280,9 +279,8 @@ namespace DeadLiner.Controllers
                         if (index > 0) { type = userFile.FileType.Substring(0, index); }
                         ufls.Add(new LoadFileViewModel() { FileName = userFile.FileName, FileType = type, Id = userFile.Id });
                     }                    
-                }
-                var userId = User.Identity.GetUserId();
-                ApplicationUser applicationUser = db.Users.Find(userId);                
+                }                
+                ApplicationUser applicationUser = db.Users.Find(userID);                
                 UserProfileViewModel UserProf = new UserProfileViewModel {Users = applicationUser,ImgFile = ufls};
 
                 if (applicationUser == null)
@@ -322,7 +320,7 @@ namespace DeadLiner.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    using (var db = new ApplicationDbContext())
                     {
                         var MyUser = db.Users.Find(User.Identity.GetUserId());
                         MyUser.UserStatus = model.Users.UserStatus;
@@ -344,7 +342,25 @@ namespace DeadLiner.Controllers
                         db.SaveChanges();
                     }
                 }
-            }                                                       
+            }
+            using (var db = new ApplicationDbContext())
+            {
+                var userId = User.Identity.GetUserId();
+                bool userExists = db.Users.Any(x => x.Id == userId);
+                List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
+                if (userExists)
+                {                    
+                    var userfiles = db.UserFileses.Where(x => x.UserId == userId).ToList();
+                    foreach (var userFile in userfiles)
+                    {
+                        string type = null;
+                        int index = userFile.FileType.IndexOf('/');
+                        if (index > 0) { type = userFile.FileType.Substring(0, index); }
+                        ufls.Add(new LoadFileViewModel() { FileName = userFile.FileName, FileType = type, Id = userFile.Id });                        
+                    }
+                }
+                model.ImgFile = ufls;
+            }            
             return View(model);            
             //return RedirectToAction(UserProfile);
         }

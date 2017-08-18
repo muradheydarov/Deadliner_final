@@ -16,7 +16,7 @@ namespace DeadLiner.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
-        public ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
 
         public HomeController()
         {
@@ -30,13 +30,13 @@ namespace DeadLiner.Controllers
 
         public ActionResult Media(string id)
         {
-            var userFile = db.UserFileses.Where(x => x.Id == id).FirstOrDefault();
+            var userFile = db.UserFileses.FirstOrDefault(x => x.Id == id);
 
             long fSize = userFile.UserFile.Length;
             long startbyte = 0;
             long endbyte = fSize - 1;
             int statusCode = 200;
-            if ((Request.Headers["Range"] != null))
+            if (Request.Headers["Range"] != null)
             {
                 //Get the actual byte range from the range header string, and set the starting byte.
                 string[] range = Request.Headers["Range"].Split(new char[] { '=', '-' });
@@ -60,8 +60,8 @@ namespace DeadLiner.Controllers
         [HttpPost]
         public ActionResult UploadToDb(UserProfileViewModel model)
         {
-            var userName = User.Identity.GetUserName();
-            bool userExists = db.Users.Where(x => x.UserName == userName).Any();
+            var userId = User.Identity.GetUserId();
+            bool userExists = db.Users.Any(x => x.Id == userId);
             if (!userExists)
             {
                 HttpNotFound();
@@ -71,14 +71,13 @@ namespace DeadLiner.Controllers
                 foreach (var file in model.UploadData.Files)
                 {
                     var fileName = Path.GetFileName(file.FileName);
-                    bool fileExists = db.UserFileses.Where(x => x.FileName == fileName).Any();
+                    bool fileExists = db.UserFileses.Any(x => x.FileName == fileName);
                     if (!fileExists && fileName.ToLower().EndsWith(".png") || fileName.ToLower().EndsWith(".jpg") || fileName.ToLower().EndsWith(".gif"))
                     {
                         var fileType = file.ContentType;
-                        var fileContent = new byte[file.InputStream.Length];
-                        var userId = User.Identity.GetUserId();
+                        var fileContent = new byte[file.InputStream.Length];                        
                         file.InputStream.Read(fileContent, 0, fileContent.Length);
-                        var userFileDb = db.UserFileses.Where(x => x.UserId == userId).FirstOrDefault();
+                        var userFileDb = db.UserFileses.FirstOrDefault(x => x.UserId == userId);
                         if (userFileDb!=null)
                         {
                             userFileDb.FileName = fileName;
@@ -98,8 +97,7 @@ namespace DeadLiner.Controllers
                             };
                             db.UserFileses.Add(uf);
                         }                                                                                     
-                        db.SaveChanges();
-                        ModelState.AddModelError("", "File Uploaded.");
+                        db.SaveChanges();                        
                     }
                     else
                     {
@@ -109,6 +107,7 @@ namespace DeadLiner.Controllers
             }
             return RedirectToAction("CustomChangePassword","Manage");
         }
-
+        
     }
+
 }

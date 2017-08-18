@@ -1,8 +1,7 @@
-﻿@using Microsoft.AspNet.Identity
-@model DeadLiner.Models.ApplicationUser
+﻿@model DeadLiner.Models.UserProfileDetailsView
 
 @{
-    ViewBag.Title = "Details";   
+    ViewBag.Title = "Details";
 }
 
 
@@ -14,42 +13,51 @@
 
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">@Html.DisplayFor(model => model.Name)</h3>
+                    <h3 class="panel-title">@Html.DisplayFor(model => model.User.Name) @Html.DisplayFor(model => model.User.Surname)</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 " align="center">
-                            @{
-                                var imgUrl = Url.Content("~/Content/images/profile/" + User.Identity.GetUserName() + ".png") + "?time=" + DateTime.Now.ToString();
-                            }
-                            <img src="@imgUrl" height="300" width="300" onerror="this.onerror=null;this.src='/Content/images/profile/avatar.png'" class="img-circle img-responsive" />
+                        <div class="col-md-3 col-lg-3 " align="center" style="display: flex;">
+                            <div style="width: 210px;">
+                                @if (Model.UploadImg.Count == 0)
+                                {
+                                    <img src="~/Content/images/profile/boy.png" class="img-responsive" style="width: 100%; object-fit: cover;height: 220px" />
+                                }
+                                else
+                                {
+                                    foreach (var file in Model.UploadImg)
+                                    {
+                                        <img src="@Url.Action("Media", "Home", new {id = file.Id})" style="width: 100%; object-fit: cover;height: 220px" class="img-responsive" />
+                                    }
+                                }
+                            </div>
                         </div>
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
                                 <tbody>
                                     <tr>
-                                        <td>@Html.DisplayNameFor(model => model.Name):</td>
-                                        <td>@Html.DisplayFor(model => model.Name)</td>
+                                        <td>@Html.DisplayNameFor(model => model.User.Name):</td>
+                                        <td>@Html.DisplayFor(model => model.User.Name)</td>
                                     </tr>
                                     <tr>
-                                        <td>@Html.DisplayNameFor(model => model.Surname):</td>
-                                        <td> @Html.DisplayFor(model => model.Surname)</td>
+                                        <td>@Html.DisplayNameFor(model => model.User.Surname):</td>
+                                        <td> @Html.DisplayFor(model => model.User.Surname)</td>
                                     </tr>
                                     <tr>
-                                        <td>@Html.DisplayNameFor(model => model.Gender):</td>
-                                        <td> @Html.DisplayFor(model => model.Gender)</td>
+                                        <td>@Html.DisplayNameFor(model => model.User.Gender):</td>
+                                        <td> @Html.DisplayFor(model => model.User.Gender)</td>
                                     </tr>
                                     <tr>
-                                        <td>@Html.DisplayNameFor(model => model.Email):</td>
-                                        <td>@Html.DisplayFor(model => model.Email)</td>
+                                        <td>@Html.DisplayNameFor(model => model.User.Email):</td>
+                                        <td>@Html.DisplayFor(model => model.User.Email)</td>
                                     </tr>
                                     <tr>
                                         <td>Phone Number:</td>
-                                        <td>@Html.DisplayFor(model => model.PhoneNumber)</td>
+                                        <td>@Html.DisplayFor(model => model.User.PhoneNumber)</td>
                                     </tr>
                                     <tr>
                                         <td>User Name:</td>
-                                        <td>@Html.DisplayFor(model => model.UserName)</td>
+                                        <td>@Html.DisplayFor(model => model.User.UserName)</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -59,9 +67,7 @@
                 <div class="panel-footer">
                     <a href="@Url.Action("Index")" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-

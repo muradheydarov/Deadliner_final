@@ -248,6 +248,7 @@
     <Compile Include="Models\teacherReplyToTaskView.cs" />
     <Compile Include="Models\TeacherShowAnswerUsers.cs" />
     <Compile Include="Models\UploadPicViewModel.cs" />
+    <Compile Include="Models\UserProfileDetailsView.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="Models\_LoginPartialView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -422,8 +423,7 @@
     <Content Include="Content\edit.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\logo.png" />
-    <Content Include="Content\images\profile\avatar.png" />
-    <Content Include="Content\images\profile\muradcode.png" />
+    <Content Include="Content\images\profile\boy.png" />
     <Content Include="Content\main.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\tether\tether-theme-arrows-dark.css" />
