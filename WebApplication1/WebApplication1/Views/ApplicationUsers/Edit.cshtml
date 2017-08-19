@@ -8,7 +8,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <section class="manager">
         <div class="header  ">
             <h1>Add New User</h1>

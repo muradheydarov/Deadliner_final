@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using DeadLiner.Models;
 using Microsoft.AspNet.Identity;
 
-namespace WebApplication1.Models
+namespace DeadLiner.Models
 {
     public class ApplicationUsersController : Controller
     {
@@ -105,11 +102,18 @@ namespace WebApplication1.Models
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Surname,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,UserStatus,Gender")] ApplicationUser applicationUser)
-        {
+        {            
             if (ModelState.IsValid)
             {
-                db.Entry(applicationUser).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.Entry(applicationUser).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    HttpNotFound();
+                }                                
                 return RedirectToAction("Index");
             }
             return View(applicationUser);
@@ -139,6 +143,14 @@ namespace WebApplication1.Models
             db.Users.Remove(applicationUser);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
 
         protected override void Dispose(bool disposing)

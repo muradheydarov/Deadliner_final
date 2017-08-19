@@ -338,8 +338,15 @@ namespace DeadLiner.Controllers
                         MyUser.PhoneNumberConfirmed = model.Users.PhoneNumberConfirmed;
                         MyUser.SecurityStamp = model.Users.SecurityStamp;
                         MyUser.TwoFactorEnabled = model.Users.TwoFactorEnabled;
-
-                        db.SaveChanges();
+                        
+                        try
+                        {
+                            db.SaveChanges();
+                        }
+                        catch (Exception e)
+                        {
+                            HttpNotFound();
+                        }                        
                     }
                 }
             }

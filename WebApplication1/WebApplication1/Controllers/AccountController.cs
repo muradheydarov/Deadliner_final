@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -21,7 +19,7 @@ namespace DeadLiner.Controllers
 
         public AccountController()
         {
-            // Nolar ishde.
+            
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -193,11 +191,11 @@ namespace DeadLiner.Controllers
             {                                
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Name=model.Name, Surname = model.Surname, UserStatus = "Student"};
                 var result = await UserManager.CreateAsync(user, model.Password);
-
-                var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-                var roleManager = new RoleManager<IdentityRole>(roleStore);
+                
                 if (result.Succeeded)
                 {
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
                     if (!roleManager.RoleExists("Student") && !roleManager.RoleExists("Teacher"))
                     {
                         await roleManager.CreateAsync(new IdentityRole("Student"));
