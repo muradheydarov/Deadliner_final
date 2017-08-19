@@ -1,14 +1,14 @@
-﻿@model IEnumerable<DeadLiner.Models.TasksModel>
-
+﻿@model IEnumerable<DeadLiner.Models.TaskAnswerView>
 @{
-    ViewBag.Title = "My Tasks";
+    ViewBag.Title = "Individual User";
 }
+
 <div class="tablecontainer">
-    <table class="table-bordered display responsive nowrap ui selectable celled table ui unstackable" id="myTable" cellspacing="0" width="100%">
+    <table class="table table-bordered ui" id="myTable">
         <thead>
         <tr>
             <th>
-                No.s
+                Details
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Heading)
@@ -27,13 +27,10 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                Action
-            </th>
+            </th>                
         </tr>
         </thead>
-    </table>
+    </table>    
 </div>
 @section scripts
 {
@@ -43,18 +40,58 @@
             $.fn.dataTable.moment('DD/MM/YYYY');
             $.fn.dataTable.moment('dddd, DD/MM/YYYY');
 
-            var oTable = $("#myTable").DataTable({            
+            function format(d) {                
+                var trs = '';                
+                for (var i = 0; i < d.ttu.length; i++) {                    
+                    var a = d.ttu[i].user[0];
+                    var b = d.ttu[i].reply[0];
+                    var arraya = $.map(a, function(value, index) {
+                        return [value];                        
+                    });                    
+                    var arrayb = $.map(b, function (value, index) {
+                        return [value];
+                    });
+                                        
+                    $.each($(arraya), function (key, value) {                        
+                        trs+='<tr>' +                            
+                            '<td>' + (arrayb[key] != null ? '<a href=' + arrayb[key] + '>' + arrayb[key] + '</a>' : "") + '</td>' +
+                            '<td>' + (arrayb[key + 1] !=null ? moment(arrayb[key + 1]).format("MMMM Do YYYY, HH:mm"):"") + '</td>' +
+                            '</tr>';                        
+                    });    
+                }
+                
+
+                return '<div class="slider">'+
+                    '<table class="table table-border table-hover">' +
+                    '<thead>'+                    
+                    '<th>Answer :</th>' +
+                    '<th>Answer Time :</th>' +
+                    '</thead><tbody>' +
+           	
+                    trs+
+                    '</tbody>' +
+                    '</table>' +
+                    '</div>';                
+            }
+
+            var oTable = $("#myTable").DataTable({
+                responsive: true,
                 "ajax": {
-                    "url": "/TasksModels/GetDataMyTasks",
+                    "url": "/TasksModels/GetDataTeacherShowAnswer",
                     "type": "get",
                     "datatype": "json"
                 },
                 "columnDefs": [
-                    { "className": "dt-center", "targets": [6,7] }
+                    { "className": "dt-center", "targets": 6 }
                 ],
                 "order": [[3]],
                 "columns": [
-                    { "data": null },
+                    {
+                        "class": "details-control",
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ""
+                    },
                     { "data": "Heading", "autoWidth": true },
                     {
                         "data": "StartDate", "autoWidth": true,
@@ -107,78 +144,38 @@
                             }
                             return '<i class="fa fa-lock bat" aria-hidden="true" style="color:red;"></i>';
                         }
-                    },
-                    {
-                        "data": "TasksModelID", "width": "70px",
-                        "render": function (data, type, row) {
-                            if (row["Status"] == "Open") {
-                                return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>' +
-                                    '<a class="popup" href="/TasksModels/ReplyToTask/' + data + '"><i class="fa fa-reply bat" aria-hidden="true" style="color:seagreen;"></i></a>';
-                            }
-                            return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>'
-                        }
                     }
                 ]
+            });            
+
+            var detailRows = [];
+
+            $('#myTable tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = oTable.row(tr);
+
+                if (row.child.isShown()) {
+                    $('div.slider', row.child()).slideUp( function () {
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    } );
+                    
+                }
+                else {
+                    row.child( format(row.data()), 'no-padding' ).show();
+                    tr.addClass('shown');
+
+                    $('div.slider', row.child()).slideDown();                    
+                }
             });
-            setInterval(function () {
-                $('#myTable').DataTable().ajax.reload(null, false);
-            }, 120000);
 
-            oTable.on('order.dt search.dt', function () {
-                oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-                    cell.innerHTML = i + 1;
+            // On each draw, loop over the `detailRows` array and show any child rows
+            oTable.on('draw', function () {
+                $.each(detailRows, function (i, id) {
+                    $('#' + id + ' td.details-control').trigger('click');
                 });
-            }).draw();
-
-            $('.tablecontainer').on('click',
-                'a.popup',
-                function (e) {
-                    e.preventDefault();
-                    OpenPopup($(this).attr('href'));
-                });
-            function OpenPopup(pageUrl) {
-                var $pageContent = $('<div/>');
-                $pageContent.load(pageUrl, function () {
-                    $('#popupForm', $pageContent).removeData('validator');
-                    $('#popupForm', $pageContent).removeData('unobtrusiveValidation');
-                    $.validator.unobtrusive.parse('form');
-                });
-
-                $dialog = $('<div class="popupWindow" style="overflow:auto"></div>')
-                    .html($pageContent)
-                    .dialog({
-                        draggable: true,
-                        autoOpen: false,
-                        resizable: true,
-                        model: true,                        
-                        height: 'auto',
-                        width: 600,
-                        position: {        
-                            my: 'top', 
-                            at: 'top'            
-                        },
-                        close: function () {
-                            $dialog.dialog('destroy').remove();
-                        }
-                    })
-
-                $('.popupWindow').on('submit', '#popupForm', function (e) {
-                    var url = $('#popupForm')[0].action;
-                    $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: $('#popupForm').serialize(),
-                        success: function (data) {
-                            if (data.status) {
-                                $dialog.dialog('close');
-                                oTable.ajax.reload();
-                            }
-                        }
-                    })
-                    e.preventDefault();
-                })
-                $dialog.dialog('open');
-            }
+            });
         });
     </script>
 }
+

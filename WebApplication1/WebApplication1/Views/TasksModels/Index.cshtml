@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 <div class="tablecontainer">
-    <table class="table table-bordered ui celled" id="myTable">
+    <table class="table-bordered display responsive nowrap ui selectable celled table ui unstackable" id="myTable" cellspacing="0" width="100%">
         <thead>
         <tr>
             <th>
@@ -40,20 +40,19 @@
 {
     <script>
         $(document).ready(function () {
-
             $.fn.dataTable.moment('DD/MM/YYYY');
             $.fn.dataTable.moment('dddd, DD/MM/YYYY');
 
-            var oTable = $("#myTable").DataTable({
-                responsive: true,
+            var oTable = $("#myTable").DataTable({                
                 "ajax": {
                     "url": "/TasksModels/GetData",
                     "type": "get",
                     "datatype": "json"
                 },
+                
                 "columnDefs": [
                     { "className": "dt-center", "targets": [6, 7] }
-                ],
+                ],                
                 "order": [[3]],
                 "columns": [
                     { "data": null },
@@ -117,12 +116,12 @@
                                 '<a class="popup" href="/TasksModels/Delete/' + data + '"><i class="fa fa-times bat" aria-hidden="true"></i></a>';
                         }
                     }
-                ],
+                ]
 
             });
             setInterval(function () {
                 $('#myTable').DataTable().ajax.reload(null, false);
-            }, 60000);
+            }, 120000);
 
             oTable.on('order.dt search.dt', function () {
                 oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
