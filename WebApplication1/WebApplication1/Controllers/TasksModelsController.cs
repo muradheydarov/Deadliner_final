@@ -11,17 +11,17 @@ namespace WebApplication1.Controllers
 {
     public class TasksModelsController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET
         public ActionResult MyTasks()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
 
-            var list = db.TasksModels
-                .Join(db.TaskToUsers, a => a.TasksModelID, usr => usr.TaskToUserID, (a, usr) => new {a, usr})
-                .Where(@t => @t.usr.UserIdInt == user.ApplicationUserId)
-                .Select(@t => @t.a);
+            var list = from a in db.TasksModels
+                       join usr in db.TaskToUsers on a.TasksModelID equals usr.TaskToUserID
+                       where usr.UserIdInt == user.ApplicationUserId
+                       select a;
 
             return View(list);
         }
@@ -45,23 +45,24 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            var result = db.Users.Select(a => new
-            {
-                a.ApplicationUserId,
-                UserName = a.Name + " " + a.Surname,
-                Checked = db.TaskToUsers.Any(ab => (ab.UserIdInt == a.ApplicationUserId) & (ab.TasksModelID == id))
-            });
+            var result = from a in db.Users
+                         select new
+                         {
+                             a.ApplicationUserId,
+                             UserName = a.Name + " " + a.Surname,
+                             Checked = (from ab in db.TaskToUsers
+                                        where (ab.UserIdInt == a.ApplicationUserId) & (ab.TasksModelID == id)
+                                        select ab).Any()
+                         };
 
-            var MyViewModel = new TaskViewModel
-            {
-                TaskId = id.Value,
-                Heading = tasksModel.Heading,
-                Content = tasksModel.Content,
-                CreatedBy = tasksModel.CreatedBy,
-                CreatedOn = tasksModel.CreatedOn,
-                StartDate = tasksModel.StartDate,
-                EndDate = tasksModel.EndDate
-            };
+            var MyViewModel = new TaskViewModel();
+            MyViewModel.TaskId = id.Value;
+            MyViewModel.Heading = tasksModel.Heading;
+            MyViewModel.Content = tasksModel.Content;
+            MyViewModel.CreatedBy = tasksModel.CreatedBy;
+            MyViewModel.CreatedOn = tasksModel.CreatedOn;
+            MyViewModel.StartDate = tasksModel.StartDate;
+            MyViewModel.EndDate = tasksModel.EndDate;
 
             var MyCheckBoxList = new List<CheckBoxViewModel>();
 
@@ -82,13 +83,14 @@ namespace WebApplication1.Controllers
         // GET: TasksModels/Create
         public ActionResult Create()
         {
-            var result = db.Users.Where(x => x.UserStatus == "Student")
-                .Select(a => new
-                {
-                    a.ApplicationUserId,
-                    a.UserName,
-                    Checked = (from ab in db.TaskToUsers select ab).Any()
-                });
+            var result = from a in db.Users.Where(x => x.UserStatus == "Student")
+                         select new
+                         {
+                             a.ApplicationUserId,
+                             a.UserName,
+                             Checked = (from ab in db.TaskToUsers
+                                        select ab).Any()
+                         };
 
             var MyViewModel = new TaskViewModel();
 
@@ -100,7 +102,7 @@ namespace WebApplication1.Controllers
                 {
                     Id = item.ApplicationUserId,
                     Name = item.UserName,
-                    Checked = item.Checked
+                    Checked = item.Checked,
                 });
             }
 
@@ -159,26 +161,25 @@ namespace WebApplication1.Controllers
                 return HttpNotFound();
             }
 
-            var result = db.Users.Where(x => x.UserStatus == "Student")
-                .Select(a => new
-                {
-                    a.ApplicationUserId,
-                    UserName = a.Name + " " + a.Surname,
-                    Checked = db.TaskToUsers.Any(ab => (ab.UserIdInt == a.ApplicationUserId) &
-                                                         (ab.TasksModelID == id))
-                });
+            var result = from a in db.Users.Where(x => x.UserStatus == "Student")
+                         select new
+                         {
+                             a.ApplicationUserId,
+                             UserName = a.Name +" "+a.Surname,
+                             Checked = (from ab in db.TaskToUsers
+                                        where (ab.UserIdInt == a.ApplicationUserId) & (ab.TasksModelID == id)
+                                        select ab).Any()
+                         };
 
-            var MyViewModel = new TaskViewModel
-            {
-                TaskId = id.Value,
-                Heading = tasksModel.Heading,
-                Content = tasksModel.Content,
-                CreatedBy = tasksModel.CreatedBy,
-                CreatedOn = tasksModel.CreatedOn,
-                StartDate = tasksModel.StartDate,
-                EndDate = tasksModel.EndDate,
-                Status = tasksModel.Status
-            };
+            var MyViewModel = new TaskViewModel();
+            MyViewModel.TaskId = id.Value;
+            MyViewModel.Heading = tasksModel.Heading;
+            MyViewModel.Content = tasksModel.Content;
+            MyViewModel.CreatedBy = tasksModel.CreatedBy;
+            MyViewModel.CreatedOn = tasksModel.CreatedOn;
+            MyViewModel.StartDate = tasksModel.StartDate;
+            MyViewModel.EndDate = tasksModel.EndDate;
+            MyViewModel.Status = tasksModel.Status;
 
             var MyCheckBoxList = new List<CheckBoxViewModel>();
 
@@ -208,16 +209,13 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 var MyTask = db.TasksModels.Find(tasksModel.TaskId);
-                if (MyTask != null)
-                {
-                    MyTask.Heading = tasksModel.Heading;
-                    MyTask.Content = tasksModel.Content;
-                    MyTask.StartDate = tasksModel.StartDate;
-                    MyTask.EndDate = tasksModel.EndDate;
-                    MyTask.CreatedBy = tasksModel.CreatedBy;
-                    MyTask.CreatedOn = tasksModel.CreatedOn;
-                    MyTask.Status = tasksModel.Status;
-                }
+                MyTask.Heading = tasksModel.Heading;
+                MyTask.Content = tasksModel.Content;
+                MyTask.StartDate = tasksModel.StartDate;
+                MyTask.EndDate = tasksModel.EndDate;
+                MyTask.CreatedBy = tasksModel.CreatedBy;
+                MyTask.CreatedOn = tasksModel.CreatedOn;
+                MyTask.Status = tasksModel.Status;                
 
                 foreach (var item in tasksModel.Users)
                 {
@@ -249,44 +247,12 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             TasksModel tasksModel = db.TasksModels.Find(id);
             if (tasksModel == null)
             {
                 return HttpNotFound();
             }
-            var result = db.Users.Select(a => new
-            {
-                a.ApplicationUserId,
-                UserName = a.Name + " " + a.Surname,
-                Checked = (db.TaskToUsers.Where(ab => (ab.UserIdInt == a.ApplicationUserId) & (ab.TasksModelID == id))).Any()
-            });
-
-            var MyViewModel = new TaskViewModel
-            {
-                TaskId = id.Value,
-                Heading = tasksModel.Heading,
-                Content = tasksModel.Content,
-                CreatedBy = tasksModel.CreatedBy,
-                CreatedOn = tasksModel.CreatedOn,
-                StartDate = tasksModel.StartDate,
-                EndDate = tasksModel.EndDate
-            };
-
-            var MyCheckBoxList = new List<CheckBoxViewModel>();
-
-            foreach (var item in result)
-            {
-                MyCheckBoxList.Add(new CheckBoxViewModel
-                {
-                    Id = item.ApplicationUserId,
-                    Name = item.UserName,
-                    Checked = item.Checked
-                });
-            }
-
-            MyViewModel.Users = MyCheckBoxList;
-            return View(MyViewModel);            
+            return View(tasksModel);
         }
 
         // POST: TasksModels/Delete/5
@@ -294,10 +260,10 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var status = false;
+            bool status = false;
             using (db)
             {
-                var tasksModel = db.TasksModels.Find(id);
+                TasksModel tasksModel = db.TasksModels.Find(id);
                 if (tasksModel != null)
                 {
                     db.TasksModels.Remove(tasksModel);
@@ -310,7 +276,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult GetData()
         {
-            var now = DateTime.Now;
+            DateTime now = DateTime.Now;
             var tor = db.TasksModels.Select(s => new
             {
                 s.Heading,
@@ -352,9 +318,9 @@ namespace WebApplication1.Controllers
         public ActionResult SendDataForNotify()
         {
             var userid = db.Users.Find(User.Identity.GetUserId());
-            var now = DateTime.Now;
+            DateTime now = DateTime.Now;
 
-            var list = db.TasksModels
+            List<TaskViewModel> list = db.TasksModels
                 .Join(db.TaskToUsers, t => t.TasksModelID, user => user.TasksModelID, (t, user) => new {t, user})
                 .Where(@t1 => @t1.user.UserIdInt == userid.ApplicationUserId)
                 .Select(@t1 => new TaskViewModel()
@@ -365,25 +331,27 @@ namespace WebApplication1.Controllers
                 }).Where(x => x.Status == "Open").ToList();
 
             var userID = User.Identity.GetUserId();
-            var userExists = db.Users.Any(x => x.Id == userID);
-            var ufls = new List<LoadFileViewModel>();
+            bool userExists = db.Users.Any(x => x.Id == userID);
+            List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
             if (userExists)
             {                
                 var userfiles = db.UserFileses.Where(x => x.UserId == userID).ToList();
                 foreach (var userFile in userfiles)
                 {
                     string type = null;
-                    var index = userFile.FileType.IndexOf('/');
+                    int index = userFile.FileType.IndexOf('/');
                     if (index > 0) { type = userFile.FileType.Substring(0, index); }
                     ufls.Add(new LoadFileViewModel() { FileName = userFile.FileName, FileType = type, Id = userFile.Id });
                 }
             }
-            var LoginPartialView = new _LoginPartialView
+            var LoginPartialView = new _LoginPartialView();
+            LoginPartialView.TaskCount = list.Count;
+            LoginPartialView.UploadImg = ufls;
+            if (User.IsInRole("Teacher"))
             {
-                TaskCount = list.Count,
-                UploadImg = ufls
-            };
-            return PartialView(User.IsInRole("Teacher") ? "~/Views/Shared/_LoginPartialForTeacher.cshtml" : "~/Views/Shared/_LoginPartial.cshtml", LoginPartialView);
+                return PartialView("~/Views/Shared/_LoginPartialForTeacher.cshtml", LoginPartialView);
+            }
+            return PartialView("~/Views/Shared/_LoginPartial.cshtml", LoginPartialView);
         }
 
         //GET
@@ -396,28 +364,24 @@ namespace WebApplication1.Controllers
 
             var userid = db.Users.Find(User.Identity.GetUserId()).ApplicationUserId;
 
-            var taskToUser = db.TaskToUsers.FirstOrDefault(x => x.UserIdInt == userid && x.TasksModelID == id);
-            if (taskToUser != null)
+            var taskToUseId = db.TaskToUsers.FirstOrDefault(x => x.UserIdInt == userid && x.TasksModelID == id).TaskToUserID;
+
+            if (db.ReplyToTasks.FirstOrDefault(x => x.TaskToUserID == taskToUseId) != null)
             {
-                var taskToUseId = taskToUser.TaskToUserID;
-
-                if (db.ReplyToTasks.FirstOrDefault(x => x.TaskToUserID == taskToUseId) != null)
-                {
-                    var replyToTaskDefault = db.ReplyToTasks.FirstOrDefault(x => x.TaskToUserID == taskToUseId);
-                    return View(replyToTaskDefault);
-                }
-
-                var replyToTask = new ReplyToTask {TaskToUserID = taskToUseId};
-                return View(replyToTask);
+                var replyToTaskDefault = db.ReplyToTasks.FirstOrDefault(x => x.TaskToUserID == taskToUseId);
+                return View(replyToTaskDefault);
             }
-            return HttpNotFound();
+
+            var replyToTask = new ReplyToTask();
+            replyToTask.TaskToUserID = taskToUseId;
+            return View(replyToTask);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ReplyToTask(ReplyToTask taskToUser)
         {
-            var status = false;
+            bool status = false;
 
             if (ModelState.IsValid)
             {
@@ -441,7 +405,7 @@ namespace WebApplication1.Controllers
         //GET
         public ActionResult TeacherShowAnswer()
         {
-            var taskAnswer = new List<TaskAnswerView>();
+            List<TaskAnswerView> taskAnswer = new List<TaskAnswerView>();
             return View(taskAnswer);
         }
 
@@ -477,39 +441,37 @@ namespace WebApplication1.Controllers
 
         public ActionResult IndividualUser(ReplyToTask taskToUser)
         {
-            //var now = DateTime.Now;
-            //var user = db.Users.Find(User.Identity.GetUserId());
-            //var list = db.TasksModels
-            //    .Join(db.TaskToUsers, t => t.TasksModelID, usr => usr.TasksModelID, (t, usr) => new { t, usr })
-            //    .Where(t1 => t1.usr.UserIdInt == user.ApplicationUserId)
-            //    .Select(t1 => new
-            //    {
-            //        t1.t.Heading,
-            //        t1.t.TasksModelID,
-            //        t1.t.EndDate,
-            //        t1.t.StartDate,
-            //        t1.t.Content,
-            //        t1.t.CreatedBy,
-            //        t1.t.CreatedOn,
-            //        Status = t1.t.EndDate > now && t1.t.StartDate < now ? "Open" : "Closed",
+            var now = DateTime.Now;
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var list = db.TasksModels
+                .Join(db.TaskToUsers, t => t.TasksModelID, usr => usr.TasksModelID, (t, usr) => new { t, usr })
+                .Where(t1 => t1.usr.UserIdInt == user.ApplicationUserId)
+                .Select(t1 => new
+                {
+                    t1.t.Heading,
+                    t1.t.TasksModelID,
+                    t1.t.EndDate,
+                    t1.t.StartDate,
+                    t1.t.Content,
+                    t1.t.CreatedBy,
+                    t1.t.CreatedOn,
+                    Status = t1.t.EndDate > now && t1.t.StartDate < now ? "Open" : "Closed",
 
-            //        ttu = t1.t.TaskToUsers.Select(t => new
-            //        {
-            //            reply = t.ReplyToTasks.Where(x => x.TaskToUser.UserIdInt == user.ApplicationUserId).Select(r => new
-            //            {
-            //                answer = r.UserAnswer,
-            //                answerTime = r.AnswerTime,
-            //            }),
-            //            user = db.Users.Where(f => f.ApplicationUserId == user.ApplicationUserId).Select(u => new
-            //            {
-            //                fullName = u.Name + " " + u.Surname
-            //            })
-            //        })
-            //    }).ToList();
-            //return Json(new { data = list }, JsonRequestBehavior.AllowGet);
-            var taskAnswer = new List<TaskAnswerView>();
-            return View(taskAnswer);
-        }        
+                    ttu = t1.t.TaskToUsers.Select(t => new
+                    {
+                        reply = t.ReplyToTasks.Where(x => x.TaskToUser.UserIdInt == user.ApplicationUserId).Select(r => new
+                        {
+                            answer = r.UserAnswer,
+                            answerTime = r.AnswerTime,
+                        }),
+                        user = db.Users.Where(f => f.ApplicationUserId == user.ApplicationUserId).Select(u => new
+                        {
+                            fullName = u.Name + " " + u.Surname
+                        })
+                    })
+                }).ToList();
+            return Json(new { data = list }, JsonRequestBehavior.AllowGet);
+        }
 
         protected override void Dispose(bool disposing)
         {

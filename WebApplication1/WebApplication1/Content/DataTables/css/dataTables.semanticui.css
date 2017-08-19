@@ -49,7 +49,7 @@ table.dataTable.table th.dataTables_empty {
 }
 table.dataTable.table.nowrap th,
 table.dataTable.table.nowrap td {
-  white-space: nowrap !important;
+  white-space: nowrap;
 }
 
 div.dataTables_wrapper div.dataTables_length select {

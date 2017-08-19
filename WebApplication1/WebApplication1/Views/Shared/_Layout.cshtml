@@ -26,13 +26,14 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-<div id="nav" class="coLeft">
     <div id="logo">
         <a id="logoName" href="@Url.Action("Index","Home")">
-            <span id="mlx">DeadLiner</span>             
+            <span id="mlx">DeadLiner</span>
             <img src="~/Content/images/logo.png" alt="Alternate Text" />
         </a>
     </div>
+<div id="nav" class="coLeft">
+  
     <div id="navName">
         <p id="name">main navigation</p>
     </div>
@@ -178,18 +179,19 @@
         </ul>
     </li>
 </ul>
-<div id="content" class="coRight">
-    <div id="topPanel" class="rows" style="display: flex; justify-content: space-between;align-items: center">
-        <div id="bars" class="col-md-6">
-            <a href="#">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </a>
-        </div>
-        <div id="account" class="col-6">
-            @*@Html.Partial("_LoginPartial")*@
-            @Html.Action("SendDataForNotify", "TasksModels")
-        </div>
+<div id="topPanel" class="rows" style="display: flex; justify-content: space-between;align-items: center">
+    <div id="bars" class="col-md-6">
+        <a href="#">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </a>
     </div>
+    <div id="account" class="col-6">
+        @*@Html.Partial("_LoginPartial")*@
+        @Html.Action("SendDataForNotify", "TasksModels")
+    </div>
+</div>
+<div id="content" class="coRight">
+   
     <!-- C O N T E N T   H E A D L I N E  -->
     <div class="contentHeadline">
         <div class="left">

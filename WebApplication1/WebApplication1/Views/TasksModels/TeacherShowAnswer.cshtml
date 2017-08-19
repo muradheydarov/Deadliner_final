@@ -61,8 +61,9 @@
                     });    
                 }
                 
+
                 return '<div class="slider">'+
-                '<table class="table table-hover">' +
+                '<table class="table table-border table-hover">' +
                     '<thead>'+
                     '<th>Assigned To :</th>'+
                     '<th>Answer :</th>' +
@@ -75,7 +76,8 @@
                     '</div>';                
             }
 
-            var oTable = $("#myTable").DataTable({                
+            var oTable = $("#myTable").DataTable({
+                responsive: true,
                 "ajax": {
                     "url": "/TasksModels/GetDataTeacherShowAnswer",
                     "type": "get",

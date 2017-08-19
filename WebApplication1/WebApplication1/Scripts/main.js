@@ -58,7 +58,6 @@ function minimizeNav() {
         nav.removeClass('coLeft').addClass('minimizedLeft');
         content.removeClass('coRight').addClass('minimizedRight');
         crud.css('display', 'none');
-        mlx.css('font-size', '18px');
         logoName.css('line-height', '49px');
         navName.css('display', 'none');
         listName.css('display', 'none');
@@ -190,10 +189,3 @@ minimizedSettings.mouseout(hideMinimizedSettings);
 // ===================
 // E V E N T S   E N D
 // ===================
-$(document).ready(function () {
-    if ($(window).width() < 767) {
-        console.log("asasas")
-
-
-    }
-});

@@ -1,12 +1,11 @@
-﻿@model DeadLiner.Models.TaskViewModel
+﻿@model DeadLiner.Models.TasksModel
 @{
-    ViewBag.Title = "Delete";
     Layout = null;
 }
 @using (Html.BeginForm("delete", "TasksModels", FormMethod.Post, new { id = "popupForm" }))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(x => x.TaskId)
+    @Html.HiddenFor(x => x.TasksModelID)
 
     <section class="manager">
         <div class="header  ">
@@ -18,40 +17,25 @@
                     <div class="content">
                         <div class="dl-horizontals">
                             <p class="margin">
-                                <span class="EditHeading">@Html.DisplayNameFor(model => model.Heading):</span>
+                                <span class="EditHeading">@Html.DisplayNameFor(model => model.Heading)</span>
                                 <span class="editContent">@Html.DisplayFor(model => model.Heading)</span>
                             </p>
                             <p class="margin">
-                                <span class="EditHeading">Created By:</span>
+                                <span class="EditHeading">@Html.DisplayNameFor(model => model.Content)</span>
+                                <span class="editContent">@Html.DisplayFor(model => model.Content)</span>
+                            </p>
+                            <p class="margin">
+                                <span class="EditHeading">@Html.DisplayNameFor(model => model.CreatedBy)</span>
                                 <span class="editContent">@Html.DisplayFor(model => model.CreatedBy)</span>
                             </p>
                             <p class="margin">
-                                <span class="EditHeading">Created On:</span>
-                                <span class="editContent">@Html.DisplayFor(model => model.CreatedOn)</span>
+                                <span class="EditHeading">@Html.DisplayNameFor(model => model.StartDate)</span>
+                                <span class="editContent">@Html.DisplayFor(model => model.StartDate)</span>
                             </p>
                             <p class="margin">
-                                <span class="EditHeading">Start Date:</span>
-                                <span class="editContent">@Html.DisplayFor(model => model.StartDate)</span>
-                                <span class="EditHeading">End Date:</span>
+                                <span class="EditHeading">@Html.DisplayNameFor(model => model.EndDate)</span>
                                 <span class="editContent">@Html.DisplayFor(model => model.EndDate)</span>
                             </p>
-                            <p class="margin">
-                                <div style="display: flex">
-                                    <div class="EditHeading">@Html.DisplayNameFor(model => model.Content):</div>
-                                    <div class="editContent">@Html.DisplayFor(model => model.Content)</div>
-                                </div>
-                            </p>
-                            <div>
-                                <div class="EditHeading"> Assigned Users:</div>
-                                <div class="editContentAll" style="display: flex; flex-direction: column;">
-                                    @foreach (var item in Model.Users.Where(x => x.Checked))
-                                    {
-                                        <div class="editContent">
-                                            @Html.DisplayFor(model => item.Name)
-                                        </div>
-                                    }
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
