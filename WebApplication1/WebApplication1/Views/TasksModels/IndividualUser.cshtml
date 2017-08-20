@@ -1,53 +1,43 @@
 ﻿@model IEnumerable<DeadLiner.Models.TaskAnswerView>
 @{
     ViewBag.Title = "Individual User";
-
-    var options = new AjaxOptions()
-    {
-        UpdateTargetId = "myTableTable",
-        Url = Url.Action("IndividualUserGetData"),
-        LoadingElementId = "loadingIndicator",
-        OnSuccess = "tor"
-    };
 }
 
-@using (Ajax.BeginForm(options))
-{
-    <div class="tablecontainer">
-        <p>
-            @Html.DropDownList("id", new SelectList(new[] { "Ragim-A", "qurban" }, "Murad"))
-            <input type="submit" value="Submit" />
-        </p>
-        <div id="loadingIndicator" style="display:none;">Loading...</div>
-        <table class="table table-bordered ui" id="myTable">
-            <thead>
-                <tr>
-                    <th>
-                        Details
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Heading)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.StartDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.EndDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CreatedBy)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CreatedOn)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-}
+<div class="tablecontainer">
+    <p>        
+        @Html.DropDownList("id", ViewBag.Users as IEnumerable<SelectListItem>, "Select User")
+        @*<input type="submit" value="Submit" />*@
+    </p>
+    <div id="loadingIndicator" style="display:none;">Loading...</div>
+    <table class="table table-bordered ui" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    Details
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Heading)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
 
 @section scripts
 {
@@ -175,6 +165,23 @@
                 ]
             });
 
+            $('#id').change(function () {
+                var selectedValue = $(this).val();
+                $.ajax({
+                    url:  '@Url.Action("IndividualUserGetData", "TasksModels")',
+                    type: "POST",
+                    data: { id: selectedValue },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                        alert(thrownError);
+                    },
+                    success: function (result) {
+                        alert(result);
+                    }
+                });
+            });
+
+
             var detailRows = [];
 
             $('#myTable tbody').on('click',
@@ -200,7 +207,7 @@
             function tor() {
                 $('#myTable').DataTable().ajax.reload(null, false);
             }
-            
+
             // On each draw, loop over the `detailRows` array and show any child rows
             oTable.on('draw',
                 function () {

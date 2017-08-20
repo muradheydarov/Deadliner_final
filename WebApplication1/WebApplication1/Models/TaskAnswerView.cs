@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 using WebApplication1.Models;
 
 namespace DeadLiner.Models
@@ -20,6 +19,6 @@ namespace DeadLiner.Models
         //public  List<ReplyToTask> Replies { get; set; }
 
         public List<TeacherShowAnswerUsers> teacherShowAnswerUsersesView = new List<TeacherShowAnswerUsers>();
-        public List<teacherReplyToTaskView> teacherReplyToTaskViews = new List<teacherReplyToTaskView>();
+        public List<teacherReplyToTaskView> teacherReplyToTaskViews = new List<teacherReplyToTaskView>();        
     }
 }
