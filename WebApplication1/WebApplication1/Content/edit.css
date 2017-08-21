@@ -61,8 +61,7 @@
 .user .form textarea{
     width: 100%;
     padding: 6px 12px;
-    margin: 0px -3px 0px 0px;
-    height: 74px;
+    margin: 0px -3px 0px 0px;    
 }
 .user .form button{
     border: 1px solid #ccc;
