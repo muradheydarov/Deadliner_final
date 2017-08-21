@@ -41,7 +41,7 @@
                             </p>                            
                             <div>
                                 <div class="EditHeading"> Assigned Users:</div>
-                                <div class="editContentAll" style="display: flex; flex-direction: column;">
+                                <div class="editContentAll" style="display: flex; flex-direction: column;height: 120px; overflow-y: auto;" >
                                     @foreach (var item in Model.Users.Where(x => x.Checked))
                                     {
                                         <div class="editContent">
@@ -59,13 +59,23 @@
 }
 <script type="text/javascript">
     $(function () {        
+        tinymce.EditorManager.editors = [];
         tinymce.init({
             selector: '#bat',
             height: 300,
             theme: 'modern',                       
+            menubar: false,
+            statusbar: false,
+            readonly: true,
             templates: [
                 { title: 'Test template 1', content: 'Test 1' },
                 { title: 'Test template 2', content: 'Test 2' }
+            ],
+            plugins: [
+                'advlist autolink lists link charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern codesample toc'
             ],
             content_css: [
                 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',

@@ -14,12 +14,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="content">
-                        <div class="dl-horizontals">                            
+                        <div class="dl-horizontals">
                             <p class="margin">
-                                <div style="display: flex; flex-direction: column;">                                    
-                                    <div class="editContent">@Html.Raw(Model.Content)</div>
+                                <div class="editContentAll" style="display: flex; flex-direction: column;">
+                                    <div class="editContent" id="bat">@Html.Raw(Model.Content)</div>
                                 </div>
-                            </p>                            
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -27,3 +27,30 @@
         </div>
     </section>
 }
+<script>
+    $(function () {
+        tinymce.EditorManager.editors = [];
+        tinymce.init({
+            selector: '#bat',
+            height: 300,
+            theme: 'modern',
+            menubar: false,
+            statusbar: false,
+            readonly: true,
+            templates: [
+                { title: 'Test template 1', content: 'Test 1' },
+                { title: 'Test template 2', content: 'Test 2' }
+            ],
+            plugins: [
+                'advlist autolink lists link charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern codesample toc'
+            ],
+            content_css: [
+                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                '//www.tinymce.com/css/codepen.min.css'
+            ]
+        });
+    });
+</script>

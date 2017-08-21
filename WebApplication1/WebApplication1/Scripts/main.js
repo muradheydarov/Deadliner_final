@@ -53,6 +53,36 @@ function closeSettings() {
     }
 }
 
+$(window).resize(function () {
+    if ($(window).width() >= 992) {
+        nav.removeClass("minimizedLeft").addClass("coLeft");
+        content.removeClass('minimizedRight').addClass('coRight');
+        logo.classList.remove("logoImage");
+        logo.classList.add("logoSpan");
+        crud.css('display', 'inline-block');
+        mlx.css('font-size', '20px');
+        logoName.css('line-height', '50px');
+        navName.css('display', 'block');
+        listName.css('display', 'inline-block');
+        angle.css('display', 'inline-block');
+        navigations.css('margin-top', '-1px');
+        isMinimized = false;
+    } else {
+        nav.removeClass('coLeft').addClass('minimizedLeft');
+        content.removeClass('coRight').addClass('minimizedRight');
+        logo.classList.add("logoImage");
+        logo.classList.remove("logoSpan");
+        crud.css('display', 'none');
+        logoName.css('line-height', '49px');
+        navName.css('display', 'none');
+        listName.css('display', 'none');
+        angle.css('display', 'none');
+        navigations.css('margin-top', '0px');
+        navigations.children().children('ul').css('display', 'none');
+        isMinimized = true;
+    }
+});
+
 function minimizeNav() {
     if (!isMinimized) {
         nav.removeClass('coLeft').addClass('minimizedLeft');

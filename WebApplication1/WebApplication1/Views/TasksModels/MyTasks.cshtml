@@ -112,7 +112,7 @@
                         "data": "TasksModelID", "width": "70px",
                         "render": function (data, type, row) {
                             if (row["Status"] == "Open") {
-                                return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>' +
+                                return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-question-circle bat" style="padding-right:15px;" aria-hidden="true"></i></a>' +
                                     '<a class="popup" href="/TasksModels/ReplyToTask/' + data + '"><i class="fa fa-reply bat" aria-hidden="true" style="color:seagreen;"></i></a>';
                             }
                             return '<a class="popup tor" href="/TasksModels/Details/' + data + '"><i class="fa fa-info bat" aria-hidden="true"></i></a>'
@@ -153,7 +153,7 @@
                         resizable: true,
                         model: true,                        
                         height: 'auto',
-                        width: 600,
+                        width: 700,
                         position: {        
                             my: 'top', 
                             at: 'top'            

@@ -27,6 +27,7 @@
     font-size: 20px;
     padding-right: 10px;
 }
+
 .content:last-child{
     min-height: 50px;
 }
