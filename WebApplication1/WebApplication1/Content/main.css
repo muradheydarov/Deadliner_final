@@ -315,6 +315,10 @@ body #content #footer b {
 body #nav #navigations li > a {
     position: relative;
 }
+body #content .manager {
+    margin-bottom: 30px;
+}
+
 /*# sourceMappingURL=main.css.map */
 @media (max-width: 1280px) {
     .minimizedLeft {
@@ -397,7 +401,7 @@ body #nav #navigations li > a {
         width: 0%;
     }
     .minimizedLeft li {
-        opacity:0;
+        display: none;
     }
     #nav {
         left:0px;
@@ -417,6 +421,10 @@ body #nav #navigations li > a {
     }
     .minimizedRight {
         width: 100%;
+    }
+    body .logoImage span {
+        display: block !important;
+        margin-top: 1px;
     }
     
 }
