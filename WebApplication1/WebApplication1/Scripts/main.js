@@ -195,9 +195,11 @@ minimizedSettings.mouseout(hideMinimizedSettings);
 // E V E N T S   E N D
 // ===================
 
-var ela = document.querySelector('#bars a');
-//var logo = document.querySelector('#logo');
+var ela = document.querySelector('#navigations>li');
+console.log(ela);
+var container = document.getElementsByTagName("#navigations li a"); 
 ela.addEventListener("click", function () {
-    console.log(logo);
-    //logo.classList.add("aswas")
+
+    console.log(container);
+   
 });

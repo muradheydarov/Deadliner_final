@@ -282,6 +282,11 @@ body #content .contentHeadline .right ul .after span {
 body #content .contentHeadline .right ul .after span:first-child {
     padding-right: 5px;
     color: #ccc; }
+
+body #content #relativeDiv{
+    min-height:78.9vh;
+    margin-top:30px;
+}
 body #content #footer {
     text-align: right;
     color: #444;
@@ -293,8 +298,9 @@ body #content #footer {
     font-size: 14px;
     line-height: 1.42857143;
     width: 100%;
-    position: absolute;
-    bottom: 0; }
+    position: relative;
+    bottom: 0; 
+}
 body #content #footer b {
     font-weight: bold; }
 .cursor_pointer {
@@ -315,9 +321,7 @@ body #content #footer b {
 body #nav #navigations li > a {
     position: relative;
 }
-body #content .manager {
-    margin-bottom: 30px;
-}
+
 
 /*# sourceMappingURL=main.css.map */
 @media (max-width: 1280px) {
@@ -389,6 +393,9 @@ body #content .manager {
     body #content {
         margin-top: 100px;
         min-height: 83.8%;
+    }
+    body #content #relativeDiv {
+        min-height: 71.3vh;
     }
     body #topPanel {
         margin-top: 50px;
