@@ -25,7 +25,18 @@ namespace DeadLiner.Controllers
 
         public ActionResult Index()
         {
-            return View();           
+            if (User.IsInRole("Student"))
+            {
+                return RedirectToAction("MyTasks", "TasksModels");
+            }
+            else if(User.IsInRole("Teacher"))
+            {
+               return RedirectToAction("TeacherShowAnswer", "TasksModels");
+            }
+            else
+            {
+                return View();
+            }            
         }                
 
         public ActionResult Media(string id)
