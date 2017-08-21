@@ -57,8 +57,8 @@ function minimizeNav() {
     if (!isMinimized) {
         nav.removeClass('coLeft').addClass('minimizedLeft');
         content.removeClass('coRight').addClass('minimizedRight');
-        logo.classList.add("image");
-        logo.classList.remove("span");
+        logo.classList.add("logoImage");
+        logo.classList.remove("logoSpan");
         crud.css('display', 'none');
         logoName.css('line-height', '49px');
         navName.css('display', 'none');
@@ -70,8 +70,8 @@ function minimizeNav() {
     } else {
         nav.removeClass("minimizedLeft").addClass("coLeft");
         content.removeClass('minimizedRight').addClass('coRight');
-        logo.classList.remove("image");
-        logo.classList.add("span");
+        logo.classList.remove("logoImage");
+        logo.classList.add("logoSpan");
         crud.css('display', 'inline-block');
         mlx.css('font-size', '20px');
         logoName.css('line-height', '50px');

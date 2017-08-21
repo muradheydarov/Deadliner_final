@@ -33,25 +33,27 @@ div.slider {
 table.dataTable tbody td.no-padding {
     padding: 0;
 }
-.span img{
-    display:none;
-}
-.image{
-    display:flex;
-}
-.image span {
-    display: none;
-}
-.image img{
-    margin-left:13px;
-}
 .ui-dialog {
-    top: 10% !important;    
+    top: 10% !important;
 }
+
 .ui-dialog-content {
     max-height: 500px !important;
 }
-
+.logoSpan {
+    width: 16.85%;
+    float: left;
+}
+.logoImage {
+    float: left;
+    width: 3.69%;
+}
+.logoSpan img {
+    display: none;
+}
+.logoImage span {
+    display: none;
+}
 body {
     height: 100%;
     margin: 0;
@@ -65,7 +67,6 @@ body #logo {
     text-transform: uppercase;
     background: #367FA9;
     text-align: center;
-    width: 230px;
     height: 52px;
     position: absolute
 }
@@ -325,6 +326,10 @@ body #nav #navigations li > a {
         float: left;
         width: 95.31%;
     }
+
+    body .logoImage {
+        width: 4.69%;
+    }
 }
 
 @media(max-width:1080px) {
@@ -335,6 +340,9 @@ body #nav #navigations li > a {
     .coRight {
         width: 81.15%;
     }
+    body .logoSpan {
+        width: 18.85%;
+    }
 }
 
 @media (max-width: 991px) {
@@ -342,18 +350,21 @@ body #nav #navigations li > a {
         float: left;
         width: 5.69%;
     }
-
     .minimizedRight {
         float: left;
         width: 94.31%;
     }
-
     .coLeft {
         width: 20.85%;
     }
-
     .coRight {
         width: 79.15%;
+    }
+    body .logoSpan {
+        width: 20.85%;
+    }
+    body .logoImage {
+        width: 5.69%;
     }
 }
 
@@ -364,6 +375,9 @@ body #nav #navigations li > a {
 
     .coRight {
         width: 77.15%;
+    }
+    body .logoSpan {
+        width: 22.85%;
     }
 }
 @media(max-width:768px) {
