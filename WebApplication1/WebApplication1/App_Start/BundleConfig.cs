@@ -27,7 +27,8 @@ namespace DeadLiner
                       "~/Scripts/bootbox.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/bootstrap-formhelpers.js",
-                      "~/Scripts/bootstrap-select.js"
+                      "~/Scripts/bootstrap-select.js",
+                      "~/Scripts/tinymce/tinymce.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

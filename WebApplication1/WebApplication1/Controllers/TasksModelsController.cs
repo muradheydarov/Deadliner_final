@@ -76,8 +76,12 @@ namespace WebApplication1.Controllers
                 });
             }
 
-            MyViewModel.Users = MyCheckBoxList;
-            return View(MyViewModel);
+            MyViewModel.Users = MyCheckBoxList;            
+            if (User.IsInRole("Admin"))
+            {
+                return View("Details", MyViewModel);
+            }
+            return View("DetailsUser", MyViewModel);
         }
 
         // GET: TasksModels/Create
@@ -114,6 +118,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create(TaskViewModel tasksModel)
         {
             if (ModelState.IsValid)

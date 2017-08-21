@@ -1,0 +1,29 @@
+﻿@model DeadLiner.Models.TaskViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+@using (Html.BeginForm(new { id = "popupForm" }))
+{
+    <section class="manager">
+        <div class="header  ">
+            <h3>Tasks Details:</h3>
+        </div>
+        <div class="container-fluid eight">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content">
+                        <div class="dl-horizontals">                            
+                            <p class="margin">
+                                <div style="display: flex; flex-direction: column;">                                    
+                                    <div class="editContent">@Html.Raw(Model.Content)</div>
+                                </div>
+                            </p>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

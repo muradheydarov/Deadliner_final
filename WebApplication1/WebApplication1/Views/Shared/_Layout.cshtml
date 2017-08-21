@@ -190,23 +190,23 @@
             @Html.Action("SendDataForNotify", "TasksModels")
         </div>
     </div>
-<div id="content" class="coRight">
-    <!-- C O N T E N T   H E A D L I N E  -->
-    <div id="relativeDiv">
-        <div class="clear"></div>
-        <div class="contentArea">
-            <!-- H E R E -->
-            @RenderBody()
+    <div id="content" class="coRight">
+        <!-- C O N T E N T   H E A D L I N E  -->
+        <div id="relativeDiv">
+            <div class="clear"></div>
+            <div class="contentArea">
+                <!-- H E R E -->
+                @RenderBody()
+            </div>
+            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
+        <div id="footer">
+            <span><b>Version</b> 1.0</span>
+        </div>
     </div>
-    <div id="footer">
-        <span><b>Version</b> 1.0</span>
-    </div>
-</div>
-@Scripts.Render("~/bundles/lib")
-<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
-@RenderSection("scripts", required: false)
-@RenderSection("scriptDateTimePicker", required: false)
+    @Scripts.Render("~/bundles/lib")
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    @RenderSection("scripts", required: false)
+    @RenderSection("scriptDateTimePicker", required: false)
 </body>
 </html>

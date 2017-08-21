@@ -196,10 +196,4 @@ minimizedSettings.mouseout(hideMinimizedSettings);
 // ===================
 
 var ela = document.querySelector('#navigations>li');
-console.log(ela);
-var container = document.getElementsByTagName("#navigations li a"); 
-ela.addEventListener("click", function () {
-
-    console.log(container);
-   
-});
+var container = document.getElementsByTagName("#navigations li a");
