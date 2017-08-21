@@ -57,6 +57,8 @@ function minimizeNav() {
     if (!isMinimized) {
         nav.removeClass('coLeft').addClass('minimizedLeft');
         content.removeClass('coRight').addClass('minimizedRight');
+        logo.classList.add("image");
+        logo.classList.remove("span");
         crud.css('display', 'none');
         logoName.css('line-height', '49px');
         navName.css('display', 'none');
@@ -68,6 +70,8 @@ function minimizeNav() {
     } else {
         nav.removeClass("minimizedLeft").addClass("coLeft");
         content.removeClass('minimizedRight').addClass('coRight');
+        logo.classList.remove("image");
+        logo.classList.add("span");
         crud.css('display', 'inline-block');
         mlx.css('font-size', '20px');
         logoName.css('line-height', '50px');
@@ -143,6 +147,7 @@ var settings = $('#settings');
 var settingsItem = $('#settings ul');
 var bars = $("#bars a");
 var nav = $("#nav");
+var logo = document.querySelector('#logo');
 var crud = $('#crud');
 var content = $('#content');
 var mlx = $('#mlx');
@@ -189,3 +194,10 @@ minimizedSettings.mouseout(hideMinimizedSettings);
 // ===================
 // E V E N T S   E N D
 // ===================
+
+var ela = document.querySelector('#bars a');
+//var logo = document.querySelector('#logo');
+ela.addEventListener("click", function () {
+    console.log(logo);
+    //logo.classList.add("aswas")
+});
