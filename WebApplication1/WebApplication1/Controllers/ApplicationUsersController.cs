@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using DeadLiner.Controllers;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace DeadLiner.Models
 {
@@ -12,6 +16,28 @@ namespace DeadLiner.Models
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUsersController()
+        {
+        }
+
+        public ApplicationUsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        {
+            UserManager = userManager;
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
         // GET: ApplicationUsers
         public ActionResult Index()
         {
@@ -29,8 +55,8 @@ namespace DeadLiner.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);                        
-            
+            ApplicationUser applicationUser = db.Users.Find(id);
+
             bool userExists = db.Users.Any(x => x.Id == id);
             List<LoadFileViewModel> ufls = new List<LoadFileViewModel>();
             if (userExists)
@@ -44,8 +70,8 @@ namespace DeadLiner.Models
                     ufls.Add(new LoadFileViewModel() { FileName = userFile.FileName, FileType = type, Id = userFile.Id });
                 }
             }
-            
-            UserProfileDetailsView details = new UserProfileDetailsView {User = applicationUser,UploadImg = ufls};            
+
+            UserProfileDetailsView details = new UserProfileDetailsView { User = applicationUser, UploadImg = ufls };
 
             if (applicationUser == null)
             {
@@ -101,20 +127,31 @@ namespace DeadLiner.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,UserStatus,Gender")] ApplicationUser applicationUser)
-        {            
+        public async Task<ActionResult> Edit(ApplicationUser applicationUser)
+        {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    db.Entry(applicationUser).State = EntityState.Modified;
-                    db.SaveChanges();
+                var user = await UserManager.FindByIdAsync(applicationUser.Id);
+                if (user != null)
+                {                    
+                    user.UserStatus = applicationUser.UserStatus;
+                    user.Gender = applicationUser.Gender;
+                    user.Name = applicationUser.Name;
+                    user.Surname = applicationUser.Surname;
+                    user.UserName = applicationUser.UserName;                    
+                    user.PhoneNumber = applicationUser.PhoneNumber;                    
+                    var result = await UserManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", new { Message = ManageController.ManageMessageId.ProfileEditSuccess });
+                    }
+                    AddErrors(result);
                 }
-                catch (Exception e)
-                {
-                    HttpNotFound();
-                }                                
-                return RedirectToAction("Index");
+                //db.Entry(applicationUser).State = EntityState.Modified;
+                //db.SaveChanges();
+
+
+                //return RedirectToAction("Index");
             }
             return View(applicationUser);
         }

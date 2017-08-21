@@ -488,10 +488,10 @@ namespace WebApplication1.Controllers
         }
 
         public ActionResult IndividualUserGetData(string id)
-        {
+        {            
             var now = DateTime.Now;
             if (!id.IsNullOrWhiteSpace())
-            {
+            {                
                 var applicationUser = db.Users.Find(id);
 
                 var userId = applicationUser.Id;
@@ -522,11 +522,11 @@ namespace WebApplication1.Controllers
                                 fullName = u.Name + " " + u.Surname
                             })
                         })
-                    }).ToList();
+                    }).ToList();                
                 return Json(new { data = list }, JsonRequestBehavior.AllowGet);
             }
             else
-            {
+            {                
                 var data = db.TasksModels.Select(s => new
                 {
                     s.Heading,
@@ -549,7 +549,7 @@ namespace WebApplication1.Controllers
                         })
                     })
                 }).ToList();
-
+                
                 return Json(new { data = data }, JsonRequestBehavior.AllowGet);
             }
         }

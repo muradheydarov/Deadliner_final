@@ -26,7 +26,8 @@ namespace DeadLiner
                       "~/Scripts/bootstrap-datetimepicker.js",
                       "~/Scripts/bootbox.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/bootstrap-formhelpers.js"
+                      "~/Scripts/bootstrap-formhelpers.js",
+                      "~/Scripts/bootstrap-select.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -41,6 +42,7 @@ namespace DeadLiner
                       "~/Content/bootstrap.min.css",
                       "~/Content/bootstrap-datetimepicker.css",
                       "~/Content/bootstrap-theme.css",
+                      "~/Content/bootstrap-select.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/DataTables/css/dataTables.semanticui.min.css",
                       "~/Content/DataTables/css/dataTables.jqueryui.css",

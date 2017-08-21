@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Hosting;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using DeadLiner.Migrations;
 using DeadLiner.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using WebApplication1.Models;
 
 namespace DeadLiner.Controllers
 {
@@ -320,34 +313,21 @@ namespace DeadLiner.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var db = new ApplicationDbContext())
-                    {
-                        var MyUser = db.Users.Find(User.Identity.GetUserId());
-                        MyUser.UserStatus = model.Users.UserStatus;
-                        MyUser.Gender = model.Users.Gender;
-                        MyUser.Name = model.Users.Name;
-                        MyUser.Surname = model.Users.Surname;
-                        MyUser.UserName = model.Users.UserName;
-                        MyUser.AccessFailedCount = model.Users.AccessFailedCount;
-                        MyUser.Email = model.Users.Email;
-                        MyUser.EmailConfirmed = model.Users.EmailConfirmed;
-                        MyUser.LockoutEnabled = model.Users.LockoutEnabled;
-                        MyUser.LockoutEndDateUtc = model.Users.LockoutEndDateUtc;
-                        MyUser.PasswordHash = model.Users.PasswordHash;
-                        MyUser.PhoneNumber = model.Users.PhoneNumber;
-                        MyUser.PhoneNumberConfirmed = model.Users.PhoneNumberConfirmed;
-                        MyUser.SecurityStamp = model.Users.SecurityStamp;
-                        MyUser.TwoFactorEnabled = model.Users.TwoFactorEnabled;
-                        
-                        try
+                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                    if (user != null)
+                    {                        
+                        user.Gender = model.Users.Gender;
+                        user.Name = model.Users.Name;
+                        user.Surname = model.Users.Surname;
+                        user.UserName = model.Users.UserName;                                                            
+                        user.PhoneNumber = model.Users.PhoneNumber;                                                
+                        var result = await UserManager.UpdateAsync(user);
+                        if (result.Succeeded)
                         {
-                            db.SaveChanges();
+                            return RedirectToAction("CustomChangePassword", new { Message = ManageMessageId.ChangePasswordSuccess });
                         }
-                        catch (Exception e)
-                        {
-                            HttpNotFound();
-                        }                        
-                    }
+                        AddErrors(result);
+                    }                                                                                                                                     
                 }
             }
             using (var db = new ApplicationDbContext())
@@ -518,7 +498,8 @@ namespace DeadLiner.Controllers
             RemovePhoneSuccess,
             Error,
             PhotoUploadSuccess,
-            FileExtensionError
+            FileExtensionError,
+            ProfileEditSuccess
         }
 
 #endregion

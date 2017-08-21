@@ -4,12 +4,15 @@
 }
 
 <div class="tablecontainer">
-    <p>        
-        @Html.DropDownList("id", ViewBag.Users as IEnumerable<SelectListItem>, "Select User")
-        @*<input type="submit" value="Submit" />*@
-    </p>
-    <div id="loadingIndicator" style="display:none;">Loading...</div>
-    <table class="table table-bordered ui" id="myTable">
+    <div style="display: flex; align-items: baseline;" class="alert alert-info">        
+        <p style="padding-right: 5px; font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px;">
+            Please select a User: 
+        </p>
+        <p>
+            @Html.DropDownList("id", ViewBag.Users as IEnumerable<SelectListItem>, "Selected User", new { @class = "selectpicker" })            
+        </p>
+    </div>    
+    <table class="table table-bordered ui" id="myTable" width="100%">
         <thead>
             <tr>
                 <th>
@@ -163,7 +166,7 @@
                         }
                     }
                 ]
-            });
+            });            
 
             $('#id').change(function () {
                 var selectedValue = $(this).val();
@@ -191,16 +194,19 @@
                     var row = oTable.row(tr);
 
                     if (row.child.isShown()) {
-                        $('div.slider', row.child()).slideUp(function () {
+                        $('div.slider', row.child()).slideUp( function () {
                             row.child.hide();
                             tr.removeClass('shown');
-                        });
-
-                    } else {
-                        row.child(format(row.data()), 'no-padding').show();
+                            tr.removeClass('highlightExpanded');
+                        } );
+                    
+                    }
+                    else {
+                        row.child( format(row.data()), 'no-padding' ).show();
                         tr.addClass('shown');
+                        tr.addClass('highlightExpanded');
 
-                        $('div.slider', row.child()).slideDown();
+                        $('div.slider', row.child()).slideDown();                    
                     }
                 });
 
