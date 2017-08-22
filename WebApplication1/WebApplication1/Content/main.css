@@ -71,65 +71,65 @@ body {
     background: #222d32;
 }
 
-    body #nav {
-        background: #222d32;
-        padding: 0;
-        transition: transform .3s ease-in-out, width .3s ease-in-out;
+body #nav {
+    background: #222d32;
+    padding: 0;
+    transition: transform .3s ease-in-out, width .3s ease-in-out;
+}
+
+body #logo {
+    outline: 0;
+    text-transform: uppercase;
+    background: #367FA9;
+    text-align: center;
+    height: 52px;
+    position: absolute
+}
+
+body #logo img {
+    width: 20px;
+}
+
+body #logo:hover {
+    background: #367FA9;
+    cursor: pointer;
+}
+
+body #logo #logoName {
+    text-decoration: none;
+    outline: 0;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+body #logo #logoName:hover {
+    text-decoration: none;
+    outline: 0;
+}
+
+body #nav #logo #logoName #crud {
+    margin-left: -5px;
+}
+
+body #nav #navName {
+    text-transform: uppercase;
+    background: #1a2226;
+    font-size: 12px;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 10px 0px 10px 15px;
+}
+
+    body #nav #navName #name {
+        color: #4b646f;
+        margin: 0;
     }
 
-    body #logo {
-        outline: 0;
-        text-transform: uppercase;
-        background: #367FA9;
-        text-align: center;
-        height: 52px;
-        position: absolute
-    }
-
-        body #logo img {
-            width: 20px;
-        }
-
-        body #logo:hover {
-            background: #367FA9;
-            cursor: pointer;
-        }
-
-        body #logo #logoName {
-            text-decoration: none;
-            outline: 0;
-            color: white;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 50px;
-        }
-
-            body #logo #logoName:hover {
-                text-decoration: none;
-                outline: 0;
-            }
-
-    body #nav #logo #logoName #crud {
-        margin-left: -5px;
-    }
-
-    body #nav #navName {
-        text-transform: uppercase;
-        background: #1a2226;
-        font-size: 12px;
-        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        padding: 10px 0px 10px 15px;
-    }
-
-        body #nav #navName #name {
-            color: #4b646f;
-            margin: 0;
-        }
-
-    body #nav #navigations {
-        margin-top: -1px;
-    }
+body #nav #navigations {
+    margin-top: -1px;
+}
 
         body #nav #navigations li:first-child i {
             margin-right: 6px;
@@ -528,7 +528,7 @@ body #nav #navigations li > a {
     }
 
         .minimizedLeft li {
-            opacity: 0;
+            display: none;
         }
 
     #nav {
@@ -551,6 +551,10 @@ body #nav #navigations li > a {
 
     .minimizedRight {
         width: 100%;
+    }
+    body .logoImage span {
+        display: block !important;
+        margin-top: 1px;
     }
 }
 
