@@ -533,7 +533,7 @@ namespace WebApplication1.Controllers
             }
             else
             {                
-                var data = db.TasksModels.Select(s => new
+                var list = db.TasksModels.Select(s => new
                 {
                     s.Heading,
                     s.StartDate,
@@ -555,8 +555,8 @@ namespace WebApplication1.Controllers
                         })
                     })
                 }).ToList();
-                
-                return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+
+                return Json(new { data = list }, JsonRequestBehavior.AllowGet);
             }
         }
 

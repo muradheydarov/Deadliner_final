@@ -49,7 +49,7 @@
             $.fn.dataTable.moment('DD/MM/YYYY');
             $.fn.dataTable.moment('dddd, DD/MM/YYYY');
 
-            function format(d) {                
+            function format(d) {
                 var trs = '';
                 for (var i = 0; i < d.ttu.length; i++) {
                     var a = d.ttu[i].user[0];
@@ -79,20 +79,19 @@
                         });
                 }
 
-                return '<div class="slider">'+
-                    '<table class="table table-hover" border="0" cellspacing="0">' +
-                    '<thead>'+
-                    '<th>Assigned To :</th>'+
-                    '<th style="border:0;">Answer :</th>' +
-                    '<th style="border:0;">Answer Time :</th>' +
+                return '<div class="slider">' +
+                    '<table class="table table-border table-hover">' +
+                    '<thead>' +
+                    '<th>Assigned To :</th>' +
+                    '<th style="border:0;>Answer :</th>' +
+                    '<th style="border:0;>Answer Time :</th>' +
                     '</thead><tbody>' +
-           	
-                    trs+
+                    trs +
                     '</tbody>' +
                     '</table>' +
-                    '</div>';                
+                    '</div>';
             }
-
+            
             var oTable = $("#myTable").DataTable({
                 responsive: true,
                 "ajax": {
@@ -206,38 +205,36 @@
                 });
 
             $('#id').change(function () {
-                var selectedValue = $(this).val();
+                var selectedValue = $(this).val();                
                 $('#myTable').DataTable().destroy();
-                function format(d) {                    
-                    if (d.ttu.length>1) {
-                        var trs = '';
-                        for (var i = 0; i < d.ttu.length; i++) {
-                            var a = d.ttu[i].user[0];
-                            var b = d.ttu[i].reply[0];
-                            var arraya = $.map(a,
-                                function (value, index) {
-                                    return [value];
-                                });
-                            var arrayb = $.map(b,
-                                function (value, index) {
-                                    return [value];
-                                });
+                function format(d) {
+                    var trs = '';
+                    for (var i = 0; i < d.ttu.length; i++) {
+                        var a = d.ttu[i].user[0];
+                        var b = d.ttu[i].reply[0];
+                        var arraya = $.map(a,
+                            function (value, index) {
+                                return [value];
+                            });
+                        var arrayb = $.map(b,
+                            function (value, index) {
+                                return [value];
+                            });
 
-                            $.each($(arraya),
-                                function (key, value) {
-                                    trs += '<tr>' +
-                                        '<td>' + value + '</td>' +
-                                        '<td>' +
-                                        (arrayb[key] != null ? '<a href=' + arrayb[key] + '>' + arrayb[key] + '</a>' : "") +
-                                        '</td>' +
-                                        '<td>' +
-                                        (arrayb[key + 1] != null
-                                            ? moment(arrayb[key + 1]).format("MMMM Do YYYY, HH:mm")
-                                            : "") +
-                                        '</td>' +
-                                        '</tr>';
-                                });
-                        }
+                        $.each($(arraya),
+                            function (key, value) {
+                                trs += '<tr>' +
+                                    '<td>' + value + '</td>' +
+                                    '<td>' +
+                                    (arrayb[key] != null ? '<a href=' + arrayb[key] + '>' + arrayb[key] + '</a>' : "") +
+                                    '</td>' +
+                                    '<td>' +
+                                    (arrayb[key + 1] != null
+                                        ? moment(arrayb[key + 1]).format("MMMM Do YYYY, HH:mm")
+                                        : "") +
+                                    '</td>' +
+                                    '</tr>';
+                            });
                     }
                     var trs = '';
                     for (var i = 0; i < d.ttu.length; i++) {
@@ -254,7 +251,7 @@
 
                         $.each($(arraya),
                             function (key, value) {
-                                trs += '<tr>' +                                    
+                                trs += '<tr>' +
                                     '<td>' +
                                     (arrayb[key] != null ? '<a href=' + arrayb[key] + '>' + arrayb[key] + '</a>' : "") +
                                     '</td>' +
@@ -269,7 +266,7 @@
 
                     return '<div class="slider">' +
                         '<table class="table table-border table-hover">' +
-                        '<thead>' +                        
+                        '<thead>' +
                         '<th style="border:0;">Answer :</th>' +
                         '<th style="border:0;">Answer Time :</th>' +
                         '</thead><tbody>' +
@@ -278,7 +275,7 @@
                         '</table>' +
                         '</div>';
                 }
-                
+
                 var oTable = $("#myTable").DataTable({
                     responsive: true,
                     "ajax": {
@@ -391,6 +388,7 @@
                                 $('#' + id + ' td.details-control').trigger('click');
                             });
                     });
+
             });
         });
     </script>
