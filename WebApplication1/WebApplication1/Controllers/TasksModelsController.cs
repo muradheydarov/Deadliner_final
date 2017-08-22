@@ -446,41 +446,41 @@ namespace WebApplication1.Controllers
         }
 
         //GET
-        public ActionResult TeacherShowAnswer()
-        {
-            var taskAnswer = new List<TaskAnswerView>();
-            return View(taskAnswer);
-        }
+        //public ActionResult TeacherShowAnswer()
+        //{
+        //    var taskAnswer = new List<TaskAnswerView>();
+        //    return View(taskAnswer);
+        //}
 
         //GET DATA
-        public ActionResult GetDataTeacherShowAnswer()
-        {
-            var now = DateTime.Now;
-            var data = db.TasksModels.Select(s => new
-            {
-                s.Heading,
-                s.StartDate,
-                s.EndDate,
-                s.CreatedBy,
-                s.CreatedOn,
-                Status = s.EndDate > now && s.StartDate < now ? "Open" : "Closed",
+        //public ActionResult GetDataTeacherShowAnswer()
+        //{
+        //    var now = DateTime.Now;
+        //    var data = db.TasksModels.Select(s => new
+        //    {
+        //        s.Heading,
+        //        s.StartDate,
+        //        s.EndDate,
+        //        s.CreatedBy,
+        //        s.CreatedOn,
+        //        Status = s.EndDate > now && s.StartDate < now ? "Open" : "Closed",
 
-                ttu = s.TaskToUsers.Select(t => new
-                {
-                    reply = t.ReplyToTasks.Select(r => new
-                    {
-                        answer = r.UserAnswer,
-                        answerTime = r.AnswerTime,
-                    }),
-                    user = db.Users.Where(f => f.ApplicationUserId == t.UserIdInt).Select(u => new
-                    {
-                        fullName = u.Name + " " + u.Surname
-                    })
-                })
-            }).ToList();
+        //        ttu = s.TaskToUsers.Select(t => new
+        //        {
+        //            reply = t.ReplyToTasks.Select(r => new
+        //            {
+        //                answer = r.UserAnswer,
+        //                answerTime = r.AnswerTime,
+        //            }),
+        //            user = db.Users.Where(f => f.ApplicationUserId == t.UserIdInt).Select(u => new
+        //            {
+        //                fullName = u.Name + " " + u.Surname
+        //            })
+        //        })
+        //    }).ToList();
 
-            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        //}
 
         public ActionResult IndividualUser()
         {

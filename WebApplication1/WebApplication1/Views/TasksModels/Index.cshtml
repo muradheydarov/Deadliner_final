@@ -3,35 +3,39 @@
 @{
     ViewBag.Title = "Index";
 }
+
 <div class="tablecontainer">
+    <div class="alert alert-info">
+        <p style="font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px;">Manage Tasks!</p> 
+    </div>
     <table class="table-bordered display responsive nowrap ui selectable celled table ui unstackable" id="myTable" cellspacing="0" width="100%">
         <thead>
-            <tr>
-                <th>
-                    No.s
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Heading)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EndDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedOn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
-                <th>
-                    Action
-                </th>
-            </tr>
+        <tr>
+            <th>
+                No.s
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Heading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
         </thead>
     </table>
 </div>
@@ -144,7 +148,7 @@
 
                 });
 
-                $dialog = $('<div class="popupWindow" style="overflow:auto"></div>')
+                $dialog = $('<div class="popupWindow" style="overflow:hidden"></div>')
                     .html($pageContent)
                     .dialog({
                         draggable: true,

@@ -4,6 +4,9 @@
     ViewBag.Title = "My Tasks";
 }
 <div class="tablecontainer">
+    <div class="alert alert-info">
+        <p style="font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px;">My Tasks!</p>
+    </div>
     <table class="table-bordered display responsive nowrap ui selectable celled table ui unstackable" id="myTable" cellspacing="0" width="100%">
         <thead>
         <tr>
@@ -145,15 +148,15 @@
                     $.validator.unobtrusive.parse('form');
                 });
 
-                $dialog = $('<div class="popupWindow" style="overflow:auto"></div>')
+                $dialog = $('<div class="popupWindow" style="overflow:hidden"></div>')
                     .html($pageContent)
                     .dialog({
                         draggable: true,
                         autoOpen: false,
                         resizable: true,
-                        model: true,                        
-                        height: 'auto',
+                        model: true,   
                         width: 700,
+                        height: 'auto',                        
                         position: {        
                             my: 'top', 
                             at: 'top'            

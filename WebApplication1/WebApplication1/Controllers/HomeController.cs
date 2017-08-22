@@ -31,7 +31,7 @@ namespace DeadLiner.Controllers
             }
             else if(User.IsInRole("Teacher"))
             {
-               return RedirectToAction("TeacherShowAnswer", "TasksModels");
+               return RedirectToAction("IndividualUser", "TasksModels");
             }
             else
             {
