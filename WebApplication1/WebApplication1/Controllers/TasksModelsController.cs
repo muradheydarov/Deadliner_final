@@ -77,11 +77,11 @@ namespace WebApplication1.Controllers
             }
 
             MyViewModel.Users = MyCheckBoxList;            
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Student"))
             {
-                return View("Details", MyViewModel);
+                return View("DetailsUser", MyViewModel);                
             }
-            return View("DetailsUser", MyViewModel);
+            return View("Details", MyViewModel);
         }
 
         // GET: TasksModels/Create
