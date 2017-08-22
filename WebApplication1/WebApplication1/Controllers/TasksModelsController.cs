@@ -207,6 +207,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit(TaskViewModel tasksModel)
         {
             bool status = false;
@@ -515,14 +516,14 @@ namespace WebApplication1.Controllers
                         t1.t.CreatedOn,
                         Status = t1.t.EndDate > now && t1.t.StartDate < now ? "Open" : "Closed",
 
-                        ttu = t1.t.TaskToUsers.Select(t => new
+                        ttu = t1.t.TaskToUsers.Where(x => x.UserIdInt==applicationUser.ApplicationUserId).Select(t => new
                         {
-                            reply = t.ReplyToTasks.Where(x => x.TaskToUser.UserIdInt == user.ApplicationUserId).Select(r => new
+                            reply = t.ReplyToTasks.Select(r => new
                             {
                                 answer = r.UserAnswer,
                                 answerTime = r.AnswerTime,
                             }),
-                            user = db.Users.Where(f => f.ApplicationUserId == user.ApplicationUserId).Select(u => new
+                            user = db.Users.Select(u => new
                             {
                                 fullName = u.Name + " " + u.Surname
                             })

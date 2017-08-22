@@ -4,14 +4,14 @@
 }
 
 <div class="tablecontainer">
-    <div style="display: flex; align-items: baseline;" class="alert alert-info">        
+    <div style="display: flex; align-items: baseline;" class="alert alert-info">
         <p style="padding-right: 5px; font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px;">
-            Please select a User: 
+            Please select a User:
         </p>
         <p>
-            @Html.DropDownList("id", ViewBag.Users as IEnumerable<SelectListItem>, "Selected User", new { @class = "selectpicker" })            
+            @Html.DropDownList("id", ViewBag.Users as IEnumerable<SelectListItem>, "Selected User", new { @class = "selectpicker" })
         </p>
-    </div>    
+    </div>
     <table class="table table-bordered ui" id="myTable" width="100%">
         <thead>
             <tr>
@@ -49,7 +49,7 @@
             $.fn.dataTable.moment('DD/MM/YYYY');
             $.fn.dataTable.moment('dddd, DD/MM/YYYY');
 
-            function format(d) {
+            function format(d) {                
                 var trs = '';
                 for (var i = 0; i < d.ttu.length; i++) {
                     var a = d.ttu[i].user[0];
@@ -66,6 +66,7 @@
                     $.each($(arraya),
                         function (key, value) {
                             trs += '<tr>' +
+                                '<td>' + value + '</td>' +
                                 '<td>' +
                                 (arrayb[key] != null ? '<a href=' + arrayb[key] + '>' + arrayb[key] + '</a>' : "") +
                                 '</td>' +
@@ -78,16 +79,18 @@
                         });
                 }
 
-                return '<div class="slider">' +
-                    '<table class="table table-border table-hover">' +
-                    '<thead>' +
-                    '<th>Answer :</th>' +
-                    '<th>Answer Time :</th>' +
+                return '<div class="slider">'+
+                    '<table class="table table-hover" border="0" cellspacing="0">' +
+                    '<thead>'+
+                    '<th>Assigned To :</th>'+
+                    '<th style="border:0;">Answer :</th>' +
+                    '<th style="border:0;">Answer Time :</th>' +
                     '</thead><tbody>' +
-                    trs +
+           	
+                    trs+
                     '</tbody>' +
                     '</table>' +
-                    '</div>';
+                    '</div>';                
             }
 
             var oTable = $("#myTable").DataTable({
@@ -177,15 +180,15 @@
                     var row = oTable.row(tr);
 
                     if (row.child.isShown()) {
-                        $('div.slider', row.child()).slideUp( function () {
+                        $('div.slider', row.child()).slideUp(function () {
                             row.child.hide();
                             tr.removeClass('shown');
                             tr.removeClass('highlightExpanded');
-                        } );
+                        });
 
                     }
                     else {
-                        row.child( format(row.data()), 'no-padding' ).show();
+                        row.child(format(row.data()), 'no-padding').show();
                         tr.addClass('shown');
                         tr.addClass('highlightExpanded');
 
@@ -204,10 +207,40 @@
 
             $('#id').change(function () {
                 var selectedValue = $(this).val();
+                $('#myTable').DataTable().destroy();
+                function format(d) {                    
+                    if (d.ttu.length>1) {
+                        var trs = '';
+                        for (var i = 0; i < d.ttu.length; i++) {
+                            var a = d.ttu[i].user[0];
+                            var b = d.ttu[i].reply[0];
+                            var arraya = $.map(a,
+                                function (value, index) {
+                                    return [value];
+                                });
+                            var arrayb = $.map(b,
+                                function (value, index) {
+                                    return [value];
+                                });
 
-                function format(d) {
-                    var trs = '';                    
-                    for (var i = 0; i < 1; i++) {
+                            $.each($(arraya),
+                                function (key, value) {
+                                    trs += '<tr>' +
+                                        '<td>' + value + '</td>' +
+                                        '<td>' +
+                                        (arrayb[key] != null ? '<a href=' + arrayb[key] + '>' + arrayb[key] + '</a>' : "") +
+                                        '</td>' +
+                                        '<td>' +
+                                        (arrayb[key + 1] != null
+                                            ? moment(arrayb[key + 1]).format("MMMM Do YYYY, HH:mm")
+                                            : "") +
+                                        '</td>' +
+                                        '</tr>';
+                                });
+                        }
+                    }
+                    var trs = '';
+                    for (var i = 0; i < d.ttu.length; i++) {
                         var a = d.ttu[i].user[0];
                         var b = d.ttu[i].reply[0];
                         var arraya = $.map(a,
@@ -221,7 +254,7 @@
 
                         $.each($(arraya),
                             function (key, value) {
-                                trs += '<tr>' +
+                                trs += '<tr>' +                                    
                                     '<td>' +
                                     (arrayb[key] != null ? '<a href=' + arrayb[key] + '>' + arrayb[key] + '</a>' : "") +
                                     '</td>' +
@@ -236,17 +269,16 @@
 
                     return '<div class="slider">' +
                         '<table class="table table-border table-hover">' +
-                        '<thead>' +
-                        '<th>Answer :</th>' +
-                        '<th>Answer Time :</th>' +
+                        '<thead>' +                        
+                        '<th style="border:0;">Answer :</th>' +
+                        '<th style="border:0;">Answer Time :</th>' +
                         '</thead><tbody>' +
                         trs +
                         '</tbody>' +
                         '</table>' +
                         '</div>';
                 }
-
-                $('#myTable').DataTable().destroy();
+                
                 var oTable = $("#myTable").DataTable({
                     responsive: true,
                     "ajax": {
