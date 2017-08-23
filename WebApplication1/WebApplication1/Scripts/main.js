@@ -233,47 +233,61 @@ var icon = document.querySelector('#navigations .rotate');
 var iconTwo = document.querySelector('#navigations .rotateTwo');
 var iconThree = document.querySelector('#navigations .rotateThird');
 
-var ala = true;
+var rotateA = true;
+var rotateB = true;
+var rotateC = true;
+
 rotate.addEventListener("click", function () {
-    if (ala == true) {
+    if (rotateA == true) {
         icon.style.transform = "rotate(-90deg)"
         iconTwo.style.transform = "rotate(0deg)"
         iconThree.style.transform = "rotate(0deg)"
-        ala = false;
-        console.log(ala);
-
-    } else{
+        rotateA = false;
+        rotateB = true;
+        rotateC = true;
+    }
+    else {
         icon.style.transform = "rotate(0deg)"
         iconTwo.style.transform = "rotate(0deg)"
         iconThree.style.transform = "rotate(0deg)"
-        ala = true;
-        console.log(ala);
+        rotateA = true;
+        rotateB = true;
+        rotateC = true;
     }
 })
 rotateTwo.addEventListener("click", function () {
-    if (ala == true) {
+    if (rotateB == true) {
         iconTwo.style.transform = "rotate(-90deg)"
         icon.style.transform = "rotate(0deg)"
         iconThree.style.transform = "rotate(0deg)"
-        ala = false;
-        console.log(ala);
-
-    } else {
+        rotateB = false;
+        rotateA = true;
+        rotateC = true;
+    }
+    else {
         iconTwo.style.transform = "rotate(0deg)"
         icon.style.transform = "rotate(0deg)"
         iconThree.style.transform = "rotate(0deg)"
-        ala = true;
-        console.log(ala);
+        rotateB = true;
+        rotateA = true;
+        rotateC = true;
     }
 })
 rotateThree.addEventListener("click", function () {
-    if (ala == true) {
+    if (rotateC == true) {
         iconThree.style.transform = "rotate(-90deg)"
-        ala = false;
-
-    } else {
-        iconThree.style.transform = "rotate(0deg)"
-        ala = true;
+        icon.style.transform = "rotate(0deg)"
+        iconTwo.style.transform = "rotate(0deg)"
+        rotateC = false;
+        rotateA = true;
+        rotateB = true;
     }
-    
+    else {
+        iconThree.style.transform = "rotate(0deg)"
+        icon.style.transform = "rotate(0deg)"
+        iconTwo.style.transform = "rotate(0deg)"
+        rotateC = true;
+        rotateA = true;
+        rotateB = true;
+    }
 })
