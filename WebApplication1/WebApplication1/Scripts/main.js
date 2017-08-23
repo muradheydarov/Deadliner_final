@@ -73,7 +73,7 @@ $(window).resize(function () {
         logo.classList.add("logoImage");
         logo.classList.remove("logoSpan");
         crud.css('display', 'none');
-        logoName.css('line-height', '49px');
+        logoName.css('line-height', '       49px');
         navName.css('display', 'none');
         listName.css('display', 'none');
         angle.css('display', 'none');
@@ -225,5 +225,55 @@ minimizedSettings.mouseout(hideMinimizedSettings);
 // E V E N T S   E N D
 // ===================
 
-var ela = document.querySelector('#navigations>li');
-var container = document.getElementsByTagName("#navigations li a");
+var rotate = document.querySelector('#navigations #taskManager');
+var rotateTwo = document.querySelector('#navigations #userManager');
+var rotateThree = document.querySelector('#navigations #settings');
+
+var icon = document.querySelector('#navigations .rotate');
+var iconTwo = document.querySelector('#navigations .rotateTwo');
+var iconThree = document.querySelector('#navigations .rotateThird');
+
+var ala = true;
+rotate.addEventListener("click", function () {
+    if (ala == true) {
+        icon.style.transform = "rotate(-90deg)"
+        iconTwo.style.transform = "rotate(0deg)"
+        iconThree.style.transform = "rotate(0deg)"
+        ala = false;
+        console.log(ala);
+
+    } else{
+        icon.style.transform = "rotate(0deg)"
+        iconTwo.style.transform = "rotate(0deg)"
+        iconThree.style.transform = "rotate(0deg)"
+        ala = true;
+        console.log(ala);
+    }
+})
+rotateTwo.addEventListener("click", function () {
+    if (ala == true) {
+        iconTwo.style.transform = "rotate(-90deg)"
+        icon.style.transform = "rotate(0deg)"
+        iconThree.style.transform = "rotate(0deg)"
+        ala = false;
+        console.log(ala);
+
+    } else {
+        iconTwo.style.transform = "rotate(0deg)"
+        icon.style.transform = "rotate(0deg)"
+        iconThree.style.transform = "rotate(0deg)"
+        ala = true;
+        console.log(ala);
+    }
+})
+rotateThree.addEventListener("click", function () {
+    if (ala == true) {
+        iconThree.style.transform = "rotate(-90deg)"
+        ala = false;
+
+    } else {
+        iconThree.style.transform = "rotate(0deg)"
+        ala = true;
+    }
+    
+})
