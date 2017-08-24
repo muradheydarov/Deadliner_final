@@ -13,7 +13,6 @@
             window.scrollTo(0, 1);
         }
     </script>
-    <script src="~/Scripts/jquery.min.js"></script>
     <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300italic,300,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -23,7 +22,8 @@
     @RenderSection("cssStyle", required: false)
     @Styles.Render("~/Content/css")
     <link href="~/Content/themes/themes/jquery-ui.css" rel="stylesheet" />
-    @Scripts.Render("~/bundles/modernizr")    
+    @Scripts.Render("~/bundles/modernizr")   
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
 <div id="logo" class="logoSpan">

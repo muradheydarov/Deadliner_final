@@ -16,6 +16,7 @@ namespace DeadLiner.Models
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string Status { get; set; }
+        public HttpPostedFileBase Image { get; set; }
 
         public List<CheckBoxViewModel> Users { get; set; }
     }

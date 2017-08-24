@@ -731,3 +731,6 @@ body #nav #navigations li > a {
 tr.highlightExpanded {
     background-color: #d9edf7 !important;
 }
+.hidden {
+    display: none;
+}
