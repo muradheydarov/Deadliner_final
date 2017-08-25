@@ -153,19 +153,6 @@ namespace WebApplication1.Controllers
             return View(tasksModel);
         }
 
-        public ActionResult Upload()
-        {
-            var file = Request.Files["Filedata"];
-            string extension = Path.GetExtension(file.FileName);
-            string fileid = Guid.NewGuid().ToString();
-            fileid = Path.ChangeExtension(fileid, extension);
-
-            string savePath = Server.MapPath(@"~\Content\images\Uploads\" + fileid);
-            file.SaveAs(savePath);
-
-            return Content(Url.Content(@"~\Content\images\Uploads\" + fileid));
-        }
-
         // GET: TasksModels/Edit/5
         public ActionResult Edit(int? id)
         {

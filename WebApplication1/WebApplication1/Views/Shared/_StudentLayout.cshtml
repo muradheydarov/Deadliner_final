@@ -22,8 +22,7 @@
     @RenderSection("cssStyle", required: false)
     @Styles.Render("~/Content/css")
     <link href="~/Content/themes/themes/jquery-ui.css" rel="stylesheet" />
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")    
 </head>
 <body>
     <div id="logo" class="logoSpan">
@@ -60,7 +59,7 @@
         </li>
         <li id="userManager">
             <a class="cursor_pointer">
-                <i class="fa fa-cog" aria-hidden="true"></i>
+                <i class="fa fa-user" aria-hidden="true"></i>
                 <span>User Manager</span>
                 <i class="fa fa-angle-left rotateTwo" aria-hidden="true"></i>
             </a>
@@ -75,7 +74,7 @@
         </li>
         <li id="settings">
             <a href="#">
-                <i class="fa fa-user" aria-hidden="true"></i>
+                <i class="fa fa-cog" aria-hidden="true"></i>
                 <span>Settings</span>
                 <i class="fa fa-angle-left rotateThird" aria-hidden="true"></i>
             </a>

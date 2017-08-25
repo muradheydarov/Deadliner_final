@@ -41,11 +41,15 @@ namespace DeadLiner.Models
         // GET: ApplicationUsers
         public ActionResult Index()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Student"))
             {
-                return View("AdminIndex", db.Users.ToList());
+                return View("UsersIndex", db.Users.ToList());
             }
-            return View("UsersIndex", db.Users.ToList());
+            else if (User.IsInRole("Teacher"))
+            {
+                return View("TeacherIndex", db.Users.ToList());
+            }            
+            return View("AdminIndex", db.Users.ToList());
         }
 
         // GET: ApplicationUsers/Details/5
@@ -80,6 +84,10 @@ namespace DeadLiner.Models
             if (User.IsInRole("Admin"))
             {
                 return View("DetailsAdmin", details);
+            }
+            else if (User.IsInRole("Teacher"))
+            {
+                return View("DetailsTeacher", details);
             }
             return View("DetailsUser", details);
         }

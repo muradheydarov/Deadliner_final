@@ -8,10 +8,11 @@ namespace DeadLiner
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-{version}.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            //    "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
+                      "~/Scripts/jquery-3.2.1.js",
                       "~/Scripts/jquery.validate*",
                       "~/Scripts/jquery.validate.unobtrusive.js",
                       "~/Scripts/moment.js",
